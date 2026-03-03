@@ -137,14 +137,18 @@ export default function SelectPage() {
     return { value: s.seq, label };
   });
 
-  // 동일 학교에 캠퍼스가 여러 개인 경우에만 라벨에 캠퍼스명 표시
+  // 동일 학교에 캠퍼스가 여러 개인 경우 (isMultiCampus는 요약 카드에서 사용)
   const campusSet = new Set(departments.map((d) => d.campusName));
   const isMultiCampus = campusSet.size > 1;
 
+  // 학과명에서 괄호 내용 제거 (전공·캠퍼스 표기 삭제)
+  // 예: "소프트웨어학부(컴퓨터공학전공)" → "소프트웨어학부"
+  const cleanMajorName = (name: string) => name.replace(/\s*\([^)]*\)/g, '').trim();
+
   const deptSelectData: ComboboxItem[] = departments.map((d) => ({
-    // "majorSeq|campusName" 형식으로 고유 식별
+    // "majorSeq|campusName" 형식으로 고유 식별 (value는 변경 없음)
     value: `${d.majorSeq}|${d.campusName}`,
-    label: isMultiCampus ? `${d.majorName} (${d.campusName})` : d.majorName,
+    label: cleanMajorName(d.majorName),
   }));
 
   const isReady = selectedSchool !== null && selectedDept !== null;
@@ -331,9 +335,7 @@ export default function SelectPage() {
                     ? `${selectedSchool.schoolName} (${extractCity(selectedSchool.region, selectedSchool.adres)})`
                     : selectedSchool.schoolName}
                   {' · '}
-                  {isMultiCampus
-                    ? `${selectedDept.majorName} (${selectedDept.campusName})`
-                    : selectedDept.majorName}
+                  {cleanMajorName(selectedDept.majorName)}
                 </Text>
                 <Text size="xs" c="dimmed" mt={2}>
                   {selectedDept.lClass} &gt; {selectedDept.mClass}
