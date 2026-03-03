@@ -117,7 +117,15 @@ export async function GET(request: NextRequest) {
 
       const listData: DepartmentsApiResponse = await listRes.json();
       console.log('[DEBUG] MAJOR 목록 원시 응답:\n', JSON.stringify(listData, null, 2));
-      const majors = listData?.dataSearch?.content ?? [];
+      const rawMajors = listData?.dataSearch?.content ?? [];
+
+      // API가 동일 majorSeq를 중복 반환하는 경우 제거 (MAJOR_VIEW 불필요 호출 방지)
+      const seenMajorSeqs = new Set<string>();
+      const majors = rawMajors.filter((m) => {
+        if (seenMajorSeqs.has(m.majorSeq)) return false;
+        seenMajorSeqs.add(m.majorSeq);
+        return true;
+      });
 
       // 전체 조회 시 동시성을 높여 처리 속도 개선 (캐시 적중 시 즉시 반환)
       const concurrency = title ? 5 : 12;
@@ -148,7 +156,15 @@ export async function GET(request: NextRequest) {
         concurrency,
       );
 
-      const filtered = nested.flat();
+      // 최종 안전망: majorSeq|campusName 기준으로 중복 제거
+      const seen = new Set<string>();
+      const filtered = nested.flat().filter((d) => {
+        const key = `${d.majorSeq}|${d.campusName}`;
+        if (seen.has(key)) return false;
+        seen.add(key);
+        return true;
+      });
+
       return NextResponse.json(filtered);
     } catch (err) {
       console.error('[/api/departments] 학교필터 오류:', err);
