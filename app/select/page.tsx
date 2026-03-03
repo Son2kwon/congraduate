@@ -15,6 +15,8 @@ import {
   Anchor,
   Loader,
   Alert,
+  Skeleton,
+  Group,
   ComboboxItem,
 } from '@mantine/core';
 import { IconArrowLeft, IconAlertCircle } from '@tabler/icons-react';
@@ -36,6 +38,7 @@ export default function SelectPage() {
         return r.json() as Promise<CareerNetSchool[] | { error: string }>;
       })
       .then((data) => {
+        console.log('Client Received - 학교 목록:', data);
         if ('error' in data) throw new Error(data.error);
         setSchools(data as CareerNetSchool[]);
       })
@@ -48,10 +51,11 @@ export default function SelectPage() {
   const [deptsLoading, setDeptsLoading] = useState(false);
   const [deptsError, setDeptsError] = useState<string | null>(null);
   const [selectedDept, setSelectedDept] = useState<SchoolDepartment | null>(null);
+  const [deptRetryKey, setDeptRetryKey] = useState(0);
 
   const selectedSchool = schools.find((s) => s.seq === selectedSchoolSeq) ?? null;
 
-  // 학교가 바뀌면 해당 학교의 전체 학과 목록 로드
+  // 학교가 바뀌거나 재시도 시 해당 학교의 전체 학과 목록 로드
   useEffect(() => {
     setDepartments([]);
     setSelectedDept(null);
@@ -73,6 +77,7 @@ export default function SelectPage() {
         return r.json() as Promise<SchoolDepartment[] | { error: string }>;
       })
       .then((data) => {
+        console.log('Client Received - 학과 목록:', data);
         if (!cancelled) {
           if ('error' in data) throw new Error((data as { error: string }).error);
           setDepartments(data as SchoolDepartment[]);
@@ -88,7 +93,7 @@ export default function SelectPage() {
     return () => {
       cancelled = true;
     };
-  }, [selectedSchool]);
+  }, [selectedSchool, deptRetryKey]);
 
   const handleDeptChange = (value: string | null) => {
     if (!value) {
@@ -130,20 +135,14 @@ export default function SelectPage() {
 
   const deptSelectData: ComboboxItem[] = departments.map((d) => ({
     value: d.majorSeq,
-    // 학교 고유 학과명 표시, 카테고리가 다르면 괄호로 보조 표시
-    label: d.majorName !== d.mClass ? `${d.majorName} (${d.mClass})` : d.majorName,
+    // 학교 고유 학과명 표시, 캠퍼스명이 있으면 괄호로 보조 표시
+    label: d.campusName ? `${d.majorName} (${d.campusName})` : d.majorName,
   }));
 
   const isReady = selectedSchool !== null && selectedDept !== null;
 
-  // 학과 placeholder 상태별 분기
-  const deptPlaceholder = !selectedSchool
-    ? '먼저 학교를 선택해주세요'
-    : deptsLoading
-    ? '학과 목록 불러오는 중...'
-    : '학과명을 입력하여 검색하세요';
-
-  const deptNothingFound = deptsLoading ? '불러오는 중...' : '검색 결과가 없습니다';
+  const deptPlaceholder = !selectedSchool ? '먼저 학교를 선택해주세요' : '학과명을 입력하여 검색하세요';
+  const deptNothingFound = '검색 결과가 없습니다';
 
   return (
     <Center
@@ -247,34 +246,56 @@ export default function SelectPage() {
                   radius="md"
                   variant="light"
                 >
-                  {deptsError}
+                  <Group justify="space-between" align="center" gap="xs">
+                    <Text size="sm" style={{ flex: 1 }}>{deptsError}</Text>
+                    <Button
+                      size="xs"
+                      variant="light"
+                      color="orange"
+                      onClick={() => setDeptRetryKey((k) => k + 1)}
+                    >
+                      재시도
+                    </Button>
+                  </Group>
                 </Alert>
               )}
 
-              {/* ② 학과 선택 (학교 선택 후 전체 목록 로드 + 클라이언트 필터) */}
-              <Select
-                label={
-                  selectedSchool
-                    ? `학과 선택 — ${selectedSchool.schoolName} 개설 학과`
-                    : '학과 선택'
-                }
-                placeholder={deptPlaceholder}
-                data={deptSelectData}
-                value={selectedDept?.majorSeq ?? null}
-                onChange={handleDeptChange}
-                searchable
-                clearable
-                disabled={!selectedSchool || deptsLoading}
-                size="md"
-                radius="md"
-                rightSection={deptsLoading ? <Loader size="xs" /> : undefined}
-                nothingFoundMessage={deptNothingFound}
-                maxDropdownHeight={260}
-                styles={{
-                  label: { fontWeight: 600, marginBottom: 6 },
-                  input: { borderColor: selectedDept ? '#339af0' : undefined },
-                }}
-              />
+              {/* ② 학과 선택: 로딩 중 Skeleton, 완료 후 Select */}
+              {selectedSchool && deptsLoading ? (
+                <Stack gap={6}>
+                  <Text size="sm" fw={600}>
+                    학과 선택 — {selectedSchool.schoolName} 개설 학과
+                  </Text>
+                  <Skeleton height={42} radius="md" />
+                  <Group gap="xs" justify="center">
+                    <Loader size="xs" color="blue" />
+                    <Text size="xs" c="dimmed">학과 정보를 불러오는 중입니다...</Text>
+                  </Group>
+                </Stack>
+              ) : (
+                <Select
+                  label={
+                    selectedSchool
+                      ? `학과 선택 — ${selectedSchool.schoolName} 개설 학과`
+                      : '학과 선택'
+                  }
+                  placeholder={deptPlaceholder}
+                  data={deptSelectData}
+                  value={selectedDept?.majorSeq ?? null}
+                  onChange={handleDeptChange}
+                  searchable
+                  clearable
+                  disabled={!selectedSchool}
+                  size="md"
+                  radius="md"
+                  nothingFoundMessage={deptNothingFound}
+                  maxDropdownHeight={260}
+                  styles={{
+                    label: { fontWeight: 600, marginBottom: 6 },
+                    input: { borderColor: selectedDept ? '#339af0' : undefined },
+                  }}
+                />
+              )}
 
               {/* 학교 선택 안내 */}
               {!selectedSchool && !schoolsLoading && (
