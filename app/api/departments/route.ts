@@ -14,6 +14,9 @@ const CAREER_NET_BASE = 'https://www.career.go.kr/cnet/openapi/getOpenApi.json';
 // ── 서버 수명 동안 MAJOR_VIEW 결과를 캐시 ─────────────────────────────────
 const majorViewCache = new Map<string, MajorViewUniversity[]>();
 
+// MAJOR_VIEW 구조 파악용: 서버 재시작 후 첫 번째 캐시미스에만 로그 출력
+let majorViewDebugLogged = false;
+
 async function fetchMajorViewUniversities(
   majorSeq: string,
   apiKey: string,
@@ -47,6 +50,16 @@ async function fetchMajorViewUniversities(
 
     // XML→JSON 변환 시 단일 항목은 배열이 아닐 수 있음
     const unis: MajorViewUniversity[] = Array.isArray(raw) ? raw : [raw];
+
+    // 서버 재시작 후 첫 번째 MAJOR_VIEW 응답만 구조 파악용으로 출력
+    if (!majorViewDebugLogged) {
+      majorViewDebugLogged = true;
+      console.log('[DEBUG] MAJOR_VIEW 원시 응답 (majorSeq:', majorSeq, '):\n', JSON.stringify(data, null, 2));
+      console.log('[DEBUG] MAJOR_VIEW → contentItem:\n', JSON.stringify(contentItem, null, 2));
+      console.log('[DEBUG] MAJOR_VIEW → university (raw, Array.isArray:', Array.isArray(raw), '):\n', JSON.stringify(raw, null, 2));
+      console.log('[DEBUG] MAJOR_VIEW → 최종 추출 unis:\n', JSON.stringify(unis, null, 2));
+    }
+
     majorViewCache.set(majorSeq, unis);
     return unis;
   } catch {
@@ -103,38 +116,39 @@ export async function GET(request: NextRequest) {
       if (!listRes.ok) throw new Error(`MAJOR list HTTP ${listRes.status}`);
 
       const listData: DepartmentsApiResponse = await listRes.json();
+      console.log('[DEBUG] MAJOR 목록 원시 응답:\n', JSON.stringify(listData, null, 2));
       const majors = listData?.dataSearch?.content ?? [];
 
       // 전체 조회 시 동시성을 높여 처리 속도 개선 (캐시 적중 시 즉시 반환)
       const concurrency = title ? 5 : 12;
 
       // 각 학과 카테고리에 대해 MAJOR_VIEW로 개설 대학 목록 확인
-      const filtered = (
-        await batchProcess(
-          majors,
-          async (major): Promise<SchoolDepartment | null> => {
-            const unis = await fetchMajorViewUniversities(major.majorSeq, apiKey);
+      // filter()로 모든 캠퍼스 매치를 수집 → 캠퍼스별 개별 항목 생성
+      const nested = await batchProcess(
+        majors,
+        async (major): Promise<SchoolDepartment[]> => {
+          const unis = await fetchMajorViewUniversities(major.majorSeq, apiKey);
 
-            // 선택한 학교와 일치하는 항목 찾기
-            const match = unis.find((u) => u.schoolName === schoolName);
-            if (!match) return null;
+          // 선택한 학교와 일치하는 모든 캠퍼스 수집 (find → filter)
+          const matches = unis.filter((u) => u.schoolName === schoolName);
+          if (matches.length === 0) return [];
 
+          return matches
             // title이 있을 때만 학과명 포함 여부 확인
-            // (API가 facilName 등 부가 필드에서도 검색하므로 무관한 카테고리 제거)
-            if (title && !match.majorName.includes(title)) return null;
-
-            return {
+            .filter((match) => !title || match.majorName.includes(title))
+            .map((match) => ({
               majorSeq: major.majorSeq,
               mClass: major.mClass,
               lClass: major.lClass,
-              majorName: match.majorName,   // 해당 학교의 실제 학과명
-              campusName: match.campus_nm,
-            };
-          },
-          concurrency,
-        )
-      ).filter((r): r is SchoolDepartment => r !== null);
+              majorName: match.majorName,
+              // 빈 값 또는 누락 시 '본교'로 정규화
+              campusName: match.campus_nm || '본교',
+            }));
+        },
+        concurrency,
+      );
 
+      const filtered = nested.flat();
       return NextResponse.json(filtered);
     } catch (err) {
       console.error('[/api/departments] 학교필터 오류:', err);
@@ -167,6 +181,7 @@ export async function GET(request: NextRequest) {
     }
 
     const data: DepartmentsApiResponse = await res.json();
+    console.log('[DEBUG] MAJOR 전체목록 원시 응답:\n', JSON.stringify(data, null, 2));
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const resultCode = (data as any)?.dataSearch?.result?.content?.code;

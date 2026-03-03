@@ -100,7 +100,11 @@ export default function SelectPage() {
       setSelectedDept(null);
       return;
     }
-    const found = departments.find((d) => d.majorSeq === value) ?? null;
+    // value 형식: "majorSeq|campusName"
+    const sepIdx = value.indexOf('|');
+    const majorSeq = value.slice(0, sepIdx);
+    const campusName = value.slice(sepIdx + 1);
+    const found = departments.find((d) => d.majorSeq === majorSeq && d.campusName === campusName) ?? null;
     setSelectedDept(found);
   };
 
@@ -133,10 +137,14 @@ export default function SelectPage() {
     return { value: s.seq, label };
   });
 
+  // 동일 학교에 캠퍼스가 여러 개인 경우에만 라벨에 캠퍼스명 표시
+  const campusSet = new Set(departments.map((d) => d.campusName));
+  const isMultiCampus = campusSet.size > 1;
+
   const deptSelectData: ComboboxItem[] = departments.map((d) => ({
-    value: d.majorSeq,
-    // 학교 고유 학과명 표시, 캠퍼스명이 있으면 괄호로 보조 표시
-    label: d.campusName ? `${d.majorName} (${d.campusName})` : d.majorName,
+    // "majorSeq|campusName" 형식으로 고유 식별
+    value: `${d.majorSeq}|${d.campusName}`,
+    label: isMultiCampus ? `${d.majorName} (${d.campusName})` : d.majorName,
   }));
 
   const isReady = selectedSchool !== null && selectedDept !== null;
@@ -281,7 +289,7 @@ export default function SelectPage() {
                   }
                   placeholder={deptPlaceholder}
                   data={deptSelectData}
-                  value={selectedDept?.majorSeq ?? null}
+                  value={selectedDept ? `${selectedDept.majorSeq}|${selectedDept.campusName}` : null}
                   onChange={handleDeptChange}
                   searchable
                   clearable
@@ -323,10 +331,13 @@ export default function SelectPage() {
                     ? `${selectedSchool.schoolName} (${extractCity(selectedSchool.region, selectedSchool.adres)})`
                     : selectedSchool.schoolName}
                   {' · '}
-                  {selectedDept.majorName}
+                  {isMultiCampus
+                    ? `${selectedDept.majorName} (${selectedDept.campusName})`
+                    : selectedDept.majorName}
                 </Text>
                 <Text size="xs" c="dimmed" mt={2}>
                   {selectedDept.lClass} &gt; {selectedDept.mClass}
+                  {isMultiCampus && ` · ${selectedDept.campusName}`}
                 </Text>
               </Card>
             )}
