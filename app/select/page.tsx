@@ -17,25 +17,19 @@ import {
   Alert,
   ComboboxItem,
 } from '@mantine/core';
+import { useDebouncedValue } from '@mantine/hooks';
 import { IconArrowLeft, IconAlertCircle } from '@tabler/icons-react';
-import type { CareerNetSchool, CareerNetDepartment } from '@/types/careernet';
+import type { CareerNetSchool, SchoolDepartment } from '@/types/careernet';
 
 export default function SelectPage() {
   const router = useRouter();
 
-  // ── 학교 ────────────────────────────────────────────────────────────────
+  // ── 학교: 마운트 시 전체 목록 프리로드 ──────────────────────────────────
   const [schools, setSchools] = useState<CareerNetSchool[]>([]);
   const [schoolsLoading, setSchoolsLoading] = useState(true);
   const [schoolsError, setSchoolsError] = useState<string | null>(null);
   const [selectedSchoolSeq, setSelectedSchoolSeq] = useState<string | null>(null);
 
-  // ── 학과 ────────────────────────────────────────────────────────────────
-  const [departments, setDepartments] = useState<CareerNetDepartment[]>([]);
-  const [deptsLoading, setDeptsLoading] = useState(true);
-  const [deptsError, setDeptsError] = useState<string | null>(null);
-  const [selectedDeptSeq, setSelectedDeptSeq] = useState<string | null>(null);
-
-  // 마운트 시 전체 목록을 한 번만 가져옴
   useEffect(() => {
     fetch('/api/schools')
       .then((r) => {
@@ -50,37 +44,148 @@ export default function SelectPage() {
       .finally(() => setSchoolsLoading(false));
   }, []);
 
+  // ── 학과: 학교 선택 후 검색어 입력 시 학교 필터 API 호출 ────────────────
+  const [deptSearch, setDeptSearch] = useState('');
+  const [debouncedDeptSearch] = useDebouncedValue(deptSearch, 500);
+  const [departments, setDepartments] = useState<SchoolDepartment[]>([]);
+  const [deptsLoading, setDeptsLoading] = useState(false);
+  const [deptsError, setDeptsError] = useState<string | null>(null);
+  // selectedDept를 파생값이 아닌 독립 state로 관리
+  // (검색 결과가 바뀌어도 선택이 유지되도록)
+  const [selectedDept, setSelectedDept] = useState<SchoolDepartment | null>(null);
+
+  const selectedSchool = schools.find((s) => s.seq === selectedSchoolSeq) ?? null;
+
+  // 학교가 변경되면 학과 상태 초기화
   useEffect(() => {
-    fetch('/api/departments')
+    setDeptSearch('');
+    setDepartments([]);
+    setSelectedDept(null);
+    setDeptsError(null);
+  }, [selectedSchoolSeq]);
+
+  // Mantine Select가 항목 선택 후 onSearchChange로 라벨 텍스트를 보내는 경우 무시
+  const handleDeptSearchChange = (val: string) => {
+    if (selectedDept) {
+      const label =
+        selectedDept.majorName !== selectedDept.mClass
+          ? `${selectedDept.majorName} (${selectedDept.mClass})`
+          : selectedDept.majorName;
+      if (val === label) return; // 선택 직후 라벨 업데이트 → 재검색 방지
+    }
+    setDeptSearch(val);
+  };
+
+  const handleDeptChange = (value: string | null) => {
+    if (!value) {
+      setSelectedDept(null);
+      return;
+    }
+    const found = departments.find((d) => d.majorSeq === value) ?? null;
+    setSelectedDept(found);
+  };
+
+  // 학과 검색: 학교 선택 + 검색어 입력 시에만 호출
+  useEffect(() => {
+    if (!selectedSchool || !debouncedDeptSearch) {
+      setDepartments([]);
+      setDeptsLoading(false);
+      return;
+    }
+
+    let cancelled = false;
+    setDeptsError(null);
+    setDeptsLoading(true);
+    setDepartments([]);
+
+    const params = new URLSearchParams({
+      schoolName: selectedSchool.schoolName,
+      title: debouncedDeptSearch,
+    });
+
+    fetch(`/api/departments?${params.toString()}`)
       .then((r) => {
-        if (!r.ok) throw new Error('학과 목록을 불러오지 못했습니다.');
-        return r.json() as Promise<CareerNetDepartment[] | { error: string }>;
+        if (!r.ok) throw new Error('학과 정보를 불러오지 못했습니다.');
+        return r.json() as Promise<SchoolDepartment[] | { error: string }>;
       })
       .then((data) => {
-        if ('error' in data) throw new Error((data as { error: string }).error);
-        setDepartments(data as CareerNetDepartment[]);
+        if (!cancelled) {
+          if ('error' in data) throw new Error((data as { error: string }).error);
+          setDepartments(data as SchoolDepartment[]);
+        }
       })
-      .catch((e: Error) => setDeptsError(e.message))
-      .finally(() => setDeptsLoading(false));
-  }, []);
+      .catch((e: Error) => {
+        if (!cancelled) setDeptsError(e.message);
+      })
+      .finally(() => {
+        if (!cancelled) setDeptsLoading(false);
+      });
 
-  const schoolSelectData: ComboboxItem[] = schools.map((s) => ({
-    value: s.seq,
-    label: s.campusName ? `${s.schoolName} (${s.campusName})` : s.schoolName,
-  }));
+    return () => {
+      cancelled = true;
+    };
+  }, [selectedSchool, debouncedDeptSearch]);
+
+  // ── Select 데이터 ─────────────────────────────────────────────────────
+  // CareerNet API는 모든 캠퍼스를 "제N캠퍼스"로만 제공하므로
+  // 멀티캠퍼스 학교는 주소(adres)에서 도시명을 추출해 표시
+  const schoolNameCount = new Map<string, number>();
+  for (const s of schools) {
+    schoolNameCount.set(s.schoolName, (schoolNameCount.get(s.schoolName) ?? 0) + 1);
+  }
+
+  const extractCity = (region: string, adres: string): string => {
+    // 특별시·광역시·특별자치시 → 도시명 ("서울특별시" → "서울")
+    const specialCity = region.match(/^([가-힣]+?)(?:특별시|광역시|특별자치시)$/);
+    if (specialCity) return specialCity[1];
+    // 전체 형식: "경기도 안성시..." → "안성"
+    const fullForm = adres.match(/[가-힣]+도\s+([가-힣]+?)(?:시|군)/);
+    if (fullForm) return fullForm[1];
+    // 약칭 형식: "경기 용인시...", "경남 창원시..." → "용인", "창원"
+    const shortForm = adres.match(/^[가-힣]{2}\s+([가-힣]+?)(?:시|군)/);
+    if (shortForm) return shortForm[1];
+    return region;
+  };
+
+  const schoolSelectData: ComboboxItem[] = schools.map((s) => {
+    const isMulti = (schoolNameCount.get(s.schoolName) ?? 1) > 1;
+    const label = isMulti
+      ? `${s.schoolName} (${extractCity(s.region, s.adres)})`
+      : s.schoolName;
+    return { value: s.seq, label };
+  });
 
   const deptSelectData: ComboboxItem[] = departments.map((d) => ({
     value: d.majorSeq,
-    label: d.mClass,
+    // 학교 고유 학과명 표시, 카테고리가 다르면 괄호로 보조 표시
+    label: d.majorName !== d.mClass ? `${d.majorName} (${d.mClass})` : d.majorName,
   }));
 
-  const selectedSchool = schools.find((s) => s.seq === selectedSchoolSeq) ?? null;
-  const selectedDept = departments.find((d) => d.majorSeq === selectedDeptSeq) ?? null;
+  // 이미 선택된 항목이 검색으로 사라졌을 때 드롭다운에서 유지
+  if (selectedDept && !deptSelectData.find((d) => d.value === selectedDept.majorSeq)) {
+    deptSelectData.unshift({
+      value: selectedDept.majorSeq,
+      label:
+        selectedDept.majorName !== selectedDept.mClass
+          ? `${selectedDept.majorName} (${selectedDept.mClass})`
+          : selectedDept.majorName,
+    });
+  }
+
   const isReady = selectedSchool !== null && selectedDept !== null;
 
-  const handleStart = () => {
-    router.push('/dashboard');
-  };
+  // 학과 placeholder 상태별 분기
+  const deptPlaceholder = !selectedSchool
+    ? '먼저 학교를 선택해주세요'
+    : deptsLoading
+    ? '검색 중...'
+    : '학과명 입력 (예: 소프트웨어, 컴퓨터공학)';
+
+  const deptNothingFound = deptsLoading
+    ? '검색 중...'
+    : debouncedDeptSearch
+    ? `"${debouncedDeptSearch}"에 해당하는 개설 학과가 없습니다`
+    : '학과명을 입력하여 검색하세요';
 
   return (
     <Center
@@ -154,9 +259,12 @@ export default function SelectPage() {
                 </Alert>
               )}
 
+              {/* ① 학교 선택 (전체 목록 프리로드 + 클라이언트 필터) */}
               <Select
                 label="학교 선택"
-                placeholder={schoolsLoading ? '목록 불러오는 중...' : '학교명을 입력하여 검색하세요'}
+                placeholder={
+                  schoolsLoading ? '목록 불러오는 중...' : '학교명을 입력하여 검색하세요'
+                }
                 data={schoolSelectData}
                 value={selectedSchoolSeq}
                 onChange={setSelectedSchoolSeq}
@@ -177,7 +285,7 @@ export default function SelectPage() {
               {deptsError && (
                 <Alert
                   icon={<IconAlertCircle size={16} />}
-                  color="red"
+                  color="orange"
                   radius="md"
                   variant="light"
                 >
@@ -185,25 +293,40 @@ export default function SelectPage() {
                 </Alert>
               )}
 
+              {/* ② 학과 선택 (학교 선택 후 활성화, 서버 필터링) */}
               <Select
-                label="학과 선택"
-                placeholder={deptsLoading ? '목록 불러오는 중...' : '학과명을 입력하여 검색하세요'}
+                label={
+                  selectedSchool
+                    ? `학과 선택 — ${selectedSchool.schoolName} 개설 학과`
+                    : '학과 선택'
+                }
+                placeholder={deptPlaceholder}
                 data={deptSelectData}
-                value={selectedDeptSeq}
-                onChange={setSelectedDeptSeq}
+                value={selectedDept?.majorSeq ?? null}
+                onChange={handleDeptChange}
+                onSearchChange={handleDeptSearchChange}
+                searchValue={deptSearch}
                 searchable
                 clearable
-                disabled={deptsLoading}
+                filter={({ options }) => options} // 필터링은 서버에서 처리하므로 클라이언트 필터 비활성화
+                disabled={!selectedSchool || deptsLoading}
                 size="md"
                 radius="md"
                 rightSection={deptsLoading ? <Loader size="xs" /> : undefined}
-                nothingFoundMessage="검색 결과가 없습니다"
+                nothingFoundMessage={deptNothingFound}
                 maxDropdownHeight={260}
                 styles={{
                   label: { fontWeight: 600, marginBottom: 6 },
-                  input: { borderColor: selectedDeptSeq ? '#339af0' : undefined },
+                  input: { borderColor: selectedDept ? '#339af0' : undefined },
                 }}
               />
+
+              {/* 학교 선택 안내 */}
+              {!selectedSchool && !schoolsLoading && (
+                <Text size="xs" c="dimmed" ta="center">
+                  학교를 먼저 선택해야 해당 학교의 개설 학과를 검색할 수 있어요.
+                </Text>
+              )}
             </Stack>
 
             {/* 선택 요약 */}
@@ -220,11 +343,14 @@ export default function SelectPage() {
                   선택 확인
                 </Text>
                 <Text size="sm" c="blue.9">
-                  {selectedSchool.campusName
-                    ? `${selectedSchool.schoolName} (${selectedSchool.campusName})`
+                  {(schoolNameCount.get(selectedSchool.schoolName) ?? 1) > 1
+                    ? `${selectedSchool.schoolName} (${extractCity(selectedSchool.region, selectedSchool.adres)})`
                     : selectedSchool.schoolName}
                   {' · '}
-                  {selectedDept.mClass}
+                  {selectedDept.majorName}
+                </Text>
+                <Text size="xs" c="dimmed" mt={2}>
+                  {selectedDept.lClass} &gt; {selectedDept.mClass}
                 </Text>
               </Card>
             )}
@@ -235,7 +361,7 @@ export default function SelectPage() {
               radius="md"
               fullWidth
               disabled={!isReady}
-              onClick={handleStart}
+              onClick={() => router.push('/dashboard')}
               style={{
                 background: isReady
                   ? 'linear-gradient(135deg, #1971c2 0%, #339af0 100%)'
