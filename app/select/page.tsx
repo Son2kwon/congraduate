@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import {
   Center,
@@ -13,29 +13,74 @@ import {
   Badge,
   Divider,
   Anchor,
-  Group,
+  Loader,
+  Alert,
+  ComboboxItem,
 } from '@mantine/core';
-import { IconArrowLeft } from '@tabler/icons-react';
-import { SCHOOLS, SCHOOL_SELECT_DATA } from '@/data/schools';
+import { IconArrowLeft, IconAlertCircle } from '@tabler/icons-react';
+import type { CareerNetSchool, CareerNetDepartment } from '@/types/careernet';
 
 export default function SelectPage() {
   const router = useRouter();
-  const [selectedSchool, setSelectedSchool] = useState<string | null>(null);
-  const [selectedDepartment, setSelectedDepartment] = useState<string | null>(null);
 
-  const departmentOptions =
-    SCHOOLS.find((s) => s.value === selectedSchool)?.departments ?? [];
+  // ── 학교 ────────────────────────────────────────────────────────────────
+  const [schools, setSchools] = useState<CareerNetSchool[]>([]);
+  const [schoolsLoading, setSchoolsLoading] = useState(true);
+  const [schoolsError, setSchoolsError] = useState<string | null>(null);
+  const [selectedSchoolSeq, setSelectedSchoolSeq] = useState<string | null>(null);
 
-  const handleSchoolChange = (value: string | null) => {
-    setSelectedSchool(value);
-    setSelectedDepartment(null);
-  };
+  // ── 학과 ────────────────────────────────────────────────────────────────
+  const [departments, setDepartments] = useState<CareerNetDepartment[]>([]);
+  const [deptsLoading, setDeptsLoading] = useState(true);
+  const [deptsError, setDeptsError] = useState<string | null>(null);
+  const [selectedDeptSeq, setSelectedDeptSeq] = useState<string | null>(null);
+
+  // 마운트 시 전체 목록을 한 번만 가져옴
+  useEffect(() => {
+    fetch('/api/schools')
+      .then((r) => {
+        if (!r.ok) throw new Error('학교 목록을 불러오지 못했습니다.');
+        return r.json() as Promise<CareerNetSchool[] | { error: string }>;
+      })
+      .then((data) => {
+        if ('error' in data) throw new Error(data.error);
+        setSchools(data as CareerNetSchool[]);
+      })
+      .catch((e: Error) => setSchoolsError(e.message))
+      .finally(() => setSchoolsLoading(false));
+  }, []);
+
+  useEffect(() => {
+    fetch('/api/departments')
+      .then((r) => {
+        if (!r.ok) throw new Error('학과 목록을 불러오지 못했습니다.');
+        return r.json() as Promise<CareerNetDepartment[] | { error: string }>;
+      })
+      .then((data) => {
+        if ('error' in data) throw new Error((data as { error: string }).error);
+        setDepartments(data as CareerNetDepartment[]);
+      })
+      .catch((e: Error) => setDeptsError(e.message))
+      .finally(() => setDeptsLoading(false));
+  }, []);
+
+  const schoolSelectData: ComboboxItem[] = schools.map((s) => ({
+    value: s.seq,
+    label: s.campusName ? `${s.schoolName} (${s.campusName})` : s.schoolName,
+  }));
+
+  const deptSelectData: ComboboxItem[] = departments.map((d) => ({
+    value: d.majorSeq,
+    label: d.mClass,
+  }));
+
+  const selectedSchool = schools.find((s) => s.seq === selectedSchoolSeq) ?? null;
+  const selectedDept = departments.find((d) => d.majorSeq === selectedDeptSeq) ?? null;
+  const isReady = selectedSchool !== null && selectedDept !== null;
 
   const handleStart = () => {
     router.push('/dashboard');
   };
-
-  const isReady = selectedSchool !== null && selectedDepartment !== null;
 
   return (
     <Center
@@ -98,38 +143,65 @@ export default function SelectPage() {
 
             {/* 선택 영역 */}
             <Stack gap="md">
+              {schoolsError && (
+                <Alert
+                  icon={<IconAlertCircle size={16} />}
+                  color="red"
+                  radius="md"
+                  variant="light"
+                >
+                  {schoolsError}
+                </Alert>
+              )}
+
               <Select
                 label="학교 선택"
-                placeholder="학교를 선택하세요"
-                data={SCHOOL_SELECT_DATA}
-                value={selectedSchool}
-                onChange={handleSchoolChange}
-                size="md"
-                radius="md"
+                placeholder={schoolsLoading ? '목록 불러오는 중...' : '학교명을 입력하여 검색하세요'}
+                data={schoolSelectData}
+                value={selectedSchoolSeq}
+                onChange={setSelectedSchoolSeq}
                 searchable
                 clearable
-                styles={{
-                  label: { fontWeight: 600, marginBottom: 6 },
-                  input: { borderColor: selectedSchool ? '#339af0' : undefined },
-                }}
-              />
-              <Select
-                label="학과 선택"
-                placeholder={
-                  selectedSchool ? '학과를 선택하세요' : '먼저 학교를 선택해주세요'
-                }
-                data={departmentOptions}
-                value={selectedDepartment}
-                onChange={setSelectedDepartment}
-                disabled={!selectedSchool}
+                disabled={schoolsLoading}
                 size="md"
                 radius="md"
+                rightSection={schoolsLoading ? <Loader size="xs" /> : undefined}
+                nothingFoundMessage="검색 결과가 없습니다"
+                maxDropdownHeight={260}
                 styles={{
                   label: { fontWeight: 600, marginBottom: 6 },
-                  input: {
-                    borderColor: selectedDepartment ? '#339af0' : undefined,
-                    cursor: !selectedSchool ? 'not-allowed' : undefined,
-                  },
+                  input: { borderColor: selectedSchoolSeq ? '#339af0' : undefined },
+                }}
+              />
+
+              {deptsError && (
+                <Alert
+                  icon={<IconAlertCircle size={16} />}
+                  color="red"
+                  radius="md"
+                  variant="light"
+                >
+                  {deptsError}
+                </Alert>
+              )}
+
+              <Select
+                label="학과 선택"
+                placeholder={deptsLoading ? '목록 불러오는 중...' : '학과명을 입력하여 검색하세요'}
+                data={deptSelectData}
+                value={selectedDeptSeq}
+                onChange={setSelectedDeptSeq}
+                searchable
+                clearable
+                disabled={deptsLoading}
+                size="md"
+                radius="md"
+                rightSection={deptsLoading ? <Loader size="xs" /> : undefined}
+                nothingFoundMessage="검색 결과가 없습니다"
+                maxDropdownHeight={260}
+                styles={{
+                  label: { fontWeight: 600, marginBottom: 6 },
+                  input: { borderColor: selectedDeptSeq ? '#339af0' : undefined },
                 }}
               />
             </Stack>
@@ -148,9 +220,11 @@ export default function SelectPage() {
                   선택 확인
                 </Text>
                 <Text size="sm" c="blue.9">
-                  {SCHOOLS.find((s) => s.value === selectedSchool)?.label}
+                  {selectedSchool.campusName
+                    ? `${selectedSchool.schoolName} (${selectedSchool.campusName})`
+                    : selectedSchool.schoolName}
                   {' · '}
-                  {departmentOptions.find((d) => d.value === selectedDepartment)?.label}
+                  {selectedDept.mClass}
                 </Text>
               </Card>
             )}

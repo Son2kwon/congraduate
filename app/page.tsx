@@ -191,7 +191,7 @@ export default function LandingPage() {
               <Group gap="md">
                 <Button
                   component="a"
-                  href="#start"
+                  href="/select"
                   size="xl"
                   radius="xl"
                   variant="white"
@@ -338,8 +338,8 @@ export default function LandingPage() {
         >
           <Container size="md">
             <Stack align="center" gap="sm" mb={48}>
-              <Badge size="md" variant="filled" color="orange" radius="xl" px="lg">
-                API 연동 준비 중
+              <Badge size="md" variant="filled" color="green" radius="xl" px="lg">
+                API 연동 완료
               </Badge>
               <Title
                 order={2}
@@ -353,8 +353,8 @@ export default function LandingPage() {
                 <Text span fw={600} c="blue">
                   커리어넷(CareerNet) API
                 </Text>{' '}
-                연동을 통해 전국 대학교 및 학과 정보를 실시간으로 제공할 예정입니다.
-                현재 API 승인 심사 중으로, 이후 자동으로 학과 데이터가 연동됩니다.
+                연동을 통해 전국 대학교 및 학과 정보를 실시간으로 제공합니다.
+                학교명을 입력하면 자동으로 대학교와 학과 목록이 검색됩니다.
               </Text>
             </Stack>
 
@@ -375,8 +375,8 @@ export default function LandingPage() {
                     <Title order={5} fw={700}>
                       학교/학과 선택
                     </Title>
-                    <Badge color="orange" variant="light" size="sm" radius="sm">
-                      데이터 연동 준비 중
+                    <Badge color="green" variant="light" size="sm" radius="sm">
+                      실시간 데이터 연동
                     </Badge>
                   </Group>
 
@@ -396,15 +396,15 @@ export default function LandingPage() {
 
                   <Box
                     style={{
-                      background: '#fff8e1',
-                      border: '1px solid #ffe082',
+                      background: '#ebfbee',
+                      border: '1px solid #8ce99a',
                       borderRadius: 8,
                       padding: '10px 14px',
                     }}
                   >
-                    <Text size="xs" c="orange.8" lh={1.6}>
-                      ⚠ 현재 커리어넷 API 승인 대기 중입니다. 승인 완료 후 전국
-                      대학교 학과 정보가 자동으로 연동됩니다.
+                    <Text size="xs" c="green.8" lh={1.6}>
+                      ✓ 커리어넷 API가 연동되어 전국 대학교 학과 정보를 실시간으로
+                      검색할 수 있습니다.
                     </Text>
                   </Box>
                 </Stack>
