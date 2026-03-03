@@ -7,6 +7,7 @@ import type {
 } from '@/types/careernet';
 
 export const dynamic = 'force-dynamic';
+export const maxDuration = 60; // 전체 학교 학과 스캔 시 처리 시간 확보 (Vercel Pro+)
 
 const CAREER_NET_BASE = 'https://www.career.go.kr/cnet/openapi/getOpenApi.json';
 
@@ -80,22 +81,24 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({ error: 'API key not configured' }, { status: 500 });
   }
 
-  // ── 모드 1: 학교 필터 (schoolName + title 필수) ─────────────────────────
-  if (schoolName && title) {
+  // ── 모드 1: 학교 필터 (schoolName 필수, title 선택) ─────────────────────
+  // title 없으면 전체 학과 목록 조회, title 있으면 사전 필터 후 조회
+  if (schoolName) {
     const listUrl = new URL(CAREER_NET_BASE);
     listUrl.searchParams.set('apiKey', apiKey);
     listUrl.searchParams.set('svcType', 'api');
     listUrl.searchParams.set('svcCode', 'MAJOR');
     listUrl.searchParams.set('gubun', 'univ_list');
     listUrl.searchParams.set('thisPage', '1');
-    listUrl.searchParams.set('perPage', '50');
+    // title이 없으면 전체 카테고리(~600) 조회, 있으면 사전 필터
+    listUrl.searchParams.set('perPage', title ? '50' : '600');
     listUrl.searchParams.set('contentType', 'json');
-    listUrl.searchParams.set('searchTitle', title);
+    if (title) listUrl.searchParams.set('searchTitle', title);
 
     const logUrl = new URL(listUrl.toString());
     logUrl.searchParams.set('apiKey', '***');
     console.log(
-      `[/api/departments] 학교필터 모드 | 학교: ${schoolName} | 검색어: ${title}`,
+      `[/api/departments] 학교필터 모드 | 학교: ${schoolName} | 검색어: ${title || '(전체)'}`,
       '\n  →', logUrl.toString(),
     );
 
@@ -110,6 +113,9 @@ export async function GET(request: NextRequest) {
       const majors = listData?.dataSearch?.content ?? [];
       console.log(`[/api/departments] ${majors.length}개 카테고리 → MAJOR_VIEW 병렬 조회 시작`);
 
+      // 전체 조회 시 동시성을 높여 처리 속도 개선 (캐시 적중 시 즉시 반환)
+      const concurrency = title ? 5 : 12;
+
       // 각 학과 카테고리에 대해 MAJOR_VIEW로 개설 대학 목록 확인
       const filtered = (
         await batchProcess(
@@ -121,9 +127,9 @@ export async function GET(request: NextRequest) {
             const match = unis.find((u) => u.schoolName === schoolName);
             if (!match) return null;
 
-            // 학교 고유 학과명에 검색어가 포함되어야 함
+            // title이 있을 때만 학과명 포함 여부 확인
             // (API가 facilName 등 부가 필드에서도 검색하므로 무관한 카테고리 제거)
-            if (!match.majorName.includes(title)) return null;
+            if (title && !match.majorName.includes(title)) return null;
 
             return {
               majorSeq: major.majorSeq,
@@ -133,7 +139,7 @@ export async function GET(request: NextRequest) {
               campusName: match.campus_nm,
             };
           },
-          5,
+          concurrency,
         )
       ).filter((r): r is SchoolDepartment => r !== null);
 
