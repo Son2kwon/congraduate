@@ -27,11 +27,6 @@ export async function GET(request: NextRequest) {
     url.searchParams.set('searchSchulNm', name);
   }
 
-  // apiKey를 가려서 로그 출력
-  const logUrl = new URL(url.toString());
-  logUrl.searchParams.set('apiKey', '***');
-  console.log('[/api/schools] → CareerNet 요청:', logUrl.toString());
-
   try {
     const res = await fetch(url.toString(), {
       next: { revalidate: 0 },
@@ -57,7 +52,6 @@ export async function GET(request: NextRequest) {
     }
 
     const schools = data?.dataSearch?.content ?? [];
-    console.log('[/api/schools] ← 결과 수:', schools.length, '/ 검색어:', name || '(없음)');
     return NextResponse.json(schools);
   } catch (err) {
     console.error('[/api/schools] fetch 실패:', err);

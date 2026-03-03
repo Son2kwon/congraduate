@@ -95,13 +95,6 @@ export async function GET(request: NextRequest) {
     listUrl.searchParams.set('contentType', 'json');
     if (title) listUrl.searchParams.set('searchTitle', title);
 
-    const logUrl = new URL(listUrl.toString());
-    logUrl.searchParams.set('apiKey', '***');
-    console.log(
-      `[/api/departments] 학교필터 모드 | 학교: ${schoolName} | 검색어: ${title || '(전체)'}`,
-      '\n  →', logUrl.toString(),
-    );
-
     try {
       const listRes = await fetch(listUrl.toString(), {
         next: { revalidate: 0 },
@@ -111,7 +104,6 @@ export async function GET(request: NextRequest) {
 
       const listData: DepartmentsApiResponse = await listRes.json();
       const majors = listData?.dataSearch?.content ?? [];
-      console.log(`[/api/departments] ${majors.length}개 카테고리 → MAJOR_VIEW 병렬 조회 시작`);
 
       // 전체 조회 시 동시성을 높여 처리 속도 개선 (캐시 적중 시 즉시 반환)
       const concurrency = title ? 5 : 12;
@@ -143,9 +135,6 @@ export async function GET(request: NextRequest) {
         )
       ).filter((r): r is SchoolDepartment => r !== null);
 
-      console.log(
-        `[/api/departments] ← ${filtered.length}개 학과 확인됨 (캐시 크기: ${majorViewCache.size})`,
-      );
       return NextResponse.json(filtered);
     } catch (err) {
       console.error('[/api/departments] 학교필터 오류:', err);
@@ -164,10 +153,6 @@ export async function GET(request: NextRequest) {
   url.searchParams.set('contentType', 'json');
   if (title) url.searchParams.set('searchTitle', title);
   if (subject) url.searchParams.set('subject', subject);
-
-  const logUrl = new URL(url.toString());
-  logUrl.searchParams.set('apiKey', '***');
-  console.log('[/api/departments] 전체목록 모드 →', logUrl.toString());
 
   try {
     const res = await fetch(url.toString(), {
@@ -193,7 +178,6 @@ export async function GET(request: NextRequest) {
     }
 
     const departments = data?.dataSearch?.content ?? [];
-    console.log('[/api/departments] ← 결과 수:', departments.length);
     return NextResponse.json(departments);
   } catch (err) {
     console.error('[/api/departments] fetch 실패:', err);
