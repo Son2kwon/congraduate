@@ -174,7 +174,10 @@
 Angels Camp/
 ├─ overview.md                 이 문서
 ├─ data/
-│  ├─ rules/cau_sw_2022.json   졸업요건 규칙 (일반 + 공학인증)
+│  ├─ rules/                   졸업요건 (일반 + 공학인증)
+│  │   ├─ cau_sw_2022.rules.json     판정 규칙 (엔진이 읽음)
+│  │   ├─ cau_sw_2022.evidence.json  근거 기록 (출처·메모·이력)
+│  │   └─ cau_sw_2022.expected.json  검증 정답 (포털 숫자 22개)
 │  ├─ catalog/                 과목 카탈로그 (전공 courses_cau_sw.json, 교양 liberal_arts_2026_1.json)
 │  └─ extracted/               원본 문서에서 뽑은 텍스트·JSON
 ├─ docs/
@@ -189,6 +192,6 @@ Angels Camp/
 
 ## 9. 다음 할 일
 
-1. 판정 엔진(`rules-engine`) 구현 — 입력: 포털 문서 3종, 검증: `rules/cau_sw_2022.json`의 `validation_fixture_expected`
+1. 판정 엔진(`rules-engine`) 구현 — 입력: 포털 문서 3종, 검증: `rules/cau_sw_2022.expected.json`
 2. 포털 문서 파서 (공학교육인증 이수현황 PDF, 졸업관련성적내역 PDF, 이수내역 xlsx)
 3. 학부사무실 문의: 이수현황의 한국사·디자인사고 '미지정' 처리

@@ -1,0 +1,470 @@
+{
+  "$schema_note": "판정 규칙 — 엔진이 읽는 값만. 출처·메모·이력은 cau_sw_2022.evidence.json",
+  "meta": {
+    "school": "중앙대학교",
+    "campus": "서울",
+    "department": "소프트웨어학부",
+    "version": "0.13-draft",
+    "created": "2026-11-07",
+    "supported_entry_years": {
+      "from": 2018,
+      "to": 2026
+    }
+  },
+  "classification": {
+    "general_categories": [
+      "전공기초",
+      "전공필수",
+      "전공",
+      "공통교양",
+      "핵심교양",
+      "선택교양",
+      "자유선택"
+    ],
+    "abeek_categories": [
+      "전문교양",
+      "BSM",
+      "공학주제",
+      "기타"
+    ],
+    "category_groups": {
+      "교양": [
+        "공통교양",
+        "핵심교양",
+        "선택교양"
+      ]
+    }
+  },
+  "counting": {
+    "retake": "last_only"
+  },
+  "rule_sets": {
+    "general": {
+      "label": "학교·학과 졸업요건 (일반 분류)",
+      "basis": {
+        "default_entry_year": 2022,
+        "override": "grad_summary_xlsx"
+      },
+      "requirements": [
+        {
+          "id": "g_total",
+          "label": "졸업학점",
+          "type": "credits_min",
+          "match": "all",
+          "min": 140,
+          "portal_rows": [
+            "졸업"
+          ]
+        },
+        {
+          "id": "g_major_basic",
+          "label": "전공기초",
+          "type": "credits_min",
+          "match": {
+            "general.category": [
+              "전공기초"
+            ]
+          },
+          "min": 14,
+          "portal_rows": [
+            "전공기초"
+          ]
+        },
+        {
+          "id": "g_major",
+          "label": "전공 (전공필수 포함, 전공기초 제외)",
+          "type": "credits_min",
+          "match": {
+            "general.category": [
+              "전공필수",
+              "전공"
+            ]
+          },
+          "min": 84,
+          "portal_rows": [
+            "전공"
+          ]
+        },
+        {
+          "id": "g_major_required",
+          "label": "전공필수",
+          "type": "credits_min",
+          "match": {
+            "general.category": [
+              "전공필수"
+            ]
+          },
+          "min": 12,
+          "portal_rows": [
+            "전공필수"
+          ]
+        },
+        {
+          "id": "g_common_korean",
+          "label": "공통교양-국어",
+          "type": "credits_min",
+          "match": {
+            "liberal.area": [
+              "공통교양"
+            ],
+            "course": [
+              "글쓰기"
+            ]
+          },
+          "min": 2,
+          "portal_rows": [
+            "공통교양-국어"
+          ]
+        },
+        {
+          "id": "g_common_english",
+          "label": "공통교양-영어",
+          "type": "credits_min",
+          "match": {
+            "liberal.area": [
+              "공통교양"
+            ],
+            "course": [
+              "COMMUNICATION IN ENGLISH"
+            ]
+          },
+          "min": 2,
+          "portal_rows": [
+            "공통교양-영어"
+          ]
+        },
+        {
+          "id": "g_common_etc",
+          "label": "공통교양-기타",
+          "type": "courses_all",
+          "courses": [
+            "창의와소통",
+            "앙트레프레너십시대의회계",
+            "AI시대문제해결을위한디자인사고",
+            "ACT",
+            "한국사"
+          ],
+          "min_credits": 10,
+          "portal_rows": [
+            "공통교양-기타"
+          ]
+        },
+        {
+          "id": "g_cau_seminar",
+          "label": "CAU세미나",
+          "type": "courses_all",
+          "courses": [
+            "CAU세미나"
+          ]
+        },
+        {
+          "id": "g_core",
+          "label": "핵심교양",
+          "type": "groups_each_min_credits",
+          "groups": [
+            "핵심-도전",
+            "핵심-창의",
+            "핵심-융합",
+            "핵심-신뢰",
+            "핵심-소통"
+          ],
+          "min_each": 3,
+          "portal_rows": [
+            "핵심-도전",
+            "핵심-창의",
+            "핵심-융합",
+            "핵심-신뢰",
+            "핵심-소통"
+          ]
+        },
+        {
+          "id": "g_elective_liberal",
+          "label": "선택교양",
+          "type": "credits_min",
+          "match": {
+            "liberal.area_prefix": "선택-"
+          },
+          "min": 0
+        },
+        {
+          "id": "g_liberal_cap",
+          "label": "교양 최대 이수가능학점",
+          "type": "credits_max",
+          "match": {
+            "general.category": [
+              "교양"
+            ]
+          },
+          "max": 45,
+          "over_cap": "none",
+          "portal_rows": [
+            "교양"
+          ]
+        },
+        {
+          "id": "g_free",
+          "label": "자유선택",
+          "type": "credits_min",
+          "match": {
+            "general.category": [
+              "자유선택"
+            ]
+          },
+          "min": 0,
+          "portal_rows": [
+            "자유선택"
+          ]
+        }
+      ]
+    },
+    "abeek": {
+      "label": "공학교육인증 졸업요건 (컴퓨터공학전문)",
+      "applies_when": {
+        "entry_year_gte": 2018,
+        "program": "abeek"
+      },
+      "requirements": [
+        {
+          "id": "a_total",
+          "label": "졸업학점",
+          "type": "credits_min",
+          "match": "all",
+          "min": 140
+        },
+        {
+          "id": "a_prof_liberal",
+          "label": "전문교양",
+          "type": "credits_min",
+          "match": {
+            "abeek.category": [
+              "전문교양"
+            ]
+          },
+          "min": 6,
+          "pool": [
+            "글쓰기",
+            "앙트레프레너십시대의회계",
+            "한국사",
+            "AI시대문제해결을위한디자인사고"
+          ],
+          "pool_vs_portal": "rule_wins_with_warning"
+        },
+        {
+          "id": "a_bsm",
+          "label": "BSM",
+          "type": "credits_min",
+          "match": {
+            "abeek.category": [
+              "BSM"
+            ]
+          },
+          "min": 18,
+          "must_include": [
+            "이산수학"
+          ],
+          "must_include_any": [
+            [
+              "일반물리실험(1)"
+            ]
+          ],
+          "warn_if_missing": [
+            "일반물리(1)"
+          ]
+        },
+        {
+          "id": "a_eng_topic",
+          "label": "공학주제",
+          "type": "credits_min",
+          "match": {
+            "abeek.category": [
+              "공학주제"
+            ]
+          },
+          "min": 60
+        },
+        {
+          "id": "a_required",
+          "label": "공학인증 전공필수",
+          "type": "courses_all",
+          "courses": [
+            "자료구조",
+            "컴퓨터구조",
+            "소프트웨어공학",
+            "운영체제",
+            "프로그래밍언어론",
+            "알고리즘"
+          ],
+          "min_credits": 18,
+          "cohort_rules": [
+            {
+              "entry_year_gte": 2026,
+              "add_courses": [
+                "인공지능"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "a_design",
+          "label": "설계",
+          "type": "design_credits_min",
+          "min": 12,
+          "must_include": [
+            "창의적설계",
+            "캡스톤디자인(1)",
+            "캡스톤디자인(2)"
+          ],
+          "window": {
+            "from": "창의적설계",
+            "to_max_of": [
+              "캡스톤디자인(1)",
+              "캡스톤디자인(2)"
+            ],
+            "inclusive": true
+          },
+          "substitutions": [
+            {
+              "kind": "internship",
+              "design_credits": 3
+            },
+            {
+              "kind": "internship_as_capstone",
+              "input": "manual"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "non_credit": [
+    {
+      "id": "nc_english",
+      "label": "영어능력 (졸업인정제)",
+      "type": "any_of",
+      "options": [
+        {
+          "kind": "test",
+          "thresholds": {
+            "TOEIC": 750,
+            "TOEFL_iBT_legacy": 68,
+            "TOEFL_iBT_2026": 3.5,
+            "G-TELP_L2": 68,
+            "G-TELP_L3": 91,
+            "TEPS": 355
+          }
+        },
+        {
+          "kind": "english_lectures",
+          "min_count": 3,
+          "match": {
+            "general.category": [
+              "전공기초",
+              "전공필수",
+              "전공"
+            ]
+          },
+          "weight": {
+            "영어강의B": 0.5
+          },
+          "excludes": [
+            "재택강의"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "nc_thesis",
+      "label": "졸업논문 또는 SW졸업인증제",
+      "type": "any_of",
+      "options": [
+        {
+          "kind": "thesis",
+          "input": "manual"
+        },
+        {
+          "kind": "topcit",
+          "min_score": 300,
+          "valid_years": 3,
+          "history": [
+            {
+              "graduation_until": "2025-08",
+              "min_score": 270
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "nc_counseling",
+      "label": "지도교수 상담",
+      "type": "count_min",
+      "min": 4,
+      "external_max": 2
+    },
+    {
+      "id": "nc_portfolio",
+      "label": "학생 포트폴리오 필수 항목",
+      "type": "checklist",
+      "items": [
+        "지도교수와의 상담 내용",
+        "연도별 교과목 이수 과정 기록표",
+        "교과과정 설계 포트폴리오",
+        "캡스톤프로젝트 설계포트폴리오",
+        "직업적·윤리적 책임의식 에세이",
+        "평생교육의 이해 에세이",
+        "시사적 문제 에세이"
+      ]
+    },
+    {
+      "id": "nc_swcu",
+      "label": "SW중심대학 졸업요건",
+      "type": "choose_n",
+      "n": 5,
+      "must": [
+        "coding_bootcamp"
+      ],
+      "items": [
+        {
+          "id": "coding_bootcamp",
+          "label": "코딩부트캠프 Pass"
+        },
+        {
+          "id": "internship",
+          "label": "산업체 인턴십 또는 현장실습"
+        },
+        {
+          "id": "startup",
+          "label": "창업 활동"
+        },
+        {
+          "id": "undergrad_research",
+          "label": "학부연구생 활동"
+        },
+        {
+          "id": "english_2",
+          "label": "다빈치교양대학 영어교과목 2과목 (Communication in English 제외)"
+        },
+        {
+          "id": "topcit",
+          "label": "TOPCIT 응시 및 점수 제출"
+        },
+        {
+          "id": "intl_paper",
+          "label": "국제학술대회·학술지 주저자 논문 게재"
+        },
+        {
+          "id": "open_source",
+          "label": "오픈소스 개발자 커뮤니티 1건 이상 공개"
+        },
+        {
+          "id": "toeic_speaking",
+          "label": "TOEIC 750 이상 + TOEIC Speaking 5급 이상"
+        },
+        {
+          "id": "major_english_3",
+          "label": "전공 영어강좌 3과목 이상 이수"
+        }
+      ]
+    }
+  ]
+}

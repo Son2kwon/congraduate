@@ -1,0 +1,398 @@
+{
+  "$schema_note": "근거 기록 — 사람이 읽는 출처·메모·이력. 판정에는 쓰지 않음",
+  "rules_version": "0.13-draft",
+  "meta": {
+    "entry_year": 2022,
+    "status": "초안 — open_questions 해결 전까지 참고용",
+    "scope": "공학인증(컴퓨터공학전문) 소속 학생만",
+    "cohorts": {
+      "abeek": "2018~2026학번 공통 (a_required.cohort_rules: 2026+ 인공지능 추가)",
+      "general": "이 파일의 general은 2022학번 기본값. 이수내역 xlsx를 올리면 그 '이수기준'으로 대체 (decisions.md 14번)"
+    }
+  },
+  "sources": [
+    {
+      "id": "abeek_reg",
+      "title": "컴퓨터공학전문 프로그램 공학교육인증에 관한 규정",
+      "revised": "2024-02-16",
+      "articles": [
+        "제2조",
+        "제46조",
+        "제48조",
+        "제79~82조",
+        "제67조"
+      ]
+    },
+    {
+      "id": "eng_reg",
+      "title": "9-33 졸업인정제 시행세칙",
+      "revised": "2026-07-20",
+      "articles": [
+        "제3조",
+        "제6조",
+        "제13조",
+        "제16조",
+        "별표2"
+      ]
+    },
+    {
+      "id": "dept_curriculum",
+      "title": "소프트웨어학부 학부교과과정표",
+      "url": "https://cse.cau.ac.kr/sub02/sub0202.php",
+      "fetched": "2026-11-07"
+    },
+    {
+      "id": "chart_2026",
+      "title": "2026-1학년도 교과목 이수 체계도"
+    },
+    {
+      "id": "gyoyang_2026_1",
+      "title": "2026학년도 제1학기 수강 및 학사 안내 — 교양교육과정 교과목 일람"
+    },
+    {
+      "id": "user",
+      "title": "사용자 확인 (2026-11-07)"
+    },
+    {
+      "id": "guide_2020",
+      "title": "2020 공학인증 안내서(최종본) — 컴퓨터공학전문",
+      "pages": "69-77"
+    },
+    {
+      "id": "user_2026-11-07b",
+      "title": "사용자 확인 (2026-11-07 02:01) — 일반 분류 결정"
+    },
+    {
+      "id": "reg_web_20251117",
+      "title": "컴퓨터공학전문 프로그램 공학교육인증에 관한 규정 (웹 전문, 2025.11.17 개정 반영)",
+      "url": "https://cse.cau.ac.kr/sub02/sub0204_3.php",
+      "verified": "2026-11-07 브라우저 원문 확인"
+    },
+    {
+      "id": "notice_2848",
+      "title": "[공학인증] 컴퓨터공학전문프로그램 규정 개정 안내 (2024-02-22)",
+      "url": "https://cse.cau.ac.kr/sub05/sub0501.php?nmode=view&code=oktomato_bbs05&uid=2848",
+      "quote": "2024년 3월 1일부로 시행되고, 2024년 8월 졸업자부터 적용 / 학칙상 전공학점 이수 요건에는 변경사항 없음",
+      "verified": "2026-11-07"
+    },
+    {
+      "id": "notice_3494",
+      "title": "2027.2월 졸업예정자 졸업논문 대체 TOPCIT성적표 제출 안내 (2026-11-02)",
+      "url": "https://cse.cau.ac.kr/sub05/sub0501.php?nmode=view&code=oktomato_bbs05&uid=3494",
+      "quote": "TOPCIT 300점 이상, 제출일 기준 최근 3년 이내",
+      "verified": "2026-11-07"
+    },
+    {
+      "id": "dr_report",
+      "title": "중앙대 소프트웨어학부 학번별 졸업요건 조사 (Deep Research 보고서)",
+      "note": "원문 확인한 항목만 반영"
+    },
+    {
+      "id": "guide_2026",
+      "title": "2026 공학교육인증 안내서 (vf 업로드용) — 컴퓨터공학전문",
+      "pages": "10, 76-82"
+    },
+    {
+      "id": "portal_grad_summary",
+      "title": "포털 졸업관련성적조회 — 이수내역 (xlsx, 사용자 본인 22학번)",
+      "note": "학교가 적용하는 영역별 이수기준·취득학점. 학교 기준의 1차 근거이자 검증용 정답"
+    },
+    {
+      "id": "portal_grad_detail",
+      "title": "포털 졸업관련성적내역 (PDF)",
+      "note": "과목별 년도·학기·이수구분·영역구분·과목코드-분반·학점·등급·원어구분"
+    },
+    {
+      "id": "user_2026-11-07c",
+      "title": "사용자 확인 — 공통교양 7과목 + CAU세미나 필수"
+    },
+    {
+      "id": "portal_abeek_status",
+      "title": "포털 공학교육인증 이수현황 (PDF)",
+      "note": "과목별 공학인증 구분(전문교양/BSM/공학주제/미지정)·학점(설계학점)·영어강의·재수강 + 영역별 취득/인증기준. 공학인증 쪽 1차 근거이자 검증용 정답"
+    }
+  ],
+  "classification": {
+    "note": "한 과목이 일반 분류와 공학인증 분류를 동시에 가진다. 과목별 값은 courses_cau_sw.json 의 general / abeek 필드.",
+    "design_flag": "abeek.design: 'required' | true | false",
+    "general_category_policy": {
+      "rule": "일반 이수구분은 '수강한 학기'의 교육과정을 따른다 (입학년도가 아님)",
+      "taken_courses": "졸업관련성적내역의 '이수구분'·'영역구분'을 그대로 사용 (수강 당시 분류가 기록됨)",
+      "planned_courses": "계획 학기에 유효한 카탈로그 분류 사용 (현재는 최신 교과과정표)",
+      "catalog_versioning": "courses[].general.history = [{from_term, category}] 로 기간별 분류를 쌓아 간다",
+      "source": "user_2026-11-07b",
+      "identity": "과목은 과목코드로 식별. 같은 이름도 코드가 다르면 다른 과목 (예: 자료구조 56116=자유선택, 40989=전공필수)"
+    },
+    "abeek_category_policy": {
+      "taken_courses": "공학교육인증 이수현황의 구분과 설계학점을 그대로 사용",
+      "planned_courses": "카탈로그 abeek.category·design_credits (현행 2026 안내서)",
+      "note": "공학인증 구분은 일반 이수구분과 독립 (예: 확률및통계는 이수구분 '전공'이어도 BSM). 전문교양은 분반 단위라 같은 과목도 '미지정'이 될 수 있음 (예: 한국사 02분반, 디자인사고 08분반)"
+    },
+    "category_groups_note": "포털 이수내역의 \"교양\" 행(25학점) = 공통교양 14 + 핵심교양 9 + 선택교양 2 로 확인"
+  },
+  "rule_sets": {
+    "general": {},
+    "abeek": {}
+  },
+  "requirements": {
+    "g_total": {
+      "source": "portal_grad_summary",
+      "confidence": "high"
+    },
+    "g_major_basic": {
+      "source": "portal_grad_summary",
+      "confidence": "high"
+    },
+    "g_major": {
+      "source": "portal_grad_summary",
+      "confidence": "high"
+    },
+    "g_major_required": {
+      "source": "portal_grad_summary",
+      "confidence": "high",
+      "note": "학교 기준은 과목 지정이 아니라 전공필수 12학점. 공학인증 필수 6과목(18학점)이 더 엄격"
+    },
+    "g_common_korean": {
+      "source": "portal_grad_summary",
+      "confidence": "high"
+    },
+    "g_common_english": {
+      "source": "portal_grad_summary",
+      "confidence": "high"
+    },
+    "g_common_etc": {
+      "source": "portal_grad_summary + user_2026-11-07c",
+      "confidence": "high",
+      "note": "공학계열은 컴퓨팅사고와인공지능리터러시 대신 디자인사고"
+    },
+    "g_cau_seminar": {
+      "source": "user_2026-11-07c",
+      "confidence": "high",
+      "note": "이수구분 자유선택, 1학점 P/F"
+    },
+    "g_core": {
+      "source": "portal_grad_summary",
+      "confidence": "high"
+    },
+    "g_elective_liberal": {
+      "source": "portal_grad_summary"
+    },
+    "g_liberal_cap": {
+      "source": "portal_grad_summary",
+      "confidence": "high",
+      "note": "decisions.md 11번: 초과 처리·경고 없음. 포털 숫자(교양 25/45) 재현을 위해 항목만 유지"
+    },
+    "g_free": {
+      "source": "portal_grad_summary"
+    },
+    "a_total": {
+      "source": "abeek_reg 제48조①",
+      "confidence": "high"
+    },
+    "a_prof_liberal": {
+      "source": "guide_2026 p.81 + 사용자 확인",
+      "confidence": "high",
+      "note": "전문교양 4과목(글쓰기·앙트레프레너십시대의회계·한국사·AI시대문제해결을위한디자인사고)은 분반 무관 인정 (2026 안내서 p.81 + 사용자 확인). [정정] 이전 메모의 \"디자인사고 제외\"·\"창의융합과미래설계 포함\"은 폐기",
+      "section_must_be": "전문교양 분반 (전교 공통 동명 교양 분반은 불인정, 제80조②)",
+      "pool_notes": {
+        "제외: 창의융합과미래설계": "2020 안내서 p.76의 선택교양 항목(4차산업현장맞춤형프로젝트II와 함께)에서 온 구 기준. 2026 안내서 p.81에는 없음 → 사용자 확인으로 제외 (2026-11-07)"
+      },
+      "basis": "과목 기준: 풀 과목은 분반·수강 시기와 관계없이 전문교양 인정 (사용자 확인 2026-11-07)",
+      "planning": {
+        "status": "counts",
+        "rule": "풀 과목을 담으면 전문교양으로 계산"
+      },
+      "portal_discrepancy": {
+        "rule": "포털 이수현황에서 풀 과목이 '미지정'이면 과목 기준으로 전문교양에 넣되, 포털 값과 다르다는 경고를 함께 표시",
+        "observed": [
+          "한국사 2023-2 (02분반) 미지정",
+          "AI시대문제해결을위한디자인사고 2022-2 (08분반) 미지정"
+        ],
+        "effect": "전문교양: 포털 4/6, 과목 기준 8/6"
+      }
+    },
+    "a_bsm": {
+      "source": "reg_web_20251117 제48조④·제81조",
+      "confidence": "high",
+      "note": "규정(제48조④·제81조)은 이산수학 + 실험 1과목. 2026 안내서는 BSM 필수를 일반물리(1)·일반물리실험(1)·이산수학으로 안내 — 판정은 규정 기준, 일반물리(1) 미이수 시 경고 표시"
+    },
+    "a_eng_topic": {
+      "source": "reg_web_20251117 제48조⑤·제82조① + notice_2848 (2024.08 졸업자부터 전 학번 적용)",
+      "confidence": "high"
+    },
+    "a_required": {
+      "source": "reg_web_20251117 제48조⑧·제82조③",
+      "confidence": "high",
+      "note": "규정 6과목 기준으로 판정 (사용자 확인 2026-11-07). 포털 필수 이수과목 내역 칸은 사용하지 않음"
+    },
+    "a_design": {
+      "window": {
+        "from": "창의적설계를 수강한 학기 (포함)",
+        "to": "캡스톤디자인(1)·(2)를 모두 수강한 학기 (포함)",
+        "formula": "T(창의적설계) <= T(과목) <= max(T(캡스톤디자인(1)), T(캡스톤디자인(2)))",
+        "status": "사용자 확인 (2026-11-07)"
+      },
+      "substitutions": [
+        {
+          "kind": "internship",
+          "design_credits": 3,
+          "source": "reg_web_20251117 제67조①"
+        },
+        {
+          "kind": "internship_as_capstone",
+          "note": "기획평가위원회가 종합설계와 대등하다고 판정 시 캡스톤(1) 또는 (2) 이수로 인정 가능 (별표24) — 수동 입력"
+        }
+      ],
+      "credit_basis": "course.abeek.design_credits (수강 학기 기준, design_credits_history·design_credits_rule 참조)",
+      "source": "abeek_reg 제48조④⑤, 제82조④⑤",
+      "confidence": "high",
+      "note": "현행 설계학점 합계 22, 설계필수 3과목 9 → 나머지 설계과목에서 3학점 이상"
+    },
+    "nc_english": {
+      "options": [
+        {
+          "kind": "test",
+          "thresholds": {
+            "TOEIC": 750,
+            "TOEFL_iBT_legacy": 68,
+            "TOEFL_iBT_2026": 3.5,
+            "G-TELP_L2": 68,
+            "G-TELP_L3": 91,
+            "TEPS": 355
+          },
+          "note": "TOEFL은 2026-01-21 응시분부터 개편 점수 기준"
+        },
+        {
+          "kind": "english_lectures",
+          "min_count": 3,
+          "scope": "전공(전공기초 포함) 영어(원어)강의",
+          "weight": {
+            "영어강의B": 0.5
+          },
+          "excludes": [
+            "재택강의"
+          ]
+        }
+      ],
+      "deadline": "졸업학기 기말고사 전 통과, 증빙은 기말고사 종료 시까지",
+      "fail_result": "수료 (학위 미수여)",
+      "source": "eng_reg 제3조, 제6조, 제13조, 제16조, 별표2 (소프트웨어대학)",
+      "confidence": "high"
+    },
+    "nc_thesis": {
+      "options": [
+        {
+          "kind": "thesis",
+          "rule": "졸업논문 지도교수 포함 전임교원 2인 심사 통과"
+        },
+        {
+          "kind": "topcit",
+          "min_score": 300,
+          "valid_years": 3,
+          "history": [
+            {
+              "graduation_until": "2025-08",
+              "min_score": 270
+            }
+          ],
+          "source": "notice_3494 + dr_report"
+        }
+      ],
+      "source": "abeek_reg 제48조 + user",
+      "confidence": "high"
+    },
+    "nc_counseling": {
+      "rule": "교내 학생생활상담센터·취업정보센터·성폭력상담실 상담은 합계 최대 2회까지 인정",
+      "source": "abeek_reg 제48조",
+      "confidence": "high"
+    },
+    "nc_portfolio": {
+      "source": "abeek_reg 제46조 3·4·6·7·18·19·20호",
+      "confidence": "high"
+    },
+    "nc_swcu": {
+      "source": "reg_web_20251117 제48조⑮·제82조⑩ + notice_2848",
+      "confidence": "high",
+      "note": "2024.08 졸업자부터 전 학번 적용. 최저평점 2.2 요건 삭제. 코딩부트캠프 미이수 졸업예정자 구제 신청 사례 있음(수동)"
+    }
+  },
+  "removed": [
+    {
+      "label": "한자능력",
+      "reason": "2026-01-22 개정으로 적용 학과만 시행. 소프트웨어학부 미적용 (user)"
+    },
+    {
+      "label": "4학년말 종합시험",
+      "reason": "제48조⑬ 2020.07.01 삭제 (원문 확인)"
+    },
+    {
+      "label": "SW중심대학 최저졸업평점 2.2/4.5",
+      "reason": "2024.02.16 개정 삭제, 2024.08 졸업자부터 (notice_2848)"
+    }
+  ],
+  "multi_major": {
+    "scope": "MVP에서 다루지 않음 (사용자 결정). 타학과 과목은 총 이수학점에만 합산"
+  },
+  "open_questions": [
+    "포털 이수현황에서 한국사·디자인사고가 '미지정'인 이유 (졸업사정 때 전문교양으로 재분류되는지)"
+  ],
+  "counting_policy": {
+    "retake": "재수강 시 마지막 수강 기록만 인정, 이전 기록의 학점·성적은 제외",
+    "major_credit_scope": "전공 관련 과목(전공기초·전공필수·전공)만 전공학점으로 인정",
+    "gpa": "평점 요건 없음 (SW중심대학 2.2 요건 삭제됨)",
+    "source": "user_2026-11-07b"
+  },
+  "resolved_conflicts": [
+    {
+      "item": "공학주제 최저학점",
+      "resolution": "60학점 (2024.08 졸업자부터 전 학번)"
+    },
+    {
+      "item": "BSM 필수과목",
+      "resolution": "2024 규정: 이산수학 + 기초과학 실험 1과목"
+    },
+    {
+      "item": "전문교양 인정 과목",
+      "resolution": "글쓰기·앙트레프레너십시대의회계·한국사·AI시대문제해결을위한디자인사고, 분반 무관 (2026 안내서 + 사용자 확인)"
+    },
+    {
+      "item": "SW중심대학 요건",
+      "resolution": "10개 중 5개(코딩부트캠프 필수), 평점 요건 삭제"
+    },
+    {
+      "item": "종합시험",
+      "resolution": "2020.07.01 폐지"
+    },
+    {
+      "item": "설계학점 값",
+      "resolution": "2026 안내서 값 적용, 2020 값은 이력으로 보관"
+    }
+  ],
+  "transcript_format": {
+    "source": "포털 성적 조회 화면 (사용자 캡처 2026-11-07)",
+    "columns": [
+      "년도",
+      "학기(1·2·S/W 계절)",
+      "과목코드",
+      "과목명",
+      "분반",
+      "교양영역(교양만 표시)",
+      "학점",
+      "평점"
+    ],
+    "missing": [
+      "전공 과목의 이수구분(전공기초/전공필수/전공)",
+      "공학인증 구분(전문교양/BSM/공학주제/설계)",
+      "전문교양 분반 여부"
+    ],
+    "implication": "전공 이수구분·공학인증 구분은 과목코드 → 카탈로그(수강 학기 기준)로 판정해야 함"
+  },
+  "english_lecture_source": "졸업관련성적내역 '원어구분' 칸: (영어A)=1강좌, (영어B)=0.5강좌",
+  "import_sources": {
+    "abeek_status": "공학교육인증 이수현황 — 과목별 공학인증 구분·설계학점 (분반 단위로 판정된 결과, 전문교양 분반 문제 해결)",
+    "grad_detail": "졸업관련성적내역 — 과목별 일반 이수구분·교양영역·원어구분",
+    "grad_summary": "졸업관련성적조회 이수내역 — 학교 기준·취득 (검증용)",
+    "join_key": "과목코드 + 년도/학기 (+분반)",
+    "catalog_use": "수강 계획(아직 안 들은 과목)에만 사용"
+  }
+}
