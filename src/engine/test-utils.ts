@@ -10,7 +10,14 @@ const ROOT = join(__dirname, "../..");
 const readJson = (rel: string): unknown => JSON.parse(readFileSync(join(ROOT, rel), "utf8"));
 
 export const realRules = RuleFile.parse(readJson("data/rules/cau_sw_2022.rules.json"));
-export const realMajor = MajorCatalog.parse(readJson("data/catalog/courses_cau_sw.json"));
+/**
+ * 실제 전공 카탈로그에서 과목코드만 뺀 것. 단위 테스트는 가짜 코드로 레코드를 만들므로 이름 비교로 판정한다.
+ * 과목코드 우선 비교는 records.test.ts에서 코드를 직접 넣은 색인으로 따로 검증한다.
+ */
+export const realMajor = (() => {
+  const m = MajorCatalog.parse(readJson("data/catalog/courses_cau_sw.json"));
+  return { ...m, courses: m.courses.map(({ codes: _codes, ...c }) => c) } as typeof m;
+})();
 export const realLiberal = LiberalCatalog.parse(readJson("data/catalog/liberal_arts_2026_1.json"));
 export const realIndex = createCourseIndex(realMajor, realLiberal);
 

@@ -53,8 +53,9 @@ export function sameCourse(r: CourseRecord, ref: string, c: EvalContext): boolea
   return c.courses.canonical(r.name) === c.courses.canonical(ref);
 }
 
+/** 묶음 이름(예: "교양")은 그 이름 자체와 구성 이수구분(공통·핵심·선택교양)으로 푼다 */
 function expandCategories(values: string[], c: EvalContext): Set<string> {
-  return new Set(values.flatMap((v) => c.categoryGroups[v] ?? [v]));
+  return new Set(values.flatMap((v) => [v, ...(c.categoryGroups[v] ?? [])]));
 }
 
 /** match 조건 (키끼리 AND, 값끼리 OR) */

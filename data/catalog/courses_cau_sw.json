@@ -15,6 +15,9 @@
       "aliases": [
         "미적분학"
       ],
+      "codes": [
+        "49149"
+      ],
       "tracks": [],
       "source": "main_table",
       "general": {
@@ -42,6 +45,9 @@
       "key": "일반물리(1)",
       "aliases": [
         "일반물리(1)"
+      ],
+      "codes": [
+        "17425"
       ],
       "tracks": [],
       "source": "main_table",
@@ -71,6 +77,9 @@
       "aliases": [
         "일반물리실험(1)"
       ],
+      "codes": [
+        "17437"
+      ],
       "tracks": [],
       "source": "main_table",
       "general": {
@@ -98,6 +107,9 @@
       "key": "이산수학",
       "aliases": [
         "이산수학"
+      ],
+      "codes": [
+        "17086"
       ],
       "tracks": [],
       "source": "main_table",
@@ -127,6 +139,9 @@
       "aliases": [
         "선형대수학"
       ],
+      "codes": [
+        "11185"
+      ],
       "tracks": [],
       "source": "main_table",
       "general": {
@@ -154,6 +169,9 @@
       "key": "수치해석",
       "aliases": [
         "수치해석"
+      ],
+      "codes": [
+        "11934"
       ],
       "tracks": [],
       "source": "main_table",
@@ -196,6 +214,9 @@
       "aliases": [
         "확률및통계"
       ],
+      "codes": [
+        "30195"
+      ],
       "tracks": [],
       "source": "main_table",
       "general": {
@@ -229,6 +250,9 @@
       "key": "자료구조",
       "aliases": [
         "자료구조"
+      ],
+      "codes": [
+        "40989"
       ],
       "tracks": [],
       "source": "main_table",
@@ -265,6 +289,9 @@
       "aliases": [
         "컴퓨터구조"
       ],
+      "codes": [
+        "21427"
+      ],
       "tracks": [],
       "source": "main_table",
       "general": {
@@ -292,6 +319,9 @@
       "key": "프로그래밍언어론",
       "aliases": [
         "프로그래밍언어론"
+      ],
+      "codes": [
+        "22405"
       ],
       "tracks": [],
       "source": "main_table",
@@ -325,6 +355,9 @@
       "key": "알고리즘",
       "aliases": [
         "알고리즘"
+      ],
+      "codes": [
+        "13601"
       ],
       "tracks": [],
       "source": "main_table",
@@ -361,6 +394,9 @@
       "key": "소프트웨어공학",
       "aliases": [
         "소프트웨어공학"
+      ],
+      "codes": [
+        "11708"
       ],
       "tracks": [],
       "source": "main_table",
@@ -479,6 +515,9 @@
       "aliases": [
         "창의적설계"
       ],
+      "codes": [
+        "38714"
+      ],
       "tracks": [],
       "source": "main_table",
       "general": {
@@ -512,6 +551,9 @@
       "aliases": [
         "오픈소스SW와파이썬프로그래밍"
       ],
+      "codes": [
+        "55358"
+      ],
       "tracks": [],
       "source": "main_table",
       "general": {
@@ -539,6 +581,9 @@
       "key": "기초컴퓨터프로그래밍",
       "aliases": [
         "기초컴퓨터프로그래밍"
+      ],
+      "codes": [
+        "51293"
       ],
       "tracks": [],
       "source": "main_table",
@@ -610,6 +655,9 @@
       "aliases": [
         "논리회로"
       ],
+      "codes": [
+        "05056"
+      ],
       "tracks": [],
       "source": "main_table",
       "general": {
@@ -648,6 +696,9 @@
       "key": "프로그래밍",
       "aliases": [
         "프로그래밍"
+      ],
+      "codes": [
+        "47710"
       ],
       "tracks": [],
       "source": "main_table",
@@ -688,6 +739,9 @@
       "aliases": [
         "소프트웨어프로젝트"
       ],
+      "codes": [
+        "49148"
+      ],
       "tracks": [],
       "source": "main_table",
       "general": {
@@ -721,6 +775,9 @@
       "aliases": [
         "컴퓨터시스템및어셈블리언어"
       ],
+      "codes": [
+        "32734"
+      ],
       "tracks": [],
       "source": "main_table",
       "general": {
@@ -748,6 +805,9 @@
       "key": "객체지향프로그래밍",
       "aliases": [
         "객체지향프로그래밍"
+      ],
+      "codes": [
+        "49156"
       ],
       "tracks": [],
       "source": "main_table",
@@ -782,6 +842,9 @@
       "aliases": [
         "데이터베이스",
         "데이타베이스설계"
+      ],
+      "codes": [
+        "34692"
       ],
       "tracks": [],
       "source": "main_table",
@@ -843,6 +906,9 @@
       "key": "컴파일러",
       "aliases": [
         "컴파일러"
+      ],
+      "codes": [
+        "52321"
       ],
       "tracks": [],
       "source": "main_table",

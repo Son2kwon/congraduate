@@ -40,5 +40,5 @@
 ## 주의
 
 - `docs/private/`의 성적 파일은 테스트에 **로컬에서만** 읽고 커밋하지 않는다. 테스트 정답은 규칙 파일의 숫자만 쓴다.
-- 데이터 생성 스크립트(`scripts/01~05`)는 번호 순서대로 실행한다 (04를 05 뒤에 다시 돌리면 설계학점이 2020 값으로 돌아감).
+- 데이터 생성 스크립트(`scripts/01~06`)는 번호 순서대로 실행한다 (04를 05 뒤에 다시 돌리면 설계학점이 2020 값으로 돌아감). 06(`npx tsx scripts/06_add_course_codes.ts`)은 `docs/private`의 두 PDF에서 전공 과목코드만 읽어 카탈로그에 넣는다.
 - 와이어프레임 v1 (2026-11-07): Figma 파일 `5UkXNnybjpImgG1OOvp5Jz` — 0 초기 설정 → 1 이력 가져오기 → 2 대시보드 → 3 수강 계획, 위쪽 Components 보드(Button, Tag, NavBar, AreaCard, ListRow, CheckRow, ImportRow, UploadSlot, CourseRow, FormField)

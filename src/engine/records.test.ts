@@ -1,3 +1,5 @@
+import { readFileSync } from "node:fs";
+import { join } from "node:path";
 import { describe, expect, it } from "vitest";
 import { compareTerm, earnedRecords, effectiveRecords, isFailed, matchesRecord, sameCourse } from "./records";
 import { createCourseIndex } from "./courses";
@@ -100,6 +102,12 @@ describe("match", () => {
     expect(matchesRecord(m, rec("가", { general_category: "자유선택" }), ctx())).toBe(false);
   });
 
+  it('성적내역의 이수구분 "교양"도 "교양" 묶음에 매칭 (영역은 liberal_area로)', () => {
+    const m = { "general.category": ["교양"] as [string, ...string[]] };
+    expect(matchesRecord(m, rec("가", { general_category: "교양", liberal_area: "핵심-신뢰" }), ctx())).toBe(true);
+    expect(matchesRecord({ "general.category": ["공통교양"] }, rec("가", { general_category: "교양" }), ctx())).toBe(false);
+  });
+
   it("공학인증 구분", () => {
     const m = { "abeek.category": ["BSM"] as [string, ...string[]] };
     expect(matchesRecord(m, rec("가", { abeek_category: "BSM" }), ctx())).toBe(true);
@@ -143,5 +151,15 @@ describe("과목 참조: 과목코드 우선, 이름은 보조", () => {
   it("규칙이 과목코드로 직접 가리켜도 된다", () => {
     expect(sameCourse(rec("자료구조", { code: "40989" }), "40989", withCodes())).toBe(true);
     expect(sameCourse(rec("자료구조", { code: "56116" }), "40989", withCodes())).toBe(false);
+  });
+});
+
+describe("실제 전공 카탈로그 과목코드 (scripts/06)", () => {
+  const raw = JSON.parse(readFileSync(join(__dirname, "../../data/catalog/courses_cau_sw.json"), "utf8"));
+  const withRealCodes = () => ({ ...ctx(), courses: createCourseIndex(MajorCatalog.parse(raw), LiberalCatalog.parse(realLiberal)) });
+
+  it("자료구조: 40989(전공필수)는 같은 과목, 56116(자유선택)은 다른 과목", () => {
+    expect(sameCourse(rec("자료구조", { code: "40989" }), "자료구조", withRealCodes())).toBe(true);
+    expect(sameCourse(rec("자료구조", { code: "56116" }), "자료구조", withRealCodes())).toBe(false);
   });
 });

@@ -11,8 +11,13 @@ export type Term = { year: number; season: Season };
 
 // ---------- 입력: 과목 레코드 ----------
 
-/** 레코드 출처. "plan"은 수강 계획 과목 — 결과에서 따로 보여 준다 */
-export type RecordSource = "abeek_status" | "grad_detail" | "manual" | "plan";
+/**
+ * 레코드 출처.
+ * - "portal": 이수현황 + 성적내역 양쪽에서 합친 과목
+ * - "abeek_status" / "grad_detail": 한쪽 문서에만 있는 과목
+ * - "manual": 직접 입력, "plan": 수강 계획 과목 (결과에서 따로 보여 준다)
+ */
+export type RecordSource = "portal" | "abeek_status" | "grad_detail" | "manual" | "plan";
 
 /** 원어구분. A = 영어강의 1, B = 0.5 (가중치는 규칙 nc_english) */
 export type EnglishLecture = "A" | "B" | null;

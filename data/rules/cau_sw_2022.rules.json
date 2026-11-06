@@ -4,7 +4,7 @@
     "school": "중앙대학교",
     "campus": "서울",
     "department": "소프트웨어학부",
-    "version": "0.15-draft",
+    "version": "0.16-draft",
     "created": "2026-11-07",
     "supported_entry_years": {
       "from": 2018,
@@ -190,7 +190,10 @@
           "match": {
             "liberal.area_prefix": "선택-"
           },
-          "min": 0
+          "min": 0,
+          "portal_rows": [
+            "선택교양"
+          ]
         },
         {
           "id": "g_liberal_cap",

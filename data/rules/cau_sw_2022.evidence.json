@@ -1,6 +1,6 @@
 {
   "$schema_note": "근거 기록 — 사람이 읽는 출처·메모·이력. 판정에는 쓰지 않음",
-  "rules_version": "0.15-draft",
+  "rules_version": "0.16-draft",
   "meta": {
     "entry_year": 2022,
     "status": "초안 — open_questions 해결 전까지 참고용",
@@ -168,14 +168,16 @@
     "g_cau_seminar": {
       "source": "user_2026-11-07c",
       "confidence": "high",
-      "note": "이수구분 자유선택, 1학점 P/F"
+      "note": "이수구분 자유선택, 1학점 P/F",
+      "portal_rows_basis": "이수내역 xlsx에 행이 없음 → 규칙 값으로만 판정 (사용자 확인 2026-11-07)"
     },
     "g_core": {
       "source": "portal_grad_summary",
       "confidence": "high"
     },
     "g_elective_liberal": {
-      "source": "portal_grad_summary"
+      "source": "portal_grad_summary",
+      "portal_rows_basis": "이수내역 xlsx에 '선택교양' 행(22학번 기준 0)이 있음 → 연결 (사용자 확인 2026-11-07). 포털 숫자 22개에는 없는 항목"
     },
     "g_liberal_cap": {
       "source": "portal_grad_summary",
@@ -420,6 +422,13 @@
         "a_required: taken_match(공학주제) 추가",
         "a_design: internship 대체 input manual",
         "근거: 재택강의 미판정, TOPCIT 기준점 근사치"
+      ]
+    },
+    {
+      "version": "0.16-draft",
+      "date": "2026-11-07",
+      "changes": [
+        "g_elective_liberal: portal_rows ['선택교양']"
       ]
     }
   ]

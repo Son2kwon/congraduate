@@ -13,8 +13,10 @@ import type { CreditRequirement } from "./requirement";
 export const SchoolStandardRow = z.strictObject({
   /** 졸업영역구분 (예: "전공기초", "핵심-도전") */
   name: z.string().min(1),
-  /** 이수기준. 빈칸이면 null */
+  /** 이수기준. 빈칸이거나 숫자가 아니면 null */
   criterion: z.number().nonnegative().nullable(),
+  /** 파일에 적힌 원래 값 (예: "84(12)") */
+  raw: z.string().optional(),
 });
 export type SchoolStandardRow = z.infer<typeof SchoolStandardRow>;
 

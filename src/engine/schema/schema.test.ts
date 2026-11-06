@@ -71,7 +71,7 @@ function matches(r: Requirement): Match[] {
 describe("스키마 검증 (5개 파일)", () => {
   it("규칙·근거·정답·카탈로그 파일이 스키마를 통과한다", () => {
     // 위의 parse()가 실패하면 모듈 로드 단계에서 예외가 난다. 여기서는 결과만 확인.
-    expect(rules.meta.version).toBe("0.15-draft");
+    expect(rules.meta.version).toBe("0.16-draft");
     expect(major.courses.length).toBeGreaterThan(0);
     expect(liberal.courses.length).toBeGreaterThan(0);
   });
@@ -132,6 +132,21 @@ describe("규칙 ↔ 카탈로그", () => {
     expect(bad).toEqual([]);
   });
 
+  it("전공 카탈로그의 과목코드는 과목끼리 겹치지 않는다", () => {
+    const codes = major.courses.flatMap((c) => c.codes ?? []);
+    expect(codes.length).toBe(new Set(codes).size);
+  });
+
+  it("전공 카탈로그 과목코드가 3단계 파서로 채워져 있다 — 공학인증 필수 6과목", () => {
+    const req = ["자료구조", "컴퓨터구조", "소프트웨어공학", "운영체제", "프로그래밍언어론", "알고리즘"];
+    const missing = req.filter((k) => k !== "운영체제" && !major.courses.find((c) => c.key === k)?.codes);
+    expect(missing).toEqual([]);
+  });
+
+  it("같은 이름 다른 코드: 자료구조 카탈로그 코드에 자유선택 자료구조(56116)는 없다 (decisions.md 10번)", () => {
+    expect(major.courses.find((c) => c.key === "자료구조")?.codes).not.toContain("56116");
+  });
+
   it("전공 카탈로그의 key·별칭은 과목끼리 겹치지 않는다", () => {
     const owner = new Map<string, string>();
     const clash: string[] = [];
@@ -182,8 +197,13 @@ describe("학교 기준 xlsx 행 연결 (portal_rows)", () => {
     expect(rows.length).toBe(new Set(rows).size);
   });
 
-  it("행 이름은 모두 정답 파일(학교 기준)의 항목이다", () => {
-    expect(rows.filter((r) => !(r in expected.general))).toEqual([]);
+  it("행 이름은 정답 파일(학교 기준)의 항목이다 — 선택교양만 예외 (xlsx 행이지만 포털 숫자 22개에는 없음)", () => {
+    expect(rows.filter((r) => !(r in expected.general))).toEqual(["선택교양"]);
+  });
+
+  it("선택교양은 xlsx '선택교양' 행에 연결된다", () => {
+    const r = rules.rule_sets.general.requirements.find((x) => x.id === "g_elective_liberal");
+    expect(r && "portal_rows" in r ? r.portal_rows : undefined).toEqual(["선택교양"]);
   });
 
   it("min_by_group은 xlsx 대체 결과 전용 — 규칙 파일에는 없다", () => {
