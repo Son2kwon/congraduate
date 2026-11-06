@@ -52,7 +52,8 @@ npm install
 ```bash
 npm run dev
 ```
-브라우저에서 [http://localhost:3000](http://localhost:3000)으로 접속합니다.
+브라우저에서 [http://localhost:3000](http://localhost:3000)으로 접속합니다.  
+> 💡 빠른 테스트를 위해 루트에 포함된 [`demo-session.json`](./demo-session.json) 파일을 웹 화면에서 **JSON 불러오기**로 로드하면 즉시 가상 이력으로 시연 및 테스트할 수 있습니다.
 
 ### 3. 테스트 실행
 ```bash

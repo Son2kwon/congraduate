@@ -1,0 +1,392 @@
+{
+  "version": 2,
+  "student": {
+    "entry_year": 2022,
+    "expected_graduation": {
+      "year": 2027,
+      "season": "1"
+    },
+    "manual": {
+      "language_tests": [
+        {
+          "kind": "TOEIC",
+          "score": 860,
+          "date": "2025-09-20"
+        }
+      ],
+      "topcit": [
+        {
+          "score": 385,
+          "date": "2025-10-18"
+        }
+      ],
+      "thesis_passed": false,
+      "counts": {
+        "nc_counseling": {
+          "main": 4,
+          "external": 0
+        }
+      },
+      "checked": {
+        "nc_portfolio": [
+          "이력서/자기소개서",
+          "어학 성적표",
+          "자격증/수상 내역"
+        ],
+        "nc_sw_center": [
+          "인턴십(현장실습)",
+          "오픈소스 프로젝트 기여"
+        ]
+      },
+      "design": {
+        "internship_design_credits": 0,
+        "capstone_by_internship": null
+      }
+    }
+  },
+  "standard": null,
+  "plan_terms": [
+    {
+      "year": 2026,
+      "season": "2"
+    },
+    {
+      "year": 2027,
+      "season": "1"
+    }
+  ],
+  "saved_at": "2026-11-07T06:00:00.000Z",
+  "records": [
+    {
+      "code": "49149",
+      "section": "01",
+      "name": "미적분학",
+      "term": { "year": 2022, "season": "1" },
+      "credits": 3,
+      "design_credits": 0,
+      "grade": "A+",
+      "general_category": "전공기초",
+      "liberal_area": null,
+      "abeek_category": "BSM",
+      "english": null,
+      "retake": false,
+      "source": "portal"
+    },
+    {
+      "code": "17425",
+      "section": "01",
+      "name": "일반물리(1)",
+      "term": { "year": 2022, "season": "1" },
+      "credits": 3,
+      "design_credits": 0,
+      "grade": "B+",
+      "general_category": "전공기초",
+      "liberal_area": null,
+      "abeek_category": "BSM",
+      "english": null,
+      "retake": false,
+      "source": "portal"
+    },
+    {
+      "code": "17427",
+      "section": "01",
+      "name": "일반물리실험(1)",
+      "term": { "year": 2022, "season": "1" },
+      "credits": 1,
+      "design_credits": 0,
+      "grade": "A0",
+      "general_category": "전공기초",
+      "liberal_area": null,
+      "abeek_category": "BSM",
+      "english": null,
+      "retake": false,
+      "source": "portal"
+    },
+    {
+      "code": "50001",
+      "section": "01",
+      "name": "컴퓨터프로그래밍",
+      "term": { "year": 2022, "season": "1" },
+      "credits": 3,
+      "design_credits": 0,
+      "grade": "A0",
+      "general_category": "전공기초",
+      "liberal_area": null,
+      "abeek_category": "공학주제",
+      "english": null,
+      "retake": false,
+      "source": "portal"
+    },
+    {
+      "code": "50002",
+      "section": "01",
+      "name": "코딩부트캠프",
+      "term": { "year": 2022, "season": "1" },
+      "credits": 1,
+      "design_credits": 0,
+      "grade": "P",
+      "general_category": "전공기초",
+      "liberal_area": null,
+      "abeek_category": "공학주제",
+      "english": null,
+      "retake": false,
+      "source": "portal"
+    },
+    {
+      "code": "04400",
+      "section": "01",
+      "name": "컴퓨팅적사고",
+      "term": { "year": 2022, "season": "1" },
+      "credits": 2,
+      "design_credits": 0,
+      "grade": "A+",
+      "general_category": "교양필수",
+      "liberal_area": "공통교양",
+      "abeek_category": "기타교양",
+      "english": null,
+      "retake": false,
+      "source": "portal"
+    },
+    {
+      "code": "04401",
+      "section": "01",
+      "name": "글쓰기",
+      "term": { "year": 2022, "season": "1" },
+      "credits": 2,
+      "design_credits": 0,
+      "grade": "B+",
+      "general_category": "교양필수",
+      "liberal_area": "공통교양",
+      "abeek_category": "기타교양",
+      "english": null,
+      "retake": false,
+      "source": "portal"
+    },
+    {
+      "code": "50003",
+      "section": "01",
+      "name": "객체지향프로그래밍",
+      "term": { "year": 2022, "season": "2" },
+      "credits": 3,
+      "design_credits": 1,
+      "grade": "A0",
+      "general_category": "전공필수",
+      "liberal_area": null,
+      "abeek_category": "공학주제",
+      "english": "A",
+      "retake": false,
+      "source": "portal"
+    },
+    {
+      "code": "50004",
+      "section": "01",
+      "name": "이산수학",
+      "term": { "year": 2022, "season": "2" },
+      "credits": 3,
+      "design_credits": 0,
+      "grade": "A+",
+      "general_category": "전공기초",
+      "liberal_area": null,
+      "abeek_category": "BSM",
+      "english": null,
+      "retake": false,
+      "source": "portal"
+    },
+    {
+      "code": "50005",
+      "section": "01",
+      "name": "공학선형대수",
+      "term": { "year": 2022, "season": "2" },
+      "credits": 3,
+      "design_credits": 0,
+      "grade": "B+",
+      "general_category": "전공기초",
+      "liberal_area": null,
+      "abeek_category": "BSM",
+      "english": null,
+      "retake": false,
+      "source": "portal"
+    },
+    {
+      "code": "04410",
+      "section": "01",
+      "name": "테크노경영학",
+      "term": { "year": 2022, "season": "2" },
+      "credits": 3,
+      "design_credits": 0,
+      "grade": "A0",
+      "general_category": "교양선택",
+      "liberal_area": "전문교양",
+      "abeek_category": "전문교양",
+      "english": null,
+      "retake": false,
+      "source": "portal"
+    },
+    {
+      "code": "56116",
+      "section": "01",
+      "name": "자료구조",
+      "term": { "year": 2023, "season": "1" },
+      "credits": 3,
+      "design_credits": 1,
+      "grade": "A0",
+      "general_category": "전공필수",
+      "liberal_area": null,
+      "abeek_category": "공학주제",
+      "english": "A",
+      "retake": false,
+      "source": "portal"
+    },
+    {
+      "code": "50007",
+      "section": "01",
+      "name": "확률및통계",
+      "term": { "year": 2023, "season": "1" },
+      "credits": 3,
+      "design_credits": 0,
+      "grade": "B+",
+      "general_category": "전공기초",
+      "liberal_area": null,
+      "abeek_category": "BSM",
+      "english": null,
+      "retake": false,
+      "source": "portal"
+    },
+    {
+      "code": "04411",
+      "section": "01",
+      "name": "공학윤리",
+      "term": { "year": 2023, "season": "1" },
+      "credits": 3,
+      "design_credits": 0,
+      "grade": "A+",
+      "general_category": "교양선택",
+      "liberal_area": "전문교양",
+      "abeek_category": "전문교양",
+      "english": null,
+      "retake": false,
+      "source": "portal"
+    },
+    {
+      "code": "50008",
+      "section": "01",
+      "name": "알고리즘분석",
+      "term": { "year": 2023, "season": "2" },
+      "credits": 3,
+      "design_credits": 1,
+      "grade": "A0",
+      "general_category": "전공필수",
+      "liberal_area": null,
+      "abeek_category": "공학주제",
+      "english": "B",
+      "retake": false,
+      "source": "portal"
+    },
+    {
+      "code": "50009",
+      "section": "01",
+      "name": "시스템소프트웨어",
+      "term": { "year": 2023, "season": "2" },
+      "credits": 3,
+      "design_credits": 1,
+      "grade": "B0",
+      "general_category": "전공필수",
+      "liberal_area": null,
+      "abeek_category": "공학주제",
+      "english": null,
+      "retake": false,
+      "source": "portal"
+    },
+    {
+      "code": "50010",
+      "section": "01",
+      "name": "컴퓨터구조",
+      "term": { "year": 2024, "season": "1" },
+      "credits": 3,
+      "design_credits": 0,
+      "grade": "A0",
+      "general_category": "전공필수",
+      "liberal_area": null,
+      "abeek_category": "공학주제",
+      "english": "A",
+      "retake": false,
+      "source": "portal"
+    },
+    {
+      "code": "50011",
+      "section": "01",
+      "name": "데이터베이스",
+      "term": { "year": 2024, "season": "1" },
+      "credits": 3,
+      "design_credits": 1,
+      "grade": "A+",
+      "general_category": "전공선택",
+      "liberal_area": null,
+      "abeek_category": "공학주제",
+      "english": null,
+      "retake": false,
+      "source": "portal"
+    },
+    {
+      "code": "50012",
+      "section": "01",
+      "name": "소프트웨어공학",
+      "term": { "year": 2024, "season": "2" },
+      "credits": 3,
+      "design_credits": 1,
+      "grade": "A0",
+      "general_category": "전공선택",
+      "liberal_area": null,
+      "abeek_category": "공학주제",
+      "english": null,
+      "retake": false,
+      "source": "portal"
+    },
+    {
+      "code": "50013",
+      "section": "01",
+      "name": "컴퓨터네트워크",
+      "term": { "year": 2024, "season": "2" },
+      "credits": 3,
+      "design_credits": 0,
+      "grade": "B+",
+      "general_category": "전공선택",
+      "liberal_area": null,
+      "abeek_category": "공학주제",
+      "english": "A",
+      "retake": false,
+      "source": "portal"
+    },
+    {
+      "code": "50014",
+      "section": "01",
+      "name": "프로그래밍언어론",
+      "term": { "year": 2025, "season": "1" },
+      "credits": 3,
+      "design_credits": 0,
+      "grade": "A0",
+      "general_category": "전공선택",
+      "liberal_area": null,
+      "abeek_category": "공학주제",
+      "english": null,
+      "retake": false,
+      "source": "portal"
+    },
+    {
+      "code": "50015",
+      "section": "01",
+      "name": "인공지능",
+      "term": { "year": 2025, "season": "1" },
+      "credits": 3,
+      "design_credits": 1,
+      "grade": "A+",
+      "general_category": "전공선택",
+      "liberal_area": null,
+      "abeek_category": "공학주제",
+      "english": null,
+      "retake": false,
+      "source": "portal"
+    }
+  ]
+}
+
