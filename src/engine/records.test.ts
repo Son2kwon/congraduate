@@ -1,6 +1,8 @@
 import { describe, expect, it } from "vitest";
 import { compareTerm, earnedRecords, effectiveRecords, isFailed, matchesRecord, sameCourse } from "./records";
-import { ctx, rec, t } from "./test-utils";
+import { createCourseIndex } from "./courses";
+import { MajorCatalog, LiberalCatalog } from "./schema";
+import { ctx, realLiberal, realMajor, rec, t } from "./test-utils";
 
 const order = ["1", "S", "2", "W"] as const;
 
@@ -115,5 +117,31 @@ describe("match", () => {
     expect(matchesRecord(m, rec("글쓰기", { liberal_area: "공통교양" }), ctx())).toBe(true);
     expect(matchesRecord(m, rec("창의와소통", { liberal_area: "공통교양" }), ctx())).toBe(false);
     expect(matchesRecord(m, rec("글쓰기", { liberal_area: null }), ctx())).toBe(false);
+  });
+});
+
+describe("과목 참조: 과목코드 우선, 이름은 보조", () => {
+  const major = MajorCatalog.parse({
+    ...realMajor,
+    courses: realMajor.courses.map((c) => (c.key === "자료구조" ? { ...c, codes: ["40989"] } : c)),
+  });
+  const withCodes = () => ({ ...ctx(), courses: createCourseIndex(major, LiberalCatalog.parse(realLiberal)) });
+
+  it("카탈로그에 코드가 있으면 코드가 같아야 같은 과목", () => {
+    expect(sameCourse(rec("자료구조", { code: "40989" }), "자료구조", withCodes())).toBe(true);
+    expect(sameCourse(rec("자료구조", { code: "56116" }), "자료구조", withCodes())).toBe(false);
+  });
+
+  it("레코드에 코드가 없으면(계획 과목) 이름으로 비교", () => {
+    expect(sameCourse(rec("자료구조", { code: null }), "자료구조", withCodes())).toBe(true);
+  });
+
+  it("카탈로그에 코드가 없는 과목은 이름으로 비교", () => {
+    expect(sameCourse(rec("알고리즘", { code: "99999" }), "알고리즘", withCodes())).toBe(true);
+  });
+
+  it("규칙이 과목코드로 직접 가리켜도 된다", () => {
+    expect(sameCourse(rec("자료구조", { code: "40989" }), "40989", withCodes())).toBe(true);
+    expect(sameCourse(rec("자료구조", { code: "56116" }), "40989", withCodes())).toBe(false);
   });
 });

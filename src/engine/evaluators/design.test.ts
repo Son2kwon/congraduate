@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import type { DesignCreditsMin } from "../schema";
-import { ctx, plan, realRules, rec } from "../test-utils";
+import { ctx, plan, realRules, rec, student } from "../test-utils";
 import { evalDesignCreditsMin } from "./design";
 
 const design = realRules.rule_sets.abeek.requirements.find((r) => r.id === "a_design") as DesignCreditsMin;
@@ -109,5 +109,40 @@ describe("design_credits_min — 열린 기간·미이수", () => {
     const r = evalDesignCreditsMin(design, rs, ctx());
     expect(r.status).toBe("tentative");
     expect(r.planned).toBe(6);
+  });
+});
+
+describe("design_credits_min — 학생 입력 대체 (규정 제67조①, 별표24)", () => {
+  const withDesign = (internship_design_credits: number, capstone_by_internship: "캡스톤디자인(1)" | "캡스톤디자인(2)" | null) =>
+    ctx(student({ manual: { design: { internship_design_credits, capstone_by_internship } } }));
+
+  it("인턴십 인정 설계학점은 인정 기간과 무관하게 더하고 '수동 입력 반영'을 표시한다", () => {
+    const rs = [creative("2023-1"), cap1("2024-1"), cap2("2024-2")];
+    const r = evalDesignCreditsMin(design, rs, withDesign(3, null));
+    expect(r.current).toBe(12);
+    expect(r.status).toBe("met");
+    expect(r.notes.join()).toContain("수동 입력 반영");
+  });
+
+  it("입력값이 규정상 인턴십 설계학점(3)을 넘으면 경고", () => {
+    const rs = [creative("2023-1"), cap1("2024-1"), cap2("2024-2")];
+    const r = evalDesignCreditsMin(design, rs, withDesign(4, null));
+    expect(r.current).toBe(13);
+    expect(r.warnings.join()).toContain("3");
+  });
+
+  it("캡스톤으로 인정받은 과목은 이수로 처리 — 다른 캡스톤 학기로 기간을 닫는다", () => {
+    const rs = [creative("2023-1"), course("설계A", "2023-2", 6), cap1("2024-1"), course("기간밖", "2024-2", 3)];
+    const r = evalDesignCreditsMin(design, rs, withDesign(0, "캡스톤디자인(2)"));
+    expect(r.status).toBe("met");
+    expect(r.current).toBe(12);
+    expect(r.counted.map((x) => x.name)).not.toContain("기간밖");
+    expect(r.missing.courses).toEqual([]);
+    expect(r.notes.join()).toContain("수동 입력 반영");
+  });
+
+  it("입력이 없으면 메모를 붙이지 않는다", () => {
+    const r = evalDesignCreditsMin(design, [creative("2023-1")], ctx());
+    expect(r.notes).toEqual([]);
   });
 });

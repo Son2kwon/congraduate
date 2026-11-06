@@ -54,6 +54,7 @@ export const emptyManual = (): ManualInput => ({
   thesis_passed: false,
   counts: {},
   checked: {},
+  design: { internship_design_credits: 0, capstone_by_internship: null },
 });
 
 export function student(over: Partial<Omit<StudentInfo, "manual">> & { manual?: Partial<ManualInput> } = {}): StudentInfo {

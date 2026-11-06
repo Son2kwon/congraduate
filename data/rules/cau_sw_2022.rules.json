@@ -4,7 +4,7 @@
     "school": "중앙대학교",
     "campus": "서울",
     "department": "소프트웨어학부",
-    "version": "0.14-draft",
+    "version": "0.15-draft",
     "created": "2026-11-07",
     "supported_entry_years": {
       "from": 2018,
@@ -301,6 +301,11 @@
             "알고리즘"
           ],
           "min_credits": 18,
+          "taken_match": {
+            "abeek.category": [
+              "공학주제"
+            ]
+          },
           "cohort_rules": [
             {
               "entry_year_gte": 2026,
@@ -331,7 +336,8 @@
           "substitutions": [
             {
               "kind": "internship",
-              "design_credits": 3
+              "design_credits": 3,
+              "input": "manual"
             },
             {
               "kind": "internship_as_capstone",
@@ -432,7 +438,8 @@
       "items": [
         {
           "id": "coding_bootcamp",
-          "label": "코딩부트캠프 Pass"
+          "label": "코딩부트캠프 Pass",
+          "auto_from_course": "코딩부트캠프"
         },
         {
           "id": "internship",

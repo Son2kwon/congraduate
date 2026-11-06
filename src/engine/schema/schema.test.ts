@@ -71,7 +71,7 @@ function matches(r: Requirement): Match[] {
 describe("스키마 검증 (5개 파일)", () => {
   it("규칙·근거·정답·카탈로그 파일이 스키마를 통과한다", () => {
     // 위의 parse()가 실패하면 모듈 로드 단계에서 예외가 난다. 여기서는 결과만 확인.
-    expect(rules.meta.version).toBe("0.14-draft");
+    expect(rules.meta.version).toBe("0.15-draft");
     expect(major.courses.length).toBeGreaterThan(0);
     expect(liberal.courses.length).toBeGreaterThan(0);
   });
@@ -204,6 +204,37 @@ describe("집계 규칙 (counting)", () => {
 
   it("학기 순서의 근거가 근거 기록에 있다", () => {
     expect(evidence.counting_policy.term_order).toContain("decisions.md 9번");
+  });
+});
+
+describe("2단계 피드백 반영 (0.15-draft)", () => {
+  const find = (id: string) => allRequirements.find((r) => r.id === id)!;
+
+  it("SW중심대학 코딩부트캠프는 규칙에서 자동 판정 과목을 지정한다", () => {
+    const swcu = find("nc_swcu");
+    if (swcu.type !== "choose_n") throw new Error("nc_swcu type");
+    expect(swcu.items.find((i) => i.id === "coding_bootcamp")?.auto_from_course).toBe("코딩부트캠프");
+  });
+
+  it("공학인증 전공필수: 들은 과목은 포털 공학인증 구분이 공학주제여야 한다", () => {
+    const req = find("a_required");
+    if (req.type !== "courses_all") throw new Error("a_required type");
+    expect(req.taken_match).toEqual({ "abeek.category": ["공학주제"] });
+  });
+
+  it("설계 대체는 학생 입력으로 받는다 (인턴십 설계학점·캡스톤 인정)", () => {
+    const req = find("a_design");
+    if (req.type !== "design_credits_min") throw new Error("a_design type");
+    expect(req.substitutions.map((s) => [s.kind, s.input])).toEqual([
+      ["internship", "manual"],
+      ["internship_as_capstone", "manual"],
+    ]);
+  });
+
+  it("근거 기록: 설계 대체 근거, 재택강의 미판정, TOPCIT 근사치", () => {
+    expect(JSON.stringify(evidence.requirements.a_design)).toContain("별표24");
+    expect(JSON.stringify(evidence.requirements.nc_english)).toContain("데이터 없음 — 미판정");
+    expect(JSON.stringify(evidence.requirements.nc_thesis)).toContain("근사치");
   });
 });
 

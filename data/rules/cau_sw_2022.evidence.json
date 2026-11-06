@@ -1,6 +1,6 @@
 {
   "$schema_note": "근거 기록 — 사람이 읽는 출처·메모·이력. 판정에는 쓰지 않음",
-  "rules_version": "0.14-draft",
+  "rules_version": "0.15-draft",
   "meta": {
     "entry_year": 2022,
     "status": "초안 — open_questions 해결 전까지 참고용",
@@ -223,7 +223,8 @@
     "a_required": {
       "source": "reg_web_20251117 제48조⑧·제82조③",
       "confidence": "high",
-      "note": "규정 6과목 기준으로 판정 (사용자 확인 2026-11-07). 포털 필수 이수과목 내역 칸은 사용하지 않음"
+      "note": "규정 6과목 기준으로 판정 (사용자 확인 2026-11-07). 포털 필수 이수과목 내역 칸은 사용하지 않음",
+      "taken_match_basis": "같은 이름 다른 코드 방지: 들은 과목은 과목 매칭 + 포털 이수현황 공학인증 구분 '공학주제'여야 공학인증 필수로 인정 (예: 자료구조 56116 미지정 / 40989 공학주제). 계획 과목에는 적용하지 않음 (사용자 확인 2026-11-07)"
     },
     "a_design": {
       "window": {
@@ -246,7 +247,8 @@
       "credit_basis": "course.abeek.design_credits (수강 학기 기준, design_credits_history·design_credits_rule 참조)",
       "source": "abeek_reg 제48조④⑤, 제82조④⑤",
       "confidence": "high",
-      "note": "현행 설계학점 합계 22, 설계필수 3과목 9 → 나머지 설계과목에서 3학점 이상"
+      "note": "현행 설계학점 합계 22, 설계필수 3과목 9 → 나머지 설계과목에서 3학점 이상",
+      "substitutions_input": "인턴십 인정 설계학점(숫자)과 캡스톤 인정((1)/(2) 선택)은 학생 입력. 엔진이 추정하지 않음. 인턴십 설계학점은 설계 인정 기간과 무관하게 더함. 근거: 규정 제67조①(인턴십 설계학점), 별표24(기획평가위원회가 종합설계와 대등하다고 판정 시 캡스톤 인정). 규칙의 design_credits 3은 규정상 값 — 입력값이 이를 넘으면 경고 (사용자 확인 2026-11-07)"
     },
     "nc_english": {
       "options": [
@@ -278,7 +280,8 @@
       "fail_result": "수료 (학위 미수여)",
       "source": "eng_reg 제3조, 제6조, 제13조, 제16조, 별표2 (소프트웨어대학)",
       "confidence": "high",
-      "english_lectures_scope_basis": "졸업인정제 시행세칙 제6조 \"전공과목(전공기초과목 포함)\" → 이수구분 전공기초·전공필수·전공. 자유선택·복수전공으로 들은 영어강의는 세지 않음 (사용자 확인 2026-11-07)"
+      "english_lectures_scope_basis": "졸업인정제 시행세칙 제6조 \"전공과목(전공기초과목 포함)\" → 이수구분 전공기초·전공필수·전공. 자유선택·복수전공으로 들은 영어강의는 세지 않음 (사용자 확인 2026-11-07)",
+      "excludes_status": "재택강의 제외: 이수현황·성적내역 두 PDF에 재택강의 여부 정보가 없음 → 데이터 없음 — 미판정 (사용자 확인 2026-11-07)"
     },
     "nc_thesis": {
       "options": [
@@ -300,7 +303,8 @@
         }
       ],
       "source": "abeek_reg 제48조 + user",
-      "confidence": "high"
+      "confidence": "high",
+      "topcit_cutoff": "유효기간 3년의 기준점은 제출 시점 근사치: 졸업 월에서 3개월 뺀 달의 1일부터 거꾸로 3년. 근거: 2027.2 졸업예정자 TOPCIT 제출 기한 2026-11-09~12 (notice_3494). 결과에 '근사치' 메모 표시 (사용자 확인 2026-11-07)"
     },
     "nc_counseling": {
       "rule": "교내 학생생활상담센터·취업정보센터·성폭력상담실 상담은 합계 최대 2회까지 인정",
@@ -314,7 +318,8 @@
     "nc_swcu": {
       "source": "reg_web_20251117 제48조⑮·제82조⑩ + notice_2848",
       "confidence": "high",
-      "note": "2024.08 졸업자부터 전 학번 적용. 최저평점 2.2 요건 삭제. 코딩부트캠프 미이수 졸업예정자 구제 신청 사례 있음(수동)"
+      "note": "2024.08 졸업자부터 전 학번 적용. 최저평점 2.2 요건 삭제. 코딩부트캠프 미이수 졸업예정자 구제 신청 사례 있음(수동)",
+      "auto_from_course_basis": "코딩부트캠프 Pass는 과목 레코드로 자동 판정 (decisions.md 5번). 3단계 이후 과목코드로 지정 예정"
     }
   },
   "removed": [
@@ -405,6 +410,16 @@
       "changes": [
         "counting.term_order 추가 (decisions.md 9번)",
         "근거: 설계학점 출처, 영어강의 대상 범위"
+      ]
+    },
+    {
+      "version": "0.15-draft",
+      "date": "2026-11-07",
+      "changes": [
+        "nc_swcu: coding_bootcamp.auto_from_course 추가",
+        "a_required: taken_match(공학주제) 추가",
+        "a_design: internship 대체 input manual",
+        "근거: 재택강의 미판정, TOPCIT 기준점 근사치"
       ]
     }
   ]

@@ -16,6 +16,7 @@ export function newResult(req: Req, fields: Partial<RequirementResult> & Pick<Re
     missing: { courses: [], credits: 0, items: [] },
     reasons: [],
     warnings: [],
+    notes: [],
     ...fields,
   };
 }

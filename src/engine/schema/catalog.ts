@@ -16,6 +16,8 @@ export const MajorCourse = z.strictObject({
   key: Text,
   name: Text,
   aliases: z.array(Text),
+  /** 과목코드 (포털 문서에서 확인한 값). 있으면 과목 식별에 코드를 우선 쓴다 */
+  codes: z.array(Code).nonempty().optional(),
   /** 교과과정표의 이수구분. track_only 과목은 미상(null) */
   category: z.enum(["전공기초", "전공필수", "전공"]).nullable(),
   credits: z.number().positive().nullable(),

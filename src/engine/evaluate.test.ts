@@ -85,7 +85,7 @@ describe("evaluate — 전체 판정", () => {
   });
 
   it("학번에 따라 공학인증 필수가 달라진다 (2025 vs 2026)", () => {
-    const six = ["자료구조", "컴퓨터구조", "소프트웨어공학", "운영체제", "프로그래밍언어론", "알고리즘"].map((n) => rec(n));
+    const six = ["자료구조", "컴퓨터구조", "소프트웨어공학", "운영체제", "프로그래밍언어론", "알고리즘"].map((n) => rec(n, { abeek_category: "공학주제" }));
     const status = (y: number) => run(six, student({ entry_year: y })).abeek.find((r) => r.id === "a_required")?.status;
     expect(status(2025)).toBe("met");
     expect(status(2026)).toBe("unmet");

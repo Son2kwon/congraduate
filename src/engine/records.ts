@@ -38,8 +38,18 @@ export function earnedRecords(records: CourseRecord[], c: EvalContext): CourseRe
   return effectiveRecords(records, c).filter((r) => !isFailed(r));
 }
 
-/** 과목명 참조(CourseRef)와 같은 과목인지 — 카탈로그 별칭·공백 차이 무시 */
+const CODE = /^\d{5}$/;
+
+/**
+ * 과목 참조(CourseRef)와 같은 과목인지. 과목코드 우선, 이름은 보조.
+ * - 참조가 과목코드면 코드로만 비교
+ * - 카탈로그에 그 과목의 코드가 있고 레코드에도 코드가 있으면 코드로만 비교
+ * - 그 밖에는 이름 비교 (카탈로그 별칭·공백 차이 무시)
+ */
 export function sameCourse(r: CourseRecord, ref: string, c: EvalContext): boolean {
+  if (CODE.test(ref)) return r.code === ref;
+  const codes = c.courses.codesOf(ref);
+  if (codes && r.code) return codes.includes(r.code);
   return c.courses.canonical(r.name) === c.courses.canonical(ref);
 }
 

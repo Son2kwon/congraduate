@@ -13,7 +13,9 @@ export function graduationMonth(t: Term): { year: number; month: number } {
 
 const ym = (y: number, m: number) => `${y}-${String(m).padStart(2, "0")}`;
 
-function evalOption(o: AnyOfOption, records: CourseRecord[], c: EvalContext): OptionResult & { counted?: ReturnType<typeof counted>[] } {
+type OptionEval = OptionResult & { counted?: ReturnType<typeof counted>[]; note?: string };
+
+function evalOption(o: AnyOfOption, records: CourseRecord[], c: EvalContext): OptionEval {
   const m = c.student.manual;
   switch (o.kind) {
     case "test": {
@@ -56,7 +58,9 @@ function evalOption(o: AnyOfOption, records: CourseRecord[], c: EvalContext): Op
       // history: graduation_until(포함) 이전 졸업자에게 적용되던 기준
       const old = [...o.history].sort((a, b) => a.graduation_until.localeCompare(b.graduation_until)).find((h) => gradYm <= h.graduation_until);
       const minScore = old?.min_score ?? o.min_score;
-      const cutoff = `${ym(g.year - o.valid_years, g.month)}-01`;
+      // 기준점 = 제출 시점 근사치 (졸업 월 - 3개월). 근거: notice_3494 (evidence nc_thesis.topcit_cutoff)
+      const s = addMonths(g, -TOPCIT_SUBMIT_MONTHS_BEFORE);
+      const cutoff = `${ym(s.year - o.valid_years, s.month)}-01`;
       const enough = m.topcit.filter((x) => x.score >= minScore);
       const valid = enough.filter((x) => x.date !== null && x.date >= cutoff);
       const undated = enough.filter((x) => x.date === null);
@@ -70,9 +74,18 @@ function evalOption(o: AnyOfOption, records: CourseRecord[], c: EvalContext): Op
           status === "needs_review"
             ? `TOPCIT ${undated[0]!.score}점 — 응시일 입력 필요 (${cutoff} 이후 응시분만 인정)`
             : `TOPCIT ${minScore}점 이상, ${cutoff} 이후 응시 (${gradYm} 졸업 기준)`,
+        note: `TOPCIT 유효기간 기준점은 제출 시점 근사치 (${gradYm} 졸업 → ${ym(s.year, s.month)} 기준 ${o.valid_years}년)`,
       };
     }
   }
+}
+
+/** TOPCIT 제출 시점 근사: 졸업 월보다 몇 개월 앞 (2027.2 졸업 → 2026.11 제출) */
+const TOPCIT_SUBMIT_MONTHS_BEFORE = 3;
+
+function addMonths(d: { year: number; month: number }, n: number): { year: number; month: number } {
+  const i = d.year * 12 + (d.month - 1) + n;
+  return { year: Math.floor(i / 12), month: (i % 12) + 1 };
 }
 
 const STATUS_RANK: Status[] = ["met", "tentative", "needs_review", "unmet"];
@@ -81,32 +94,26 @@ const STATUS_RANK: Status[] = ["met", "tentative", "needs_review", "unmet"];
 export function evalAnyOf(req: AnyOf, records: CourseRecord[], c: EvalContext): RequirementResult {
   const results = req.options.map((o) => evalOption(o, records, c));
   const status = STATUS_RANK.find((s) => results.some((r) => r.status === s)) ?? "unmet";
-  const options: OptionResult[] = results.map(({ counted: _, ...o }) => o);
+  const options: OptionResult[] = results.map(({ counted: _c, note: _n, ...o }) => o);
   return newResult(req, {
     status,
     current: results.filter((r) => r.status === "met").length,
     required: 1,
     counted: results.flatMap((r) => r.counted ?? []),
     reasons: status === "met" ? [] : results.map((r) => r.detail),
+    notes: results.flatMap((r) => (r.note ? [r.note] : [])),
     options,
   });
 }
 
 // ---------- choose_n (n개 중 선택) ----------
 
-/**
- * 과목 레코드로 자동 판정하는 항목 (decisions.md 5번). 항목 id → 과목명.
- * 이 항목은 학생 체크값을 쓰지 않는다.
- */
-export const AUTO_CHOICE_COURSES: Record<string, string> = {
-  coding_bootcamp: "코딩부트캠프",
-};
-
 export function evalChooseN(req: ChooseN, records: CourseRecord[], c: EvalContext): RequirementResult {
   const earned = earnedRecords(records, c);
   const checked = new Set(c.student.manual.checked[req.id] ?? []);
   const states = req.items.map((item) => {
-    const course = AUTO_CHOICE_COURSES[item.id];
+    // auto_from_course가 있으면 과목 레코드로만 판정 (체크값 무시)
+    const course = item.auto_from_course;
     const state: CourseState = course ? courseState(course, earned, c) : checked.has(item.id) ? "done" : "missing";
     return { id: item.id, label: item.label, state };
   });

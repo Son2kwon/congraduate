@@ -70,6 +70,13 @@ export type ManualInput = {
    * checklist는 항목 문자열, choose_n은 항목 id. 자동 판정 항목은 체크값 대신 과목 레코드로 판정
    */
   checked: Record<string, string[]>;
+  /** 설계 대체 (규정 제67조①, 별표24) — 엔진이 추정하지 않고 학생 입력만 쓴다 */
+  design: {
+    /** 인턴십 인정 설계학점. 설계 인정 기간과 무관하게 더한다 */
+    internship_design_credits: number;
+    /** 기획평가위원회 판정으로 캡스톤 이수로 인정받은 과목 (규칙 window.to_max_of 중 하나) */
+    capstone_by_internship: string | null;
+  };
 };
 
 // ---------- 출력 ----------
@@ -109,6 +116,8 @@ export type RequirementResult = {
   /** 미충족·잠정 사유 */
   reasons: string[];
   warnings: string[];
+  /** 판정 방식 메모 (예: "수동 입력 반영", "근사치") */
+  notes: string[];
   /** 영역별 최소의 영역별 결과 */
   groups?: GroupResult[];
   /** 택1의 선택지별 결과 */

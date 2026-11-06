@@ -73,9 +73,10 @@ export function evalCreditsMax(req: CreditsMax, records: CourseRecord[], c: Eval
   });
 }
 
-/** 과목 전부 이수 (+ min_credits, 학번별 cohort_rules) */
+/** 과목 전부 이수 (+ min_credits, 들은 과목 조건 taken_match, 학번별 cohort_rules) */
 export function evalCoursesAll(req: CoursesAll, records: CourseRecord[], c: EvalContext): RequirementResult {
-  const earned = earnedRecords(records, c);
+  const taken = req.taken_match;
+  const earned = earnedRecords(records, c).filter((r) => isPlanned(r) || !taken || matchesRecord(taken, r, c));
   const refs = [
     ...req.courses,
     ...(req.cohort_rules ?? []).filter((r) => c.student.entry_year >= r.entry_year_gte).flatMap((r) => r.add_courses),

@@ -67,15 +67,19 @@ describe("any_of (택1) — 졸업논문 또는 TOPCIT", () => {
     expect(evalAnyOf(thesis(), [], grad("2026-2", [{ score: 299, date: "2025-05-10" }])).status).toBe("unmet");
   });
 
-  it("3년 경계: 2027-02 졸업이면 2024-02-01 응시는 인정, 2024-01-31은 불인정", () => {
-    expect(evalAnyOf(thesis(), [], grad("2026-2", [{ score: 300, date: "2024-02-01" }])).status).toBe("met");
-    expect(evalAnyOf(thesis(), [], grad("2026-2", [{ score: 300, date: "2024-01-31" }])).status).toBe("unmet");
+  it("3년 기준점은 제출 시점 근사치: 2027-02 졸업 → 2026-11 기준 → 2023-11-01 이후 응시 인정", () => {
+    expect(evalAnyOf(thesis(), [], grad("2026-2", [{ score: 300, date: "2023-11-01" }])).status).toBe("met");
+    expect(evalAnyOf(thesis(), [], grad("2026-2", [{ score: 300, date: "2023-10-31" }])).status).toBe("unmet");
   });
 
-  it("1학기·하계 졸업은 그해 8월 기준", () => {
-    // 2026-1 졸업 = 2026-08 → 2023-08-01부터 인정
-    expect(evalAnyOf(thesis(), [], grad("2026-1", [{ score: 300, date: "2023-08-01" }])).status).toBe("met");
-    expect(evalAnyOf(thesis(), [], grad("2026-1", [{ score: 300, date: "2023-07-31" }])).status).toBe("unmet");
+  it("1학기·하계 졸업(8월) → 5월 기준 → 3년 전 5월 1일부터", () => {
+    expect(evalAnyOf(thesis(), [], grad("2026-1", [{ score: 300, date: "2023-05-01" }])).status).toBe("met");
+    expect(evalAnyOf(thesis(), [], grad("2026-1", [{ score: 300, date: "2023-04-30" }])).status).toBe("unmet");
+  });
+
+  it("TOPCIT 결과에 '근사치' 메모를 붙인다", () => {
+    const r = evalAnyOf(thesis(), [], grad("2026-2", [{ score: 300, date: "2025-05-10" }]));
+    expect(r.notes.join()).toContain("근사치");
   });
 
   it("2025-08 이전 졸업이면 270점 기준 (history)", () => {
@@ -127,6 +131,20 @@ describe("choose_n (n개 중 선택) — SW중심대학", () => {
   it("코딩부트캠프를 계획에 담으면 잠정", () => {
     const r = evalChooseN(swcu(), [plan("코딩부트캠프", { credits: 0 })], ctx(checked(["internship", "startup", "topcit", "open_source"])));
     expect(r.status).toBe("tentative");
+  });
+
+  it("자동 판정 과목은 규칙의 auto_from_course로 정한다", () => {
+    const req: ChooseN = {
+      id: "x_choice",
+      label: "선택",
+      type: "choose_n",
+      n: 1,
+      must: [],
+      items: [{ id: "auto_item", label: "자동", auto_from_course: "캡스톤디자인(1)" }],
+    };
+    const s = student({ manual: { checked: { x_choice: ["auto_item"] } } });
+    expect(evalChooseN(req, [], ctx(s)).status).toBe("unmet");
+    expect(evalChooseN(req, [rec("캡스톤디자인(1)")], ctx()).status).toBe("met");
   });
 
   it("규칙에 없는 항목 id 체크는 무시한다", () => {

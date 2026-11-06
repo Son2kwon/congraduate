@@ -7,10 +7,13 @@ import { counted, courseState, newResult, statusOf, sumValue } from "./result";
 /**
  * 설계학점.
  * 인정 기간: T(window.from) <= T(과목) <= max(T(window.to_max_of)) — 양 끝 포함, 학기 순서는 counting.term_order.
- * - window.from(창의적설계) 미이수: 설계학점 0, 미충족
+ * - window.from(창의적설계) 미이수: 과목 설계학점 0(인턴십 입력분만 반영), 미충족
  * - to_max_of(캡스톤) 중 미이수가 있으면 끝을 열어 두고 잠정
  * 설계학점 값은 레코드의 design_credits (들은 과목 = 포털 이수현황, 계획 = 카탈로그 현재 값).
- * substitutions(인턴십 대체)는 아직 판정에 반영하지 않는다.
+ * 설계 대체(substitutions)는 학생 입력만 쓴다 (규정 제67조①, 별표24):
+ * - 인턴십 인정 설계학점: 인정 기간과 무관하게 더함. 규정값(design_credits)을 넘으면 경고
+ * - 캡스톤으로 인정받은 과목: 이수로 처리하고 기간 끝 계산에서는 빼며, 나머지 캡스톤 학기로 기간을 닫는다
+ * 입력이 반영되면 notes에 "수동 입력 반영"
  */
 export function evalDesignCreditsMin(req: DesignCreditsMin, records: CourseRecord[], c: EvalContext): RequirementResult {
   const earned = earnedRecords(records, c);
@@ -18,22 +21,41 @@ export function evalDesignCreditsMin(req: DesignCreditsMin, records: CourseRecor
   const firstOf = (ref: string): CourseRecord | undefined =>
     earned.filter((r) => sameCourse(r, ref, c)).sort((a, b) => cmp(a.term, b.term))[0];
 
-  const mustStates = req.must_include.map((ref) => ({ ref, state: courseState(ref, earned, c) }));
+  // 학생 입력 대체
+  const manual = c.student.manual.design;
+  const internshipRule = req.substitutions.find((s) => s.kind === "internship");
+  const capstoneAllowed = req.substitutions.some((s) => s.kind === "internship_as_capstone");
+  const internship = internshipRule ? manual.internship_design_credits : 0;
+  const substituted = capstoneAllowed && manual.capstone_by_internship
+    ? req.window.to_max_of.find((ref) => c.courses.canonical(ref) === c.courses.canonical(manual.capstone_by_internship!))
+    : undefined;
+  const notes: string[] = [];
+  const warnings: string[] = [];
+  if (internship > 0) notes.push(`수동 입력 반영: 인턴십 인정 설계학점 ${internship}`);
+  if (internshipRule && internship > internshipRule.design_credits) {
+    warnings.push(`인턴십 인정 설계학점 입력값 ${internship}이 규정상 값 ${internshipRule.design_credits}보다 큼 — 확인 필요`);
+  }
+  if (substituted) notes.push(`수동 입력 반영: ${substituted}를 인턴십으로 인정`);
+
+  const mustStates = req.must_include.map((ref) => ({ ref, state: ref === substituted ? "done" : courseState(ref, earned, c) }));
   const missingCourses = mustStates.filter((m) => m.state === "missing").map((m) => m.ref);
 
   const start = firstOf(req.window.from);
   if (!start) {
     return newResult(req, {
       status: "unmet",
+      current: internship,
       required: req.min,
-      missing: { courses: missingCourses, credits: req.min, items: [] },
+      missing: { courses: missingCourses, credits: Math.max(0, req.min - internship), items: [] },
       reasons: [`${req.window.from} 미이수`],
+      warnings,
+      notes,
     });
   }
 
-  const ends = req.window.to_max_of.map((ref) => ({ ref, rec: firstOf(ref) }));
+  const ends = req.window.to_max_of.filter((ref) => ref !== substituted).map((ref) => ({ ref, rec: firstOf(ref) }));
   const openEnds = ends.filter((e) => !e.rec).map((e) => e.ref);
-  const endTerm = openEnds.length
+  const endTerm = openEnds.length || ends.length === 0
     ? null
     : ends.map((e) => e.rec!.term).reduce((a, b) => (cmp(a, b) >= 0 ? a : b));
   const windowPlanned = isPlanned(start) || ends.some((e) => e.rec && isPlanned(e.rec));
@@ -41,7 +63,7 @@ export function evalDesignCreditsMin(req: DesignCreditsMin, records: CourseRecor
   const cs = earned
     .filter((r) => r.design_credits > 0 && cmp(r.term, start.term) >= 0 && (endTerm === null || cmp(r.term, endTerm) <= 0))
     .map((r) => counted(r, r.design_credits));
-  const current = sumValue(cs, false);
+  const current = sumValue(cs, false) + internship;
   const planned = sumValue(cs, true);
   const shortPlan = Math.max(0, req.min - current - planned);
 
@@ -66,5 +88,7 @@ export function evalDesignCreditsMin(req: DesignCreditsMin, records: CourseRecor
     counted: cs,
     missing: { courses: missingCourses, credits: shortPlan, items: [] },
     reasons,
+    warnings,
+    notes,
   });
 }

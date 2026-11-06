@@ -199,7 +199,7 @@ describe("courses_all (과목 전부 이수)", () => {
 
   describe("학번별 cohort_rules (공학인증 전공필수)", () => {
     const required = () => abeekReq("a_required") as CoursesAll;
-    const six = ["자료구조", "컴퓨터구조", "소프트웨어공학", "운영체제", "프로그래밍언어론", "알고리즘"].map((n) => rec(n));
+    const six = ["자료구조", "컴퓨터구조", "소프트웨어공학", "운영체제", "프로그래밍언어론", "알고리즘"].map((n) => rec(n, { abeek_category: "공학주제" }));
 
     it("2025학번: 6과목이면 충족", () => {
       const r = evalCoursesAll(required(), six, ctx(student({ entry_year: 2025 })));
@@ -214,8 +214,20 @@ describe("courses_all (과목 전부 이수)", () => {
       expect(r.missing.courses).toEqual(["인공지능"]);
     });
 
+    it("들은 과목은 포털 공학인증 구분이 공학주제여야 센다 (같은 이름 다른 코드 방지)", () => {
+      const rs = six.map((r) => (r.name === "자료구조" ? { ...r, code: "56116", abeek_category: "미지정" } : { ...r, abeek_category: "공학주제" }));
+      const r = evalCoursesAll(required(), rs, ctx(student({ entry_year: 2025 })));
+      expect(r.status).toBe("unmet");
+      expect(r.missing.courses).toEqual(["자료구조"]);
+    });
+
+    it("계획 과목에는 공학주제 조건을 적용하지 않는다", () => {
+      const rs = six.map((r) => (r.name === "운영체제" ? plan("운영체제", { abeek_category: null }) : { ...r, abeek_category: "공학주제" }));
+      expect(evalCoursesAll(required(), rs, ctx(student({ entry_year: 2025 }))).status).toBe("tentative");
+    });
+
     it("2026학번: 인공지능까지 이수하면 충족", () => {
-      const r = evalCoursesAll(required(), [...six, rec("인공지능")], ctx(student({ entry_year: 2026 })));
+      const r = evalCoursesAll(required(), [...six, rec("인공지능", { abeek_category: "공학주제" })], ctx(student({ entry_year: 2026 })));
       expect(r.status).toBe("met");
     });
   });

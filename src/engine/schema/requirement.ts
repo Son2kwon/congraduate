@@ -82,6 +82,8 @@ export const CoursesAll = z.strictObject({
   type: z.literal("courses_all"),
   courses: Courses,
   min_credits: Credits.optional(),
+  /** 들은 과목에 추가로 걸리는 조건 (예: 포털 공학인증 구분 = 공학주제). 계획 과목에는 적용하지 않는다 */
+  taken_match: Match.optional(),
   /** 학번별 추가 과목 (예: 2026학번+ 인공지능) */
   cohort_rules: z.array(CohortRule).nonempty().optional(),
   portal_rows: PortalRows,
@@ -99,8 +101,8 @@ export const GroupsEachMinCredits = z.strictObject({
 });
 
 export const DesignSubstitution = z.discriminatedUnion("kind", [
-  /** 인턴십을 설계학점으로 인정 */
-  z.strictObject({ kind: z.literal("internship"), design_credits: Credits }),
+  /** 인턴십을 설계학점으로 인정 — 인정 학점은 학생 입력. design_credits는 규정상 값 (입력값이 넘으면 경고) */
+  z.strictObject({ kind: z.literal("internship"), design_credits: Credits, input: z.literal("manual") }),
   /** 인턴십을 캡스톤 이수로 인정 — 사용자가 직접 입력 */
   z.strictObject({ kind: z.literal("internship_as_capstone"), input: z.literal("manual") }),
 ]);
@@ -172,7 +174,16 @@ export const ChooseN = z.strictObject({
   n: z.number().int().positive(),
   /** 반드시 포함해야 하는 항목 id */
   must: z.array(Id),
-  items: z.array(z.strictObject({ id: Id, label: z.string().min(1) })).nonempty(),
+  items: z
+    .array(
+      z.strictObject({
+        id: Id,
+        label: z.string().min(1),
+        /** 이 과목 레코드(F·NP 아님)로 자동 판정. 학생 체크값은 쓰지 않는다 */
+        auto_from_course: CourseRef.optional(),
+      }),
+    )
+    .nonempty(),
 });
 
 export const Checklist = z.strictObject({

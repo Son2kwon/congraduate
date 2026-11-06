@@ -4,4 +4,4 @@ export * from "./schema";
 export { createCourseIndex, normalizeName, type CourseIndex } from "./courses";
 export { compareTerm, termLabel, isFailed, isPlanned, effectiveRecords, earnedRecords } from "./records";
 export { evaluate, resolveGeneral, type EvaluateInput, type EvaluateOutput } from "./evaluate";
-export { graduationMonth, AUTO_CHOICE_COURSES } from "./evaluators/noncredit";
+export { graduationMonth } from "./evaluators/noncredit";
