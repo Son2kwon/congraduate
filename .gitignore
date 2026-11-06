@@ -14,6 +14,8 @@ _to_delete/
 node_modules/
 .next/
 out/
+# 설치된 pdfjs-dist에서 predev/prebuild가 복사하는 정적 자산
+public/pdfjs/
 next-env.d.ts
 *.tsbuildinfo
 coverage/

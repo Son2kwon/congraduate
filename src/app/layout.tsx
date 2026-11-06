@@ -1,4 +1,6 @@
 import type { ReactNode } from "react";
+import { ImportProvider } from "../components/import/import-provider";
+import "./globals.css";
 
 export const metadata = {
   title: "congraduate",
@@ -8,7 +10,7 @@ export const metadata = {
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="ko">
-      <body>{children}</body>
+      <body><ImportProvider>{children}</ImportProvider></body>
     </html>
   );
 }
