@@ -4,7 +4,7 @@
     "school": "중앙대학교",
     "campus": "서울",
     "department": "소프트웨어학부",
-    "version": "0.13-draft",
+    "version": "0.14-draft",
     "created": "2026-11-07",
     "supported_entry_years": {
       "from": 2018,
@@ -36,7 +36,13 @@
     }
   },
   "counting": {
-    "retake": "last_only"
+    "retake": "last_only",
+    "term_order": [
+      "1",
+      "S",
+      "2",
+      "W"
+    ]
   },
   "rule_sets": {
     "general": {

@@ -1,6 +1,6 @@
 {
   "$schema_note": "근거 기록 — 사람이 읽는 출처·메모·이력. 판정에는 쓰지 않음",
-  "rules_version": "0.13-draft",
+  "rules_version": "0.14-draft",
   "meta": {
     "entry_year": 2022,
     "status": "초안 — open_questions 해결 전까지 참고용",
@@ -277,7 +277,8 @@
       "deadline": "졸업학기 기말고사 전 통과, 증빙은 기말고사 종료 시까지",
       "fail_result": "수료 (학위 미수여)",
       "source": "eng_reg 제3조, 제6조, 제13조, 제16조, 별표2 (소프트웨어대학)",
-      "confidence": "high"
+      "confidence": "high",
+      "english_lectures_scope_basis": "졸업인정제 시행세칙 제6조 \"전공과목(전공기초과목 포함)\" → 이수구분 전공기초·전공필수·전공. 자유선택·복수전공으로 들은 영어강의는 세지 않음 (사용자 확인 2026-11-07)"
     },
     "nc_thesis": {
       "options": [
@@ -340,7 +341,9 @@
     "retake": "재수강 시 마지막 수강 기록만 인정, 이전 기록의 학점·성적은 제외",
     "major_credit_scope": "전공 관련 과목(전공기초·전공필수·전공)만 전공학점으로 인정",
     "gpa": "평점 요건 없음 (SW중심대학 2.2 요건 삭제됨)",
-    "source": "user_2026-11-07b"
+    "source": "user_2026-11-07b",
+    "term_order": "학기 순서 1학기 < 하계(S) < 2학기 < 동계(W). 설계 인정 기간 판정에 사용 (decisions.md 9번, 사용자 확인 2026-11-07)",
+    "design_credits_basis": "이미 들은 과목은 입력 레코드의 설계학점(포털 이수현황 값), 계획 과목은 카탈로그 design_credits 현재 값. 카탈로그 design_credits_rule 텍스트는 근거로만 두고 엔진은 쓰지 않음 (사용자 확인 2026-11-07)"
   },
   "resolved_conflicts": [
     {
@@ -394,5 +397,15 @@
     "grad_summary": "졸업관련성적조회 이수내역 — 학교 기준·취득 (검증용)",
     "join_key": "과목코드 + 년도/학기 (+분반)",
     "catalog_use": "수강 계획(아직 안 들은 과목)에만 사용"
-  }
+  },
+  "changelog": [
+    {
+      "version": "0.14-draft",
+      "date": "2026-11-07",
+      "changes": [
+        "counting.term_order 추가 (decisions.md 9번)",
+        "근거: 설계학점 출처, 영어강의 대상 범위"
+      ]
+    }
+  ]
 }

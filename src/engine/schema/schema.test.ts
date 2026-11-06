@@ -71,7 +71,7 @@ function matches(r: Requirement): Match[] {
 describe("스키마 검증 (5개 파일)", () => {
   it("규칙·근거·정답·카탈로그 파일이 스키마를 통과한다", () => {
     // 위의 parse()가 실패하면 모듈 로드 단계에서 예외가 난다. 여기서는 결과만 확인.
-    expect(rules.meta.version).toBe("0.13-draft");
+    expect(rules.meta.version).toBe("0.14-draft");
     expect(major.courses.length).toBeGreaterThan(0);
     expect(liberal.courses.length).toBeGreaterThan(0);
   });
@@ -186,10 +186,24 @@ describe("학교 기준 xlsx 행 연결 (portal_rows)", () => {
     expect(rows.filter((r) => !(r in expected.general))).toEqual([]);
   });
 
+  it("min_by_group은 xlsx 대체 결과 전용 — 규칙 파일에는 없다", () => {
+    expect(rules.rule_sets.general.requirements.filter((r) => "min_by_group" in r).map((r) => r.id)).toEqual([]);
+  });
+
   it("영역별 최소는 영역마다 한 행씩 연결된다", () => {
     for (const r of rules.rule_sets.general.requirements) {
       if (r.type === "groups_each_min_credits" && r.portal_rows) expect(r.portal_rows).toEqual(r.groups);
     }
+  });
+});
+
+describe("집계 규칙 (counting)", () => {
+  it("학기 순서는 1 < S < 2 < W (decisions.md 9번)", () => {
+    expect(rules.counting.term_order).toEqual(["1", "S", "2", "W"]);
+  });
+
+  it("학기 순서의 근거가 근거 기록에 있다", () => {
+    expect(evidence.counting_policy.term_order).toContain("decisions.md 9번");
   });
 });
 

@@ -37,5 +37,8 @@ export const EvidenceFile = z.strictObject({
   transcript_format: z.record(z.string(), z.unknown()),
   english_lecture_source: Text,
   import_sources: z.record(z.string(), z.string()),
+  changelog: z
+    .array(z.strictObject({ version: Text, date: z.string(), changes: z.array(Text) }))
+    .optional(),
 });
 export type EvidenceFile = z.infer<typeof EvidenceFile>;

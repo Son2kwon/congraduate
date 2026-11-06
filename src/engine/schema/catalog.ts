@@ -47,7 +47,7 @@ export const MajorCourse = z.strictObject({
       z.strictObject({ as_of: Text, design_credits: z.number().int().nonnegative(), name: Text.optional() }),
     ),
     design_credits_source: Text,
-    /** 수강 당시 조건에 따라 설계학점이 달라지는 경우의 설명 (2단계에서 구조화 여부 결정) */
+    /** 수강 당시 조건별 설계학점 설명. 근거용 텍스트 — 엔진은 쓰지 않음 (계획 과목은 design_credits 현재 값) */
     design_credits_rule: Text.optional(),
   }),
 });

@@ -93,6 +93,8 @@ export const GroupsEachMinCredits = z.strictObject({
   /** 교양영역(liberal.area) 이름 */
   groups: z.array(z.string().min(1)).nonempty(),
   min_each: Credits,
+  /** 영역별 기준 (xlsx 이수기준으로 대체된 값). resolveGeneral 결과에만 생기고 규칙 파일에는 쓰지 않는다 */
+  min_by_group: z.record(z.string(), Credits).optional(),
   portal_rows: PortalRows,
 });
 

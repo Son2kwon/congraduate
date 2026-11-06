@@ -1,5 +1,5 @@
 {
-  "rules_version": "0.13-draft",
+  "rules_version": "0.14-draft",
   "note": "사용자 본인 22학번, 2024 하계까지. 엔진 결과가 이 값과 같아야 함 (성적·개인정보 제외)",
   "format": "[취득, 기준] 또는 취득만",
   "abeek": {

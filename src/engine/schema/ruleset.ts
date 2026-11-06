@@ -30,6 +30,11 @@ export const RuleFile = z
     counting: z.strictObject({
       /** 재수강 시 마지막 수강 기록만 인정 */
       retake: z.literal("last_only"),
+      /** 학기 순서 (앞이 먼저). 설계 인정 기간 판정에 쓴다 */
+      term_order: z
+        .array(z.enum(["1", "S", "2", "W"]))
+        .length(4)
+        .refine((a) => new Set(a).size === 4, { message: "학기 중복" }),
     }),
     rule_sets: z.strictObject({
       general: z.strictObject({

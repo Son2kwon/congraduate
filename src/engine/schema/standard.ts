@@ -8,7 +8,7 @@ import type { CreditRequirement } from "./requirement";
  *   행 순서가 아니라 행 이름으로 읽는다.
  * - 엔진(2단계 resolveGeneral)은 규칙의 portal_rows가 일치하는 요구사항의 기준값만 바꾼다.
  * - 규칙에 없는 행 이름은 버리지 않고 unknown_rows로 남겨 "알 수 없는 기준"으로 표시한다.
- * - xlsx가 없으면 basis = "default"이고 화면에 "학번에 따라 다를 수 있음 — xlsx를 올리면 정확해짐"을 표시한다.
+ * - xlsx가 없으면 basis = "default_<학번>"(예: "default_2022")이고 화면에 "학번에 따라 다를 수 있음 — xlsx를 올리면 정확해짐"을 표시한다.
  */
 export const SchoolStandardRow = z.strictObject({
   /** 졸업영역구분 (예: "전공기초", "핵심-도전") */
@@ -26,8 +26,8 @@ export type SchoolStandardOverride = z.infer<typeof SchoolStandardOverride>;
 
 /** 학교 기준을 확정한 결과 (엔진 resolveGeneral의 출력, 2단계에서 구현) */
 export type ResolvedGeneral = {
-  /** "xlsx": 학생 xlsx 기준 / "default": 규칙 파일 기본값 (default_entry_year 학번) */
-  basis: "xlsx" | "default";
+  /** "xlsx": 학생 xlsx 기준 / "default_2022": 규칙 파일 기본값 (default_entry_year 학번) */
+  basis: "xlsx" | `default_${number}`;
   default_entry_year: number;
   requirements: CreditRequirement[];
   /** 요구사항 id → 대체된 기준값 출처 행 */
