@@ -5,15 +5,16 @@ const Text = z.string().trim().min(1);
 const Amount = z.number().finite().nonnegative();
 const Grade = z.string().trim().toUpperCase().pipe(z.enum(["A+", "A0", "A", "B+", "B0", "B", "C+", "C0", "C", "D+", "D0", "D", "F", "P", "NP"])).transform((grade): string => grade);
 export const TermSchema = z.strictObject({ year: z.number().int().min(1900).max(9999), season: z.enum(["1", "S", "2", "W"]) });
-const DatedScore = z.strictObject({ score: Amount, date: z.string().regex(/^\d{4}-\d{2}-\d{2}$/).nullable() });
+const DatedScore = z.strictObject({ score: Amount, date: z.iso.date().nullable() });
+export const ManualSchema = z.strictObject({
+  language_tests: z.array(DatedScore.extend({ kind: Text })), topcit: z.array(DatedScore), thesis_passed: z.boolean(),
+  counts: z.record(z.string(), z.strictObject({ main: Amount.int(), external: Amount.int() })), checked: z.record(z.string(), z.array(Text)),
+  design: z.strictObject({ internship_design_credits: Amount, capstone_by_internship: Text.nullable() }),
+});
 export const StudentSchema = z.strictObject({
   entry_year: z.number().int().min(2018).max(2026),
   expected_graduation: TermSchema,
-  manual: z.strictObject({
-    language_tests: z.array(DatedScore.extend({ kind: Text })), topcit: z.array(DatedScore), thesis_passed: z.boolean(),
-    counts: z.record(z.string(), z.strictObject({ main: Amount, external: Amount })), checked: z.record(z.string(), z.array(Text)),
-    design: z.strictObject({ internship_design_credits: Amount, capstone_by_internship: Text.nullable() }),
-  }),
+  manual: ManualSchema,
 });
 export const CourseSchema = z.strictObject({
   code: z.string().regex(/^\d{5}$/).nullable(), section: z.string().regex(/^\d{1,3}$/).nullable(), name: Text,
@@ -28,7 +29,7 @@ export function emptyManual(): ManualInput {
 
 export type DraftRow = { id: string; record: CourseRecord; patch: Partial<CourseRecord>; deleted: boolean; origin: "saved" | "import" | "manual" };
 export type Draft = DraftRow[];
-export const recordId = (r: CourseRecord) => JSON.stringify([r.code ?? r.name, r.term.year, r.term.season, r.section]);
+export const recordId = (r: CourseRecord) => JSON.stringify([r.source === "plan" ? "plan" : "taken", r.code ?? r.name, r.term.year, r.term.season, r.section]);
 export const createDraft = (records: CourseRecord[] = []): Draft => records.map(record => ({ id: recordId(record), record, patch: {}, deleted: false, origin: "saved" }));
 export const rowRecord = (row: DraftRow): CourseRecord => ({ ...row.record, ...row.patch });
 export const visibleRecords = (draft: Draft) => draft.filter(r => !r.deleted).map(rowRecord);

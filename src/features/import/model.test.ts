@@ -56,6 +56,11 @@ describe("가져오기 초안", () => {
     const d = reconcileDraft(createDraft(), [example, { ...example, section: "02" }, { ...example, term: { year: 2024, season: "2" } }]);
     expect(visibleRecords(d)).toHaveLength(3);
   });
+  it("같은 과목·학기·분반의 이수와 계획은 편집/삭제 ID가 다르다", () => {
+    const p = { ...example, source: "plan" as const, grade: null };
+    const d = createDraft([example,p]);
+    expect(visibleRecords(deleteRow(d,recordId(p)))).toEqual([example]);
+  });
 });
 
 describe("수동/저장 과목 검증", () => {

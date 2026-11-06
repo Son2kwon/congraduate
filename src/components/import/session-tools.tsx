@@ -4,7 +4,7 @@ import { useRef, useState } from "react";
 import { parseSession, serializeSession } from "../../features/import/storage";
 import { useImport } from "./import-provider";
 
-export function SessionTools({ disabled = false, onBusyChange }: { disabled?: boolean; onBusyChange?: (busy: boolean) => void }) {
+export function SessionTools({ disabled = false, onBusyChange, exportOnly = false }: { disabled?: boolean; onBusyChange?: (busy: boolean) => void; exportOnly?: boolean }) {
   const { workspace, session, importSession, clear } = useImport();
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
@@ -16,11 +16,12 @@ export function SessionTools({ disabled = false, onBusyChange }: { disabled?: bo
     try {
       const url = URL.createObjectURL(new Blob([serializeSession(session())], { type: "application/json" }));
       const link = document.createElement("a");
-      link.href = url; link.download = "congraduate-backup-v1.json"; link.click();
+      link.href = url; link.download = "congraduate-backup-v2.json"; link.click();
       setTimeout(() => URL.revokeObjectURL(url), 1000);
       setMessage("현재 확인 중인 내용을 JSON으로 내보냈습니다.");
     } catch { setError("학생 정보와 과목 입력값을 확인해 주세요."); }
   }
+  if(exportOnly) return <><button type="button" disabled={locked||!workspace.student} onClick={exportJson}>JSON 내보내기</button>{error&&<small role="alert" className="error-text">{error}</small>}</>;
   return <section className="session-tools" aria-label="데이터 보관">
     <div className="session-toolbar">
       <span className="muted">이 브라우저에 보관 · 다른 기기로 옮길 때는 JSON</span>

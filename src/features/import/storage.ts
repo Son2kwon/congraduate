@@ -1,15 +1,25 @@
 import { z } from "zod";
 import { SchoolStandardOverride } from "../../engine/schema/standard";
-import { CourseSchema, StudentSchema } from "./model";
+import { CourseSchema, StudentSchema, TermSchema } from "./model";
 
-const SessionSchema = z.strictObject({ version: z.literal(1), student: StudentSchema, records: z.array(CourseSchema), standard: SchoolStandardOverride.nullable() });
+const fields = { student: StudentSchema, records: z.array(CourseSchema), standard: SchoolStandardOverride.nullable() };
+const LegacySchema = z.strictObject({ version: z.literal(1), ...fields });
+const SessionSchema = z.strictObject({ version: z.literal(2), ...fields, plan_terms: z.array(TermSchema), saved_at: z.iso.datetime().nullable() });
 export type Session = z.infer<typeof SessionSchema>;
 export type SessionStorage = Pick<Storage, "getItem" | "setItem" | "removeItem">;
 const KEY = "congraduate.session";
 const FORMAT_ERROR = "저장 파일의 형식 또는 버전을 확인해 주세요.";
 
 export function parseSession(json: string): Session {
-  try { return SessionSchema.parse(JSON.parse(json)); }
+  try {
+    const data: unknown = JSON.parse(json);
+    const legacy = LegacySchema.safeParse(data);
+    if (legacy.success) {
+      const terms = legacy.data.records.filter(r => r.source === "plan").map(r => r.term);
+      return { ...legacy.data, version: 2, plan_terms: [...new Map(terms.map(t => [`${t.year}-${t.season}`, t])).values()], saved_at: null };
+    }
+    return SessionSchema.parse(data);
+  }
   catch { throw new Error(FORMAT_ERROR); }
 }
 export function serializeSession(session: Session): string {

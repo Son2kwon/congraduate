@@ -6,7 +6,7 @@ import { CourseSchema } from "../../features/import/model";
 
 export function CourseForm({ record, unknownCredits = false, adding = false, onSave, onClose }: {
   record: CourseRecord; unknownCredits?: boolean; adding?: boolean;
-  onSave: (record: CourseRecord) => void; onClose: () => void;
+  onSave: (record: CourseRecord) => string | void; onClose: () => void;
 }) {
   const dialog = useRef<HTMLDialogElement>(null);
   const [error, setError] = useState("");
@@ -23,12 +23,13 @@ export function CourseForm({ record, unknownCredits = false, adding = false, onS
       grade: text("grade"), english: text("english"), retake: form.get("retake") === "on",
     });
     if (!parsed.success) { setError("과목명·학기·과목코드(숫자 5자리)·분반·학점·성적 등급(A+~F, P, NP)을 확인해 주세요."); return; }
-    onSave(parsed.data);
+    const saveError=onSave(parsed.data);
+    if(saveError)setError(saveError);
   }
   return <dialog ref={dialog} className="course-dialog" aria-labelledby="course-form-title" onCancel={onClose}>
     <form onSubmit={submit}>
-      <h2 id="course-form-title">{adding ? "과목 추가" : "과목 수정"}</h2>
-      <p className="muted">수강 당시 포털 값을 기준으로 확인해 주세요. 빈 분류는 미확인으로 남습니다.</p>
+      <h2 id="course-form-title">{record.source === "plan" ? adding ? "계획 과목 추가" : "계획 과목 수정" : adding ? "과목 추가" : "과목 수정"}</h2>
+      <p className="muted">{record.source === "plan" ? "카탈로그 현재 값입니다. 수강 예정 학기·분류를 확인해 주세요. 이미 이수한 과목의 재수강 계획이면 재수강 여부 O를 지정해 주세요." : "수강 당시 포털 값을 기준으로 확인해 주세요. 빈 분류는 미확인으로 남습니다."}</p>
       <div className="form-grid">
         <label className="full-width">과목명<input name="name" defaultValue={record.name} required autoFocus /></label>
         <label>과목코드<input name="code" defaultValue={record.code ?? ""} pattern="[0-9]{5}" inputMode="numeric" placeholder="숫자 5자리 · 모르면 비워 둠" /></label>
@@ -40,7 +41,7 @@ export function CourseForm({ record, unknownCredits = false, adding = false, onS
         <label>이수구분<input name="general_category" list="general-categories" defaultValue={record.general_category ?? ""} placeholder="예: 전공필수" /></label>
         <label>영역<input name="liberal_area" list="liberal-areas" defaultValue={record.liberal_area ?? ""} placeholder="예: 핵심-도전" /></label>
         <label>공학인증 구분<input name="abeek_category" list="abeek-categories" defaultValue={record.abeek_category ?? ""} placeholder="예: 공학주제" /></label>
-        <label>성적 등급<input name="grade" list="grades" defaultValue={record.grade ?? ""} placeholder="예: A0 또는 P" required={record.source !== "plan"} /></label>
+        <label>성적 등급<input name="grade" list="grades" defaultValue={record.grade ?? ""} disabled={record.source === "plan"} placeholder={record.source === "plan" ? "계획 과목은 성적 없음" : "예: A0 또는 P"} required={record.source !== "plan"} /></label>
         <label>영어강의<select name="english" defaultValue={record.english ?? ""}><option value="">없음 / 미확인</option><option value="A">영어A</option><option value="B">영어B</option></select></label>
         <label className="inline-check"><input name="retake" type="checkbox" defaultChecked={record.retake} />재수강 여부 O</label>
       </div>

@@ -1,22 +1,26 @@
 "use client";
 
 import { createContext, useContext, useEffect, useState, type ReactNode } from "react";
-import type { CourseRecord, StudentInfo } from "../../engine/types";
+import type { CourseRecord, ManualInput, StudentInfo, Term } from "../../engine/types";
 import type { SchoolStandardOverride } from "../../engine/schema/standard";
-import { createDraft, reconcileDraft, visibleRecords, type Draft } from "../../features/import/model";
+import { createDraft, reconcileDraft, visibleRecords, ManualSchema, type Draft } from "../../features/import/model";
+import { planTerms } from "../../features/plan/model";
 import { combineDocuments, type AbeekDocument, type GradDocument, type ParsedDocument } from "../../features/import/portal";
 import { clearSession, loadSession, saveSession, type Session } from "../../features/import/storage";
 
 type Workspace = {
   student: StudentInfo | null; draft: Draft; standard: SchoolStandardOverride | null;
   abeek: AbeekDocument | null; grad: GradDocument | null; dirty: boolean;
+  plan_terms: Term[]; saved_at: string | null;
 };
-const initial = (): Workspace => ({ student: null, draft: [], standard: null, abeek: null, grad: null, dirty: false });
-const fromSession = (s: Session): Workspace => ({ ...initial(), student: s.student, draft: createDraft(s.records), standard: s.standard });
+const initial = (): Workspace => ({ student: null, draft: [], standard: null, abeek: null, grad: null, dirty: false, plan_terms: [], saved_at: null });
+const fromSession = (s: Session): Workspace => ({ ...initial(), student: s.student, draft: createDraft(s.records), standard: s.standard, plan_terms: planTerms([...s.plan_terms,...s.records.filter(r=>r.source==="plan").map(r=>r.term)]), saved_at:s.saved_at });
 type ImportContextValue = {
   workspace: Workspace; ready: boolean; storageError: string;
   setStudent: (student: StudentInfo) => void;
   setDraft: (update: (draft: Draft) => Draft) => void;
+  setManual: (manual: ManualInput) => void;
+  setPlanTerms: (update: (terms: Term[]) => Term[]) => void;
   applyDocument: (doc: ParsedDocument) => void;
   importSession: (session: Session) => void;
   session: () => Session; save: () => void; discard: () => void; clear: () => void;
@@ -42,12 +46,19 @@ export function ImportProvider({ children }: { children: ReactNode }) {
 
   const session = (): Session => {
     if (!workspace.student) throw new Error("학생 정보를 먼저 입력해 주세요.");
-    return { version: 1, student: workspace.student, records: visibleRecords(workspace.draft), standard: workspace.standard };
+    const records=visibleRecords(workspace.draft);
+    return { version: 2, student: workspace.student, records, standard: workspace.standard, plan_terms:planTerms([...workspace.plan_terms,...records.filter(r=>r.source==="plan").map(r=>r.term)]), saved_at:workspace.saved_at };
   };
   const value: ImportContextValue = {
     workspace, ready, storageError, session,
     setStudent: student => setWorkspace(w => ({ ...w, student, dirty: true })),
     setDraft: update => setWorkspace(w => ({ ...w, draft: update(w.draft), dirty: true })),
+    setManual: manual => {
+      const parsed=ManualSchema.safeParse(manual);
+      if(!parsed.success) throw new Error("점수·실제 응시일·정수 상담 횟수를 확인해 주세요.");
+      setWorkspace(w=>w.student?{...w,student:{...w.student,manual:parsed.data},dirty:true}:w);
+    },
+    setPlanTerms: update => setWorkspace(w=>({...w,plan_terms:planTerms(update(w.plan_terms)),dirty:true})),
     applyDocument: doc => setWorkspace(w => {
       if (doc.kind === "summary") return { ...w, standard: doc.standard, dirty: true };
       const abeek = doc.kind === "abeek" ? doc : w.abeek;
@@ -56,10 +67,11 @@ export function ImportProvider({ children }: { children: ReactNode }) {
     }),
     importSession: s => setWorkspace({ ...fromSession(s), dirty: true }),
     save: () => {
-      try { saveSession(window.localStorage, session()); }
+      const saved_at=new Date().toISOString();
+      try { saveSession(window.localStorage, {...session(),saved_at}); }
       catch { throw new Error("브라우저에 저장하지 못했습니다. 입력값과 저장 공간을 확인하거나 JSON으로 내보내 주세요."); }
       setStorageError("");
-      setWorkspace(w => ({ ...w, dirty: false }));
+      setWorkspace(w => ({ ...w, dirty: false, saved_at }));
     },
     discard: () => {
       const saved = loadSession(window.localStorage);

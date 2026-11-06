@@ -5,7 +5,7 @@ import { MajorCatalog, LiberalCatalog, RuleFile } from "../../engine/schema";
 import { createCourseIndex } from "../../engine/courses";
 import { buildCatalog } from "./catalog";
 
-const major = MajorCatalog.parse(majorJson);
+export const major = MajorCatalog.parse(majorJson);
 const liberal = LiberalCatalog.parse(liberalJson);
 export const catalog = buildCatalog(major, liberal);
 export const rules = RuleFile.parse(rulesJson);

@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 import { evaluate } from "../../engine/evaluate";
 import { visibleRecords } from "../../features/import/model";
 import { combineDocuments } from "../../features/import/portal";
@@ -21,7 +22,7 @@ export function ImportScreen() {
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
   useEffect(() => { if (ready && !workspace.student) router.replace("/"); }, [ready, workspace.student, router]);
-  const records = useMemo(() => visibleRecords(workspace.draft), [workspace.draft]);
+  const records = useMemo(() => visibleRecords(workspace.draft).filter(r=>r.source!=="plan"), [workspace.draft]);
   const merged = useMemo(() => combineDocuments(workspace.abeek, workspace.grad), [workspace.abeek, workspace.grad]);
   // 판정 숫자 표시는 6단계. 여기서는 기존 엔진의 규칙 경고와 알 수 없는 기준만 확인에 쓴다.
   const evaluated = useMemo(() => workspace.student ? evaluate({ rules, courses: courseIndex, records, student: workspace.student, standard: workspace.standard ?? undefined }) : null, [records, workspace.student, workspace.standard]);
@@ -48,6 +49,7 @@ export function ImportScreen() {
           {uncertain.map((row, i) => <li key={`uncertain-${i}`}>학교 기준 확인 필요: {row.name}의 이수기준을 숫자로 읽지 못해 기본값을 유지합니다.</li>)}
         </ul></aside>}
         <div className="save-bar"><p className="muted" role="status">{busy ? "브라우저에서 파일을 읽고 있습니다…" : workspace.dirty ? "저장하지 않은 변경이 있습니다." : "브라우저에 저장된 내용입니다."}</p><div className="actions">
+          <Link className="button-link" href="/dashboard/">대시보드 보기</Link>
           <button type="button" disabled={!workspace.dirty} onClick={() => {
             if (!window.confirm("저장하지 않은 변경을 취소하고 마지막 저장 내용으로 돌아갈까요?")) return;
             try { discard(); setMessage("마지막 저장 내용으로 돌아왔습니다."); setError(""); }

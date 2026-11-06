@@ -8,7 +8,7 @@ import { CourseForm } from "./course-form";
 export function CourseTable({ warningCount }: { warningCount: number }) {
   const { workspace, setDraft } = useImport();
   const [editing, setEditing] = useState<string | null>(null);
-  const rows = workspace.draft.filter(row => !row.deleted);
+  const rows = workspace.draft.filter(row => !row.deleted && rowRecord(row).source !== "plan");
   const editingRow = rows.find(row => row.id === editing);
   const only = rows.filter(row => ["abeek_status", "grad_detail"].includes(rowRecord(row).source)).length;
   return <section className="panel result-panel" aria-labelledby="result-title">
