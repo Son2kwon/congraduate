@@ -1,8 +1,8 @@
 import type { EvalContext } from "../context";
-import { earnedRecords, isPlanned, matchesRecord, sameCourse } from "../records";
+import { courseMatch, earnedRecords, isPlanned, matchesRecord, sameCourse } from "../records";
 import type { CoursesAll, CreditsMax, CreditsMin, GroupsEachMinCredits } from "../schema";
 import type { CourseRecord, GroupResult, RequirementResult } from "../types";
-import { counted, courseState, newResult, recordLabel, statusOf, sumValue, type CourseState } from "./result";
+import { counted, courseState, nameMatchNotes, newResult, recordLabel, statusOf, sumValue, type CourseState } from "./result";
 
 /** 최소학점 (+ pool, must_include, must_include_any, warn_if_missing) */
 export function evalCreditsMin(req: CreditsMin, records: CourseRecord[], c: EvalContext): RequirementResult {
@@ -21,11 +21,12 @@ export function evalCreditsMin(req: CreditsMin, records: CourseRecord[], c: Eval
     }
   }
 
-  // 필수 과목: must_include 각각, must_include_any 묶음마다 하나
+  // 필수 과목: must_include 각각, must_include_any 묶음마다 하나. 들은 과목은 taken_match(포털 구분)도 확인
+  const taken = req.taken_match;
   const musts: { label: string; state: CourseState }[] = [
-    ...(req.must_include ?? []).map((ref) => ({ label: ref, state: courseState(ref, earned, c) })),
+    ...(req.must_include ?? []).map((ref) => ({ label: ref, state: courseState(ref, earned, c, taken) })),
     ...(req.must_include_any ?? []).map((group) => {
-      const states = group.map((ref) => courseState(ref, earned, c));
+      const states = group.map((ref) => courseState(ref, earned, c, taken));
       const state: CourseState = states.includes("done") ? "done" : states.includes("planned") ? "planned" : "missing";
       return { label: group.join(" 또는 "), state };
     }),
@@ -33,8 +34,14 @@ export function evalCreditsMin(req: CreditsMin, records: CourseRecord[], c: Eval
   const missingCourses = musts.filter((m) => m.state === "missing").map((m) => m.label);
 
   for (const ref of req.warn_if_missing ?? []) {
-    if (courseState(ref, earned, c) === "missing") warnings.push(`${ref} 미이수 — 확인 권장`);
+    if (courseState(ref, earned, c, taken) === "missing") warnings.push(`${ref} 미이수 — 확인 권장`);
   }
+  const notes = nameMatchNotes(
+    [...(req.must_include ?? []), ...(req.must_include_any ?? []).flat(), ...(req.warn_if_missing ?? [])],
+    earned,
+    c,
+    taken,
+  );
 
   const shortDone = Math.max(0, req.min - current);
   const shortPlan = Math.max(0, req.min - current - planned);
@@ -56,7 +63,15 @@ export function evalCreditsMin(req: CreditsMin, records: CourseRecord[], c: Eval
     missing: { courses: missingCourses, credits: shortPlan, items: [] },
     reasons,
     warnings,
+    notes,
+    ...(req.pool ? { portal_basis: portalBasis(req, earned, c) } : {}),
   });
+}
+
+/** pool 요구사항의 포털 기준 값: match(포털 구분)만으로 센 학점 */
+function portalBasis(req: CreditsMin, earned: CourseRecord[], c: EvalContext) {
+  const cs = earned.filter((r) => matchesRecord(req.match, r, c)).map((r) => counted(r, r.credits));
+  return { current: sumValue(cs, false), planned: sumValue(cs, true) };
 }
 
 /** 최대학점. over_cap "none": 초과해도 처리·경고 없음 (decisions.md 11번) — 현재값과 기준만 보여 준다 */
@@ -82,7 +97,10 @@ export function evalCoursesAll(req: CoursesAll, records: CourseRecord[], c: Eval
     ...(req.cohort_rules ?? []).filter((r) => c.student.entry_year >= r.entry_year_gte).flatMap((r) => r.add_courses),
   ];
   const states = refs.map((ref) => ({ ref, state: courseState(ref, earned, c) }));
-  const cs = earned.filter((r) => refs.some((ref) => sameCourse(r, ref, c))).map((r) => counted(r, r.credits));
+  const cs = earned.flatMap((r) => {
+    const how = refs.map((ref) => courseMatch(r, ref, c)).find((m) => m !== null);
+    return how ? [{ ...counted(r, r.credits), matched_by: how }] : [];
+  });
   const missingCourses = states.filter((s) => s.state === "missing").map((s) => s.ref);
 
   const minCredits = req.min_credits ?? 0;
@@ -101,6 +119,7 @@ export function evalCoursesAll(req: CoursesAll, records: CourseRecord[], c: Eval
     counted: cs,
     missing: { courses: missingCourses, credits: creditsShort, items: [] },
     reasons: [...missingCourses.map((m) => `${m} 미이수`), ...(creditsShort > 0 ? [`${creditsShort}학점 부족`] : [])],
+    notes: nameMatchNotes(refs, earned, c),
   });
 }
 

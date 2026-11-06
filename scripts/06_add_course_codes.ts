@@ -15,10 +15,10 @@ import { join, resolve } from "node:path";
 import { pathToFileURL } from "node:url";
 import { createCourseIndex, normalizeName } from "../src/engine/courses";
 import { LiberalCatalog, MajorCatalog } from "../src/engine/schema";
-import { parseAbeekStatusText } from "../src/parsers/abeek-status";
+import { abeekStatusItemsToText, parseAbeekStatusText } from "../src/parsers/abeek-status";
 import { parseGradDetailText } from "../src/parsers/grad-detail";
 import { mergePortalRecords } from "../src/parsers/merge";
-import { extractPdfText } from "../src/parsers/pdf-text";
+import { extractPdfItems, extractPdfText } from "../src/parsers/pdf-text";
 
 const ROOT = resolve(import.meta.dirname, "..");
 const PRIVATE = resolve(process.argv[2] ?? join(ROOT, "docs/private"));
@@ -33,7 +33,7 @@ const PDF = {
 const read = (p: string) => new Uint8Array(readFileSync(p));
 
 async function main() {
-  const abeek = parseAbeekStatusText(await extractPdfText(read(join(PRIVATE, "공학인증_이수현황.pdf")), PDF));
+  const abeek = parseAbeekStatusText(abeekStatusItemsToText(await extractPdfItems(read(join(PRIVATE, "공학인증_이수현황.pdf")), PDF)));
   const grad = parseGradDetailText(await extractPdfText(read(join(PRIVATE, "졸업관련성적내역.pdf")), PDF));
   const { records, only_abeek_status, only_grad_detail } = mergePortalRecords(abeek.rows, grad.rows);
   if (only_abeek_status.length || only_grad_detail.length || abeek.unparsed.length || grad.unparsed.length) {

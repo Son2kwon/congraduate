@@ -59,6 +59,11 @@ export const CreditsMin = z.strictObject({
   must_include_any: z.array(Courses).nonempty().optional(),
   /** 미이수 시 경고만 (충족 여부에는 영향 없음) */
   warn_if_missing: Courses.optional(),
+  /**
+   * 과목을 지정하는 부분(must_include·must_include_any·warn_if_missing)에서 들은 과목에 붙는 포털 구분 확인.
+   * 학점 합계(match)와 pool에는 적용하지 않는다. 계획 과목에도 적용하지 않는다
+   */
+  taken_match: Match.optional(),
   portal_rows: PortalRows,
 });
 
@@ -82,7 +87,7 @@ export const CoursesAll = z.strictObject({
   type: z.literal("courses_all"),
   courses: Courses,
   min_credits: Credits.optional(),
-  /** 들은 과목에 추가로 걸리는 조건 (예: 포털 공학인증 구분 = 공학주제). 계획 과목에는 적용하지 않는다 */
+  /** 지정 과목(courses)으로 인정할 들은 과목의 포털 구분 확인 (예: 공학인증 구분 = 공학주제). 계획 과목에는 적용하지 않는다 */
   taken_match: Match.optional(),
   /** 학번별 추가 과목 (예: 2026학번+ 인공지능) */
   cohort_rules: z.array(CohortRule).nonempty().optional(),
@@ -112,6 +117,8 @@ export const DesignCreditsMin = z.strictObject({
   type: z.literal("design_credits_min"),
   min: Credits,
   must_include: Courses,
+  /** 설계필수·인정 기간 과목(must_include, window)으로 인정할 들은 과목의 포털 구분 확인. 설계학점 합계에는 적용하지 않는다 */
+  taken_match: Match.optional(),
   /** 인정 기간: T(from) <= T(과목) <= max(T(to_max_of...)) (inclusive) */
   window: z.strictObject({
     from: CourseRef,

@@ -9,8 +9,10 @@ export const normalizeName = (name: string): string => name.replace(/\s+/g, "").
  */
 export type CourseIndex = {
   canonical(name: string): string;
-  /** 카탈로그에 등록된 과목코드 (없으면 undefined → 이름으로 비교) */
+  /** 카탈로그에 등록된 과목코드 (없으면 undefined) */
   codesOf(ref: string): string[] | undefined;
+  /** 과목코드 → 카탈로그 대표 이름 (없으면 undefined) */
+  nameOfCode(code: string): string | undefined;
 };
 
 export function createCourseIndex(major: MajorCatalog, liberal: LiberalCatalog): CourseIndex {
@@ -22,16 +24,27 @@ export function createCourseIndex(major: MajorCatalog, liberal: LiberalCatalog):
       if (!map.has(k)) map.set(k, normalizeName(canon));
     }
   };
+  const addCodes = (canon: string, cs: string[]) => {
+    const k = normalizeName(canon);
+    codes.set(k, [...new Set([...(codes.get(k) ?? []), ...cs])]);
+  };
   for (const c of major.courses) {
     add(c.key, [c.key, c.name, ...c.aliases]);
-    if (c.codes) codes.set(normalizeName(c.key), c.codes);
+    if (c.codes) addCodes(c.key, c.codes);
   }
-  for (const c of liberal.common) add(c.name, [c.name, ...c.aliases]);
-  for (const c of liberal.courses) add(c.name, [c.name]);
-  for (const c of liberal.other) add(c.name, [c.name]);
+  for (const c of liberal.common) {
+    add(c.name, [c.name, ...c.aliases]);
+    addCodes(c.name, [c.code]);
+  }
+  for (const c of [...liberal.courses, ...liberal.other]) {
+    add(c.name, [c.name]);
+    addCodes(c.name, [c.code]);
+  }
+  const byCode = new Map<string, string>();
+  for (const [name, cs] of codes) for (const code of cs) if (!byCode.has(code)) byCode.set(code, name);
   const canonical = (name: string) => {
     const k = normalizeName(name);
     return map.get(k) ?? k;
   };
-  return { canonical, codesOf: (ref) => codes.get(canonical(ref)) };
+  return { canonical, codesOf: (ref) => codes.get(canonical(ref)), nameOfCode: (code) => byCode.get(code) };
 }

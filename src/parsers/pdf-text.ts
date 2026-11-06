@@ -12,8 +12,8 @@ const SAME_CELL_GAP = 6;
 /** 이 간격 이하면 공백 없이 붙인다 */
 const TIGHT_GAP = 1.5;
 
-/** 텍스트 조각 → 줄(위→아래), 칸은 탭 */
-export function itemsToText(items: TextItem[]): string {
+/** 텍스트 조각 → 줄 단위 묶음 (위→아래, 줄 안은 왼쪽→오른쪽). 빈 조각은 버린다 */
+export function groupRows(items: TextItem[]): TextItem[][] {
   const rows: { y: number; items: TextItem[] }[] = [];
   for (const it of items) {
     if (!it.str.trim()) continue;
@@ -21,20 +21,25 @@ export function itemsToText(items: TextItem[]): string {
     if (!row) rows.push((row = { y: it.y, items: [] }));
     row.items.push(it);
   }
-  rows.sort((a, b) => b.y - a.y);
-  return rows
-    .map((r) => {
-      let out = "";
-      let end = -Infinity;
-      for (const it of [...r.items].sort((a, b) => a.x - b.x)) {
-        const s = it.str.trim();
-        const gap = it.x - end;
-        out = out === "" ? s : gap <= TIGHT_GAP ? out + s : gap <= SAME_CELL_GAP ? `${out} ${s}` : `${out}\t${s}`;
-        end = it.x + it.width;
-      }
-      return out;
-    })
-    .join("\n");
+  return rows.sort((a, b) => b.y - a.y).map((r) => [...r.items].sort((a, b) => a.x - b.x));
+}
+
+/** 한 줄의 조각 → 칸(탭)으로 나눈 텍스트. 간격이 좁은 조각은 한 칸으로 합친다 */
+export function rowToText(row: TextItem[]): string {
+  let out = "";
+  let end = -Infinity;
+  for (const it of row) {
+    const s = it.str.trim();
+    const gap = it.x - end;
+    out = out === "" ? s : gap <= TIGHT_GAP ? out + s : gap <= SAME_CELL_GAP ? `${out} ${s}` : `${out}\t${s}`;
+    end = it.x + it.width;
+  }
+  return out;
+}
+
+/** 텍스트 조각 → 줄(위→아래), 칸은 탭 */
+export function itemsToText(items: TextItem[]): string {
+  return groupRows(items).map(rowToText).join("\n");
 }
 
 export type PdfTextOptions = {
@@ -45,8 +50,8 @@ export type PdfTextOptions = {
   workerSrc: string;
 };
 
-/** PDF 파일 바이트 → 페이지별 텍스트를 이어 붙인 문자열 */
-export async function extractPdfText(data: Uint8Array, opts: PdfTextOptions): Promise<string> {
+/** PDF 파일 바이트 → 페이지별 텍스트 조각 */
+export async function extractPdfItems(data: Uint8Array, opts: PdfTextOptions): Promise<TextItem[][]> {
   const pdfjs = await import("pdfjs-dist/legacy/build/pdf.mjs");
   pdfjs.GlobalWorkerOptions.workerSrc = opts.workerSrc;
   const task = pdfjs.getDocument({
@@ -57,17 +62,22 @@ export async function extractPdfText(data: Uint8Array, opts: PdfTextOptions): Pr
   });
   const doc = await task.promise;
   try {
-    const pages: string[] = [];
+    const pages: TextItem[][] = [];
     for (let p = 1; p <= doc.numPages; p++) {
       const content = await (await doc.getPage(p)).getTextContent();
       const items: TextItem[] = [];
       for (const it of content.items) {
         if ("str" in it) items.push({ x: it.transform[4], y: it.transform[5], str: it.str, width: it.width });
       }
-      pages.push(itemsToText(items));
+      pages.push(items);
     }
-    return pages.join("\n");
+    return pages;
   } finally {
     await task.destroy();
   }
+}
+
+/** PDF 파일 바이트 → 페이지별 텍스트를 이어 붙인 문자열 */
+export async function extractPdfText(data: Uint8Array, opts: PdfTextOptions): Promise<string> {
+  return (await extractPdfItems(data, opts)).map(itemsToText).join("\n");
 }

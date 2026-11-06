@@ -1,6 +1,8 @@
 import { describe, expect, it } from "vitest";
 import type { CoursesAll, CreditsMax, CreditsMin, GroupsEachMinCredits } from "../schema";
-import { ctx, plan, realRules, rec, student } from "../test-utils";
+import { createCourseIndex } from "../courses";
+import { MajorCatalog } from "../schema";
+import { ctx, plan, realLiberal, realMajor, realRules, rec, student } from "../test-utils";
 import { evalCoursesAll, evalCreditsMax, evalCreditsMin, evalGroupsEachMinCredits } from "./credit";
 
 const abeekReq = (id: string) => realRules.rule_sets.abeek.requirements.find((r) => r.id === id)!;
@@ -80,6 +82,15 @@ describe("credits_min (최소학점)", () => {
     const r = evalCreditsMin(bsm, rs, ctx());
     expect(r.status).toBe("met");
     expect(r.warnings.some((w) => w.includes("일반물리(1)"))).toBe(true);
+  });
+
+  it("들은 이산수학의 포털 구분이 BSM이 아니면 must_include로 인정하지 않는다", () => {
+    const bsm = abeekReq("a_bsm") as CreditsMin;
+    const rs = Array.from({ length: 6 }, (_, i) => rec(`수학${i}`, { abeek_category: "BSM", credits: 3 }));
+    rs.push(rec("일반물리실험(1)", { abeek_category: "BSM", credits: 1 }), rec("이산수학", { abeek_category: "미지정", credits: 3 }));
+    const r = evalCreditsMin(bsm, rs, ctx());
+    expect(r.status).toBe("unmet");
+    expect(r.missing.courses).toEqual(["이산수학"]);
   });
 
   it("must_include 과목을 계획에 담으면 잠정", () => {
@@ -219,6 +230,16 @@ describe("courses_all (과목 전부 이수)", () => {
       const r = evalCoursesAll(required(), rs, ctx(student({ entry_year: 2025 })));
       expect(r.status).toBe("unmet");
       expect(r.missing.courses).toEqual(["자료구조"]);
+    });
+
+    it("카탈로그에 없는 코드가 이름으로 매칭되면 '이름으로 매칭됨'을 남긴다", () => {
+      const major = MajorCatalog.parse({ ...realMajor, courses: realMajor.courses.map((c) => (c.key === "자료구조" ? { ...c, codes: ["40989"] } : c)) });
+      const c = { ...ctx(student({ entry_year: 2025 })), courses: createCourseIndex(major, realLiberal) };
+      const rs = six.map((r) => (r.name === "자료구조" ? { ...r, code: "99999" } : r));
+      const r = evalCoursesAll(required(), rs, c);
+      expect(r.status).toBe("met");
+      expect(r.notes.filter((n) => n.includes("이름으로 매칭됨"))).toHaveLength(1);
+      expect(r.counted.find((x) => x.name === "자료구조")?.matched_by).toBe("name");
     });
 
     it("계획 과목에는 공학주제 조건을 적용하지 않는다", () => {

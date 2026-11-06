@@ -4,7 +4,7 @@
     "school": "중앙대학교",
     "campus": "서울",
     "department": "소프트웨어학부",
-    "version": "0.16-draft",
+    "version": "0.17-draft",
     "created": "2026-11-07",
     "supported_entry_years": {
       "from": 2018,
@@ -151,6 +151,11 @@
             "한국사"
           ],
           "min_credits": 10,
+          "taken_match": {
+            "liberal.area": [
+              "공통교양"
+            ]
+          },
           "portal_rows": [
             "공통교양-기타"
           ]
@@ -161,7 +166,12 @@
           "type": "courses_all",
           "courses": [
             "CAU세미나"
-          ]
+          ],
+          "taken_match": {
+            "general.category": [
+              "자유선택"
+            ]
+          }
         },
         {
           "id": "g_core",
@@ -278,7 +288,12 @@
           ],
           "warn_if_missing": [
             "일반물리(1)"
-          ]
+          ],
+          "taken_match": {
+            "abeek.category": [
+              "BSM"
+            ]
+          }
         },
         {
           "id": "a_eng_topic",
@@ -328,6 +343,11 @@
             "캡스톤디자인(1)",
             "캡스톤디자인(2)"
           ],
+          "taken_match": {
+            "abeek.category": [
+              "공학주제"
+            ]
+          },
           "window": {
             "from": "창의적설계",
             "to_max_of": [

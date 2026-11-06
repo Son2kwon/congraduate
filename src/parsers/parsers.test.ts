@@ -1,6 +1,6 @@
 // 파서 단위 테스트 — 손으로 만든 예제 줄만 쓴다 (실제 성적 자료 미사용)
 import { describe, expect, it } from "vitest";
-import { parseAbeekStatusText } from "./abeek-status";
+import { abeekStatusItemsToText, parseAbeekStatusText } from "./abeek-status";
 import { parseGradDetailText } from "./grad-detail";
 import { parseGradSummaryRows } from "./grad-summary";
 import { mergePortalRecords } from "./merge";
@@ -84,9 +84,51 @@ describe("공학교육인증 이수현황 텍스트 → 행", () => {
     expect(rows()[1]!.retake).toBe(false);
   });
 
+  it("빈 칸이 명시된 줄: 영어강의 칸 비고 재수강 O (붙여넣기 형식)", () => {
+    const [row] = parseAbeekStatusText(tab("공학주제", "2021/1", "11111", "01", "가상과목", "A0", "3(0)", "", "O")).rows;
+    expect(row).toMatchObject({ english_lecture: null, retake: true });
+  });
+
   it("과목처럼 보이지만 형식이 어긋난 줄은 버리지 않고 따로 알린다", () => {
     const bad = tab("공학주제", "2021/1", "55555", "01", "학점없는줄", "A0");
     expect(parseAbeekStatusText(bad).unparsed).toHaveLength(1);
+  });
+});
+
+describe("이수현황 PDF 조각 → 텍스트: 영어강의/재수강 칸을 x좌표로 구분", () => {
+  const it_ = (x: number, y: number, str: string, width = str.length * 6): TextItem => ({ x, y, str, width });
+  // 머리글: "영어"(x486) "재수강"(x530) 이 기준점. 값 O/X는 가까운 기준점의 칸으로
+  const header = [it_(433, 760, "학점"), it_(486, 760, "영어", 12), it_(530, 760, "재수강", 18)];
+  const course = (y: number, ox: TextItem[]) => [
+    it_(35, y, "공학주제"),
+    it_(94, y, "2021/1"),
+    it_(148, y, "11111"),
+    it_(202, y, "01"),
+    it_(260, y, "가상과목"),
+    it_(386, y, "A0"),
+    it_(433, y, "3(0)"),
+    ...ox,
+  ];
+
+  it("재수강 칸에만 값이 있으면 영어강의 칸은 비워 둔다", () => {
+    const text = abeekStatusItemsToText([[...header, ...course(700, [it_(537, 700, "O", 6)])]]);
+    expect(text.split("\n")).toContain(tab("공학주제", "2021/1", "11111", "01", "가상과목", "A0", "3(0)", "", "O"));
+    const [row] = parseAbeekStatusText(text).rows;
+    expect(row).toMatchObject({ english_lecture: null, retake: true });
+  });
+
+  it("영어강의 칸에만 값이 있으면 재수강은 아님", () => {
+    const [row] = parseAbeekStatusText(abeekStatusItemsToText([[...header, ...course(700, [it_(491, 700, "O", 6)])]])).rows;
+    expect(row).toMatchObject({ english_lecture: true, retake: false });
+  });
+
+  it("두 칸 모두 값이 있으면 각각", () => {
+    const [row] = parseAbeekStatusText(abeekStatusItemsToText([[...header, ...course(700, [it_(492, 700, "X", 6), it_(537, 700, "O", 6)])]])).rows;
+    expect(row).toMatchObject({ english_lecture: false, retake: true });
+  });
+
+  it("머리글이 없는 페이지는 일반 변환", () => {
+    expect(abeekStatusItemsToText([[it_(10, 700, "가"), it_(100, 700, "나")]])).toBe("가\t나");
   });
 });
 

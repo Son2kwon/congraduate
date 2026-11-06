@@ -1,8 +1,8 @@
 import type { EvalContext } from "../context";
-import { compareTerm, earnedRecords, isPlanned, sameCourse } from "../records";
+import { compareTerm, earnedRecords, isPlanned } from "../records";
 import type { DesignCreditsMin } from "../schema";
 import type { CourseRecord, RequirementResult, Term } from "../types";
-import { counted, courseState, newResult, statusOf, sumValue } from "./result";
+import { counted, courseState, findCourse, nameMatchNotes, newResult, statusOf, sumValue } from "./result";
 
 /**
  * 설계학점.
@@ -18,8 +18,10 @@ import { counted, courseState, newResult, statusOf, sumValue } from "./result";
 export function evalDesignCreditsMin(req: DesignCreditsMin, records: CourseRecord[], c: EvalContext): RequirementResult {
   const earned = earnedRecords(records, c);
   const cmp = (a: Term, b: Term) => compareTerm(a, b, c.termOrder);
+  // 설계필수·인정 기간 과목은 들은 과목의 포털 구분(taken_match)도 확인
+  const taken = req.taken_match;
   const firstOf = (ref: string): CourseRecord | undefined =>
-    earned.filter((r) => sameCourse(r, ref, c)).sort((a, b) => cmp(a.term, b.term))[0];
+    findCourse(ref, earned, c, taken).sort((a, b) => cmp(a.term, b.term))[0];
 
   // 학생 입력 대체
   const manual = c.student.manual.design;
@@ -29,7 +31,7 @@ export function evalDesignCreditsMin(req: DesignCreditsMin, records: CourseRecor
   const substituted = capstoneAllowed && manual.capstone_by_internship
     ? req.window.to_max_of.find((ref) => c.courses.canonical(ref) === c.courses.canonical(manual.capstone_by_internship!))
     : undefined;
-  const notes: string[] = [];
+  const notes: string[] = nameMatchNotes([...req.must_include, req.window.from, ...req.window.to_max_of], earned, c, taken);
   const warnings: string[] = [];
   if (internship > 0) notes.push(`수동 입력 반영: 인턴십 인정 설계학점 ${internship}`);
   if (internshipRule && internship > internshipRule.design_credits) {
@@ -37,7 +39,7 @@ export function evalDesignCreditsMin(req: DesignCreditsMin, records: CourseRecor
   }
   if (substituted) notes.push(`수동 입력 반영: ${substituted}를 인턴십으로 인정`);
 
-  const mustStates = req.must_include.map((ref) => ({ ref, state: ref === substituted ? "done" : courseState(ref, earned, c) }));
+  const mustStates = req.must_include.map((ref) => ({ ref, state: ref === substituted ? "done" : courseState(ref, earned, c, taken) }));
   const missingCourses = mustStates.filter((m) => m.state === "missing").map((m) => m.ref);
 
   const start = firstOf(req.window.from);

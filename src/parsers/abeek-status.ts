@@ -1,4 +1,5 @@
 import type { Season, Term } from "../engine/types";
+import { groupRows, rowToText, type TextItem } from "./pdf-text";
 
 /** 공학교육인증 이수현황의 과목 한 줄 */
 export type AbeekStatusRow = {
@@ -22,10 +23,10 @@ const NUM = "(\\d+(?:\\.\\d+)?)";
 
 /**
  * 이수구분 · 년도/학기 · 과목코드 · 분반 · 과목명 · 성적 · 학점(설계학점) · 영어강의 · 재수강 여부
- * 영어강의는 항상 O/X가 있다고 보고, 그 뒤 O/X를 재수강 여부로 읽는다.
+ * 영어강의·재수강은 칸 위치로 읽는다 — 빈 칸은 빈 문자열 (PDF는 abeekStatusItemsToText가 x좌표로 칸을 맞춘다)
  */
 const ROW = new RegExp(
-  `^${CATEGORY}\\t(\\d{4})/(1|2|S|W)\\t(\\d{5})\\t(\\d{1,3})\\t(.+?)\\t(\\S+)\\t${NUM}\\(${NUM}\\)(?:\\t([OX]))?(?:\\t([OX]))?$`,
+  `^${CATEGORY}\\t(\\d{4})/(1|2|S|W)\\t(\\d{5})\\t(\\d{1,3})\\t(.+?)\\t(\\S+)\\t${NUM}\\(${NUM}\\)(?:\\t([OX]?))?(?:\\t([OX]?))?$`,
 );
 /** 과목 줄처럼 시작하는 줄 — ROW에 안 맞으면 unparsed로 알린다 */
 const LOOKS_LIKE_ROW = new RegExp(`^${CATEGORY}\\t\\d{4}/`);
@@ -51,9 +52,42 @@ export function parseAbeekStatusText(text: string): { rows: AbeekStatusRow[]; un
       grade: grade!,
       credits: Number(credits),
       design_credits: Number(design),
-      english_lecture: english === undefined ? null : english === "O",
+      english_lecture: english === undefined || english === "" ? null : english === "O",
       retake: retake === "O",
     });
   }
   return { rows, unparsed };
+}
+
+const OX = /^[OX]$/;
+
+/**
+ * 이수현황 PDF 조각 → 텍스트. 영어강의·재수강 칸은 머리글 "영어"·"재수강"의 x좌표 중 가까운 쪽으로 정하고,
+ * 값이 없는 칸도 빈 칸으로 남긴다 (…\t학점(설계)\t영어강의\t재수강).
+ * 머리글이 없는 페이지는 일반 변환(itemsToText)과 같다.
+ */
+export function abeekStatusItemsToText(pages: TextItem[][]): string {
+  return pages
+    .map((items) => {
+      const rows = groupRows(items);
+      const find = (s: string) => items.find((i) => i.str.trim() === s);
+      const eng = find("영어");
+      const ret = find("재수강");
+      if (!eng || !ret) return rows.map(rowToText).join("\n");
+      const center = (i: TextItem) => i.x + i.width / 2;
+      const left = Math.min(eng.x, ret.x) - 20;
+      return rows
+        .map((row) => {
+          const ox = row.filter((i) => OX.test(i.str.trim()) && i.x >= left);
+          if (!ox.length) return rowToText(row);
+          const cells = { eng: "", ret: "" };
+          for (const i of ox) {
+            const toEng = Math.abs(center(i) - center(eng)) <= Math.abs(center(i) - center(ret));
+            cells[toEng ? "eng" : "ret"] = i.str.trim();
+          }
+          return `${rowToText(row.filter((i) => !ox.includes(i)))}\t${cells.eng}\t${cells.ret}`;
+        })
+        .join("\n");
+    })
+    .join("\n");
 }

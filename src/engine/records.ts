@@ -41,16 +41,25 @@ export function earnedRecords(records: CourseRecord[], c: EvalContext): CourseRe
 const CODE = /^\d{5}$/;
 
 /**
- * 과목 참조(CourseRef)와 같은 과목인지. 과목코드 우선, 이름은 보조.
- * - 참조가 과목코드면 코드로만 비교
- * - 카탈로그에 그 과목의 코드가 있고 레코드에도 코드가 있으면 코드로만 비교
- * - 그 밖에는 이름 비교 (카탈로그 별칭·공백 차이 무시)
+ * 과목 참조(CourseRef)와 같은 과목인지, 어떻게 맞았는지.
+ * 과목코드가 같거나 공백 뺀 과목명(카탈로그 별칭 포함)이 같으면 같은 과목 (사용자 결정 2026-11-07).
+ * 카탈로그 코드는 빠른 비교용 — 같은 이름 다른 과목의 구분은 규칙의 taken_match(포털 구분 확인)가 맡는다.
  */
-export function sameCourse(r: CourseRecord, ref: string, c: EvalContext): boolean {
-  if (CODE.test(ref)) return r.code === ref;
-  const codes = c.courses.codesOf(ref);
-  if (codes && r.code) return codes.includes(r.code);
-  return c.courses.canonical(r.name) === c.courses.canonical(ref);
+export function courseMatch(r: CourseRecord, ref: string, c: EvalContext): "code" | "name" | null {
+  const name = c.courses.canonical(r.name);
+  if (CODE.test(ref)) {
+    if (r.code === ref) return "code";
+    return c.courses.nameOfCode(ref) === name ? "name" : null;
+  }
+  if (r.code && c.courses.codesOf(ref)?.includes(r.code)) return "code";
+  return name === c.courses.canonical(ref) ? "name" : null;
+}
+
+export const sameCourse = (r: CourseRecord, ref: string, c: EvalContext): boolean => courseMatch(r, ref, c) !== null;
+
+/** 카탈로그에 코드가 있는데 레코드 코드가 그중에 없어 이름으로 맞은 경우 */
+export function isUnknownCodeNameMatch(r: CourseRecord, ref: string, c: EvalContext): boolean {
+  return !!r.code && !!c.courses.codesOf(ref)?.length && courseMatch(r, ref, c) === "name";
 }
 
 /** 묶음 이름(예: "교양")은 그 이름 자체와 구성 이수구분(공통·핵심·선택교양)으로 푼다 */

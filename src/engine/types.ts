@@ -101,6 +101,8 @@ export type CountedCourse = {
   /** 이 요구사항에 반영된 값 (학점·설계학점·영어강의 가중치 등) */
   value: number;
   planned: boolean;
+  /** 지정 과목으로 맞은 방식. "name"이면 카탈로그에 없는 코드가 이름으로 맞은 것일 수 있다 */
+  matched_by?: "code" | "name";
 };
 
 export type GroupResult = { group: string; current: number; planned: number; required: number; met: boolean };
@@ -127,6 +129,26 @@ export type RequirementResult = {
   groups?: GroupResult[];
   /** 택1의 선택지별 결과 */
   options?: OptionResult[];
+  /**
+   * pool이 있는 요구사항(전문교양)의 포털 기준 값 — 포털 공학인증 구분 그대로 센 값.
+   * current/planned는 규칙 적용 값(pool 과목 포함). 정답 대조는 이 값, 화면은 규칙 적용 값 + 경고
+   */
+  portal_basis?: { current: number; planned: number };
+};
+
+export type Amount = { current: number; planned: number };
+
+/** 영역별 합계 (재수강 처리·F 제외 후) */
+export type Summary = {
+  abeek: {
+    /** 포털 공학인증 구분 그대로 */
+    portal: Record<string, Amount>;
+    /** 규칙 적용 — pool 과목을 해당 구분(전문교양)으로 옮긴 값 */
+    rule: Record<string, Amount>;
+  };
+  /** 일반 이수구분별 */
+  general: Record<string, Amount>;
+  total: Amount;
 };
 
 export type OptionResult = { kind: string; status: Status; current: number; required: number; detail: string };

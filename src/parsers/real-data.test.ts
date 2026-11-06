@@ -9,11 +9,11 @@ import { pathToFileURL } from "node:url";
 import { beforeAll, describe, expect, it } from "vitest";
 import { resolveGeneral } from "../engine/evaluate";
 import { ExpectedFile, RuleFile, type CreditRequirement } from "../engine/schema";
-import { parseAbeekStatusText } from "./abeek-status";
+import { abeekStatusItemsToText, parseAbeekStatusText } from "./abeek-status";
 import { parseGradDetailText } from "./grad-detail";
 import { parseGradSummaryXlsx } from "./grad-summary";
 import { mergePortalRecords, type MergeResult } from "./merge";
-import { extractPdfText } from "./pdf-text";
+import { extractPdfItems, extractPdfText } from "./pdf-text";
 
 const ROOT = join(__dirname, "../..");
 /** 개인 자료 위치. 테스트용으로 CONGRADUATE_PRIVATE_DIR로 바꿀 수 있다 */
@@ -44,7 +44,7 @@ describe.skipIf(!available)("본인 포털 파일 (docs/private, 로컬 전용)"
   let merged: MergeResult;
 
   beforeAll(async () => {
-    abeek = parseAbeekStatusText(await extractPdfText(read(FILES.abeek), PDF));
+    abeek = parseAbeekStatusText(abeekStatusItemsToText(await extractPdfItems(read(FILES.abeek), PDF)));
     grad = parseGradDetailText(await extractPdfText(read(FILES.grad), PDF));
     merged = mergePortalRecords(abeek.rows, grad.rows);
   }, 60_000);

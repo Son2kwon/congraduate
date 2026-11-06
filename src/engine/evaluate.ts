@@ -11,7 +11,8 @@ import type {
   SchoolStandardOverride,
   SchoolStandardRow,
 } from "./schema";
-import type { CourseRecord, RequirementResult, StudentInfo } from "./types";
+import { earnedRecords, isPlanned, sameCourse } from "./records";
+import type { Amount, CourseRecord, RequirementResult, StudentInfo, Summary } from "./types";
 
 // ---------- 학교 기준 대체 ----------
 
@@ -79,10 +80,41 @@ export type EvaluateInput = {
 };
 
 export type EvaluateOutput = {
-  general: Omit<ResolvedGeneral, "requirements"> & { results: RequirementResult[] };
+  /** 학교 기준: 확정된 요구사항(xlsx 대체 반영)과 결과 (같은 순서) */
+  general: ResolvedGeneral & { results: RequirementResult[] };
   abeek: RequirementResult[];
   non_credit: RequirementResult[];
+  summary: Summary;
 };
+
+/** 영역별 합계. 규칙 적용 값은 pool이 있는 공학인증 최소학점 요구사항(전문교양)의 pool 과목을 그 구분으로 옮긴다 */
+export function summarize(records: CourseRecord[], rules: RuleFile, c: EvalContext): Summary {
+  const earned = earnedRecords(records, c);
+  const add = (m: Record<string, Amount>, key: string, r: CourseRecord) => {
+    const a = (m[key] ??= { current: 0, planned: 0 });
+    if (isPlanned(r)) a.planned += r.credits;
+    else a.current += r.credits;
+  };
+  const pools = rules.rule_sets.abeek.requirements.flatMap((q) => {
+    const cats = q.type === "credits_min" && q.pool && q.match !== "all" ? q.match["abeek.category"] : undefined;
+    return q.type === "credits_min" && q.pool && cats?.length === 1 ? [{ pool: q.pool, category: cats[0]! }] : [];
+  });
+  const NONE = "(없음)";
+  const portal: Record<string, Amount> = {};
+  const rule: Record<string, Amount> = {};
+  const general: Record<string, Amount> = {};
+  const total: Amount = { current: 0, planned: 0 };
+  for (const r of earned) {
+    const cat = r.abeek_category ?? NONE;
+    add(portal, cat, r);
+    const moved = pools.find((p) => p.pool.some((ref) => sameCourse(r, ref, c)));
+    add(rule, moved?.category ?? cat, r);
+    add(general, r.general_category ?? NONE, r);
+    if (isPlanned(r)) total.planned += r.credits;
+    else total.current += r.credits;
+  }
+  return { abeek: { portal, rule }, general, total };
+}
 
 function evalRequirement(req: CreditRequirement | NonCreditRequirement, records: CourseRecord[], c: EvalContext): RequirementResult {
   switch (req.type) {
@@ -120,10 +152,11 @@ export function evaluate(input: EvaluateInput): EvaluateOutput {
     courses: input.courses,
     student,
   };
-  const { requirements, ...resolved } = resolveGeneral(rules.rule_sets.general, input.standard);
+  const resolved = resolveGeneral(rules.rule_sets.general, input.standard);
   return {
-    general: { ...resolved, results: requirements.map((r) => evalRequirement(r, records, c)) },
+    general: { ...resolved, results: resolved.requirements.map((r) => evalRequirement(r, records, c)) },
     abeek: rules.rule_sets.abeek.requirements.map((r) => evalRequirement(r, records, c)),
     non_credit: rules.non_credit.map((r) => evalRequirement(r, records, c)),
+    summary: summarize(records, rules, c),
   };
 }

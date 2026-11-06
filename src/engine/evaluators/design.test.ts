@@ -5,9 +5,10 @@ import { evalDesignCreditsMin } from "./design";
 
 const design = realRules.rule_sets.abeek.requirements.find((r) => r.id === "a_design") as DesignCreditsMin;
 
-const creative = (term: string, dc = 3) => rec("창의적설계", { term, design_credits: dc });
-const cap1 = (term: string, dc = 3) => rec("캡스톤디자인(1)", { term, design_credits: dc });
-const cap2 = (term: string, dc = 3) => rec("캡스톤디자인(2)", { term, design_credits: dc });
+const ET = { abeek_category: "공학주제" };
+const creative = (term: string, dc = 3) => rec("창의적설계", { term, design_credits: dc, ...ET });
+const cap1 = (term: string, dc = 3) => rec("캡스톤디자인(1)", { term, design_credits: dc, ...ET });
+const cap2 = (term: string, dc = 3) => rec("캡스톤디자인(2)", { term, design_credits: dc, ...ET });
 const course = (name: string, term: string, dc: number) => rec(name, { term, design_credits: dc });
 
 describe("design_credits_min (설계학점) — 인정 기간", () => {
@@ -89,8 +90,13 @@ describe("design_credits_min — 열린 기간·미이수", () => {
     expect(r.reasons).toContain("창의적설계 미이수");
   });
 
+  it("들은 창의적설계의 포털 구분이 공학주제가 아니면 미이수로 본다", () => {
+    const r = evalDesignCreditsMin(design, [rec("창의적설계", { term: "2023-1", design_credits: 3, abeek_category: "미지정" })], ctx());
+    expect(r.reasons).toContain("창의적설계 미이수");
+  });
+
   it("창의적설계가 F면 미이수로 본다", () => {
-    const r = evalDesignCreditsMin(design, [rec("창의적설계", { term: "2023-1", design_credits: 3, grade: "F" })], ctx());
+    const r = evalDesignCreditsMin(design, [rec("창의적설계", { term: "2023-1", design_credits: 3, grade: "F", ...ET })], ctx());
     expect(r.current).toBe(0);
     expect(r.reasons).toContain("창의적설계 미이수");
   });

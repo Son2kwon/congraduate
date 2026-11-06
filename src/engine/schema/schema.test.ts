@@ -71,7 +71,7 @@ function matches(r: Requirement): Match[] {
 describe("스키마 검증 (5개 파일)", () => {
   it("규칙·근거·정답·카탈로그 파일이 스키마를 통과한다", () => {
     // 위의 parse()가 실패하면 모듈 로드 단계에서 예외가 난다. 여기서는 결과만 확인.
-    expect(rules.meta.version).toBe("0.16-draft");
+    expect(rules.meta.version).toBe("0.17-draft");
     expect(major.courses.length).toBeGreaterThan(0);
     expect(liberal.courses.length).toBeGreaterThan(0);
   });
@@ -255,6 +255,24 @@ describe("2단계 피드백 반영 (0.15-draft)", () => {
     expect(JSON.stringify(evidence.requirements.a_design)).toContain("별표24");
     expect(JSON.stringify(evidence.requirements.nc_english)).toContain("데이터 없음 — 미판정");
     expect(JSON.stringify(evidence.requirements.nc_thesis)).toContain("근사치");
+  });
+});
+
+describe("과목 지정 규칙의 포털 구분 확인 (0.17-draft)", () => {
+  const find = (id: string) => allRequirements.find((r) => r.id === id) as Record<string, unknown>;
+
+  it.each([
+    ["a_required", { "abeek.category": ["공학주제"] }],
+    ["a_design", { "abeek.category": ["공학주제"] }],
+    ["a_bsm", { "abeek.category": ["BSM"] }],
+    ["g_common_etc", { "liberal.area": ["공통교양"] }],
+    ["g_cau_seminar", { "general.category": ["자유선택"] }],
+  ])("%s: 들은 과목은 포털 구분을 확인한다", (id, m) => {
+    expect(find(id).taken_match).toEqual(m);
+  });
+
+  it("전문교양 pool에는 포털 구분 확인을 붙이지 않는다 (미지정이어도 인정)", () => {
+    expect(find("a_prof_liberal").taken_match).toBeUndefined();
   });
 });
 
