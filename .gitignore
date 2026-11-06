@@ -1,0 +1,31 @@
+# --- 개인 자료 · 저작권 문서 (decisions.md 12번) — 절대 커밋 금지 ---
+docs/private/
+docs/sources/
+docs/research/
+data/extracted/
+_to_delete/
+
+# --- OS / 에디터 ---
+.DS_Store
+.vscode/
+.idea/
+
+# --- Node / Next.js ---
+node_modules/
+.next/
+out/
+next-env.d.ts
+*.tsbuildinfo
+coverage/
+
+# --- 환경 변수 ---
+.env
+.env.*
+
+# --- Python ---
+__pycache__/
+*.pyc
+.venv/
+
+# --- 로그 ---
+npm-debug.log*

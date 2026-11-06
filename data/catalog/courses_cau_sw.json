@@ -1,0 +1,2503 @@
+{
+  "source": "https://cse.cau.ac.kr/sub02/sub0202.php",
+  "fetched": "2026-11-06T16:12:00.755Z",
+  "curriculum_year": null,
+  "note": "과목코드 없음. key=공백 제거 과목명. track_only 과목은 학점·이수구분 미상",
+  "courses": [
+    {
+      "category": "전공기초",
+      "year": 1,
+      "semester": 1,
+      "name": "미적분학",
+      "credits": 3,
+      "hours": 3,
+      "key": "미적분학",
+      "aliases": [
+        "미적분학"
+      ],
+      "tracks": [],
+      "source": "main_table",
+      "general": {
+        "category": "전공기초",
+        "history": [],
+        "current_as_of": "2026-11 교과과정표"
+      },
+      "abeek": {
+        "category": "BSM",
+        "required": false,
+        "chart_marked_required": false,
+        "design": false,
+        "design_credits": 0,
+        "design_credits_history": [],
+        "design_credits_source": "2026 공학교육인증 안내서 p.77-80 (컴퓨터공학전문 교과과정표·선수과목)"
+      }
+    },
+    {
+      "category": "전공기초",
+      "year": 1,
+      "semester": 1,
+      "name": "일반물리(1)",
+      "credits": 3,
+      "hours": 3,
+      "key": "일반물리(1)",
+      "aliases": [
+        "일반물리(1)"
+      ],
+      "tracks": [],
+      "source": "main_table",
+      "general": {
+        "category": "전공기초",
+        "history": [],
+        "current_as_of": "2026-11 교과과정표"
+      },
+      "abeek": {
+        "category": "BSM",
+        "required": false,
+        "chart_marked_required": false,
+        "design": false,
+        "design_credits": 0,
+        "design_credits_history": [],
+        "design_credits_source": "2026 공학교육인증 안내서 p.77-80 (컴퓨터공학전문 교과과정표·선수과목)"
+      }
+    },
+    {
+      "category": "전공기초",
+      "year": 1,
+      "semester": 1,
+      "name": "일반물리실험(1)",
+      "credits": 1,
+      "hours": 2,
+      "key": "일반물리실험(1)",
+      "aliases": [
+        "일반물리실험(1)"
+      ],
+      "tracks": [],
+      "source": "main_table",
+      "general": {
+        "category": "전공기초",
+        "history": [],
+        "current_as_of": "2026-11 교과과정표"
+      },
+      "abeek": {
+        "category": "BSM",
+        "required": false,
+        "chart_marked_required": false,
+        "design": false,
+        "design_credits": 0,
+        "design_credits_history": [],
+        "design_credits_source": "2026 공학교육인증 안내서 p.77-80 (컴퓨터공학전문 교과과정표·선수과목)"
+      }
+    },
+    {
+      "category": "전공기초",
+      "year": 1,
+      "semester": 2,
+      "name": "이산수학",
+      "credits": 3,
+      "hours": 3,
+      "key": "이산수학",
+      "aliases": [
+        "이산수학"
+      ],
+      "tracks": [],
+      "source": "main_table",
+      "general": {
+        "category": "전공기초",
+        "history": [],
+        "current_as_of": "2026-11 교과과정표"
+      },
+      "abeek": {
+        "category": "BSM",
+        "required": false,
+        "chart_marked_required": false,
+        "design": false,
+        "design_credits": 0,
+        "design_credits_history": [],
+        "design_credits_source": "2026 공학교육인증 안내서 p.77-80 (컴퓨터공학전문 교과과정표·선수과목)"
+      }
+    },
+    {
+      "category": "전공기초",
+      "year": 1,
+      "semester": 2,
+      "name": "선형대수학",
+      "credits": 3,
+      "hours": 3,
+      "key": "선형대수학",
+      "aliases": [
+        "선형대수학"
+      ],
+      "tracks": [],
+      "source": "main_table",
+      "general": {
+        "category": "전공기초",
+        "history": [],
+        "current_as_of": "2026-11 교과과정표"
+      },
+      "abeek": {
+        "category": "BSM",
+        "required": false,
+        "chart_marked_required": false,
+        "design": false,
+        "design_credits": 0,
+        "design_credits_history": [],
+        "design_credits_source": "2026 공학교육인증 안내서 p.77-80 (컴퓨터공학전문 교과과정표·선수과목)"
+      }
+    },
+    {
+      "category": "전공기초",
+      "year": 2,
+      "semester": 1,
+      "name": "수치해석",
+      "credits": 3,
+      "hours": 3,
+      "key": "수치해석",
+      "aliases": [
+        "수치해석"
+      ],
+      "tracks": [],
+      "source": "main_table",
+      "general": {
+        "category": "전공기초",
+        "history": [
+          {
+            "as_of": "2020 교과과정표",
+            "category": "전공",
+            "source": "guide_2020 p.73-74"
+          }
+        ],
+        "current_as_of": "2026-11 교과과정표"
+      },
+      "abeek": {
+        "category": "BSM",
+        "required": false,
+        "chart_marked_required": false,
+        "design": false,
+        "design_credits": 0,
+        "design_credits_history": [],
+        "design_credits_source": "2026 공학교육인증 안내서 p.77-80 (컴퓨터공학전문 교과과정표·선수과목)"
+      },
+      "prerequisites_any": [
+        [
+          "선형대수학",
+          "이산수학"
+        ]
+      ],
+      "prerequisites_source": "2026 공학교육인증 안내서 p.77-80 (컴퓨터공학전문 교과과정표·선수과목)"
+    },
+    {
+      "category": "전공기초",
+      "year": 2,
+      "semester": 1,
+      "name": "확률및통계",
+      "credits": 3,
+      "hours": 3,
+      "key": "확률및통계",
+      "aliases": [
+        "확률및통계"
+      ],
+      "tracks": [],
+      "source": "main_table",
+      "general": {
+        "category": "전공기초",
+        "history": [
+          {
+            "as_of": "2020 교과과정표",
+            "category": "전공",
+            "source": "guide_2020 p.73-74"
+          }
+        ],
+        "current_as_of": "2026-11 교과과정표"
+      },
+      "abeek": {
+        "category": "BSM",
+        "required": false,
+        "chart_marked_required": false,
+        "design": false,
+        "design_credits": 0,
+        "design_credits_history": [],
+        "design_credits_source": "2026 공학교육인증 안내서 p.77-80 (컴퓨터공학전문 교과과정표·선수과목)"
+      }
+    },
+    {
+      "category": "전공필수",
+      "year": 2,
+      "semester": 1,
+      "name": "자료구조",
+      "credits": 3,
+      "hours": 3,
+      "key": "자료구조",
+      "aliases": [
+        "자료구조"
+      ],
+      "tracks": [],
+      "source": "main_table",
+      "general": {
+        "category": "전공필수",
+        "history": [],
+        "current_as_of": "2026-11 교과과정표"
+      },
+      "abeek": {
+        "category": "공학주제",
+        "required": true,
+        "chart_marked_required": true,
+        "design": false,
+        "design_credits": 0,
+        "design_credits_history": [],
+        "design_credits_source": "2026 공학교육인증 안내서 p.77-80 (컴퓨터공학전문 교과과정표·선수과목)"
+      },
+      "prerequisites_any": [
+        [
+          "기초컴퓨터프로그래밍",
+          "프로그래밍"
+        ]
+      ],
+      "prerequisites_source": "2026 공학교육인증 안내서 p.77-80 (컴퓨터공학전문 교과과정표·선수과목)"
+    },
+    {
+      "category": "전공필수",
+      "year": 2,
+      "semester": 2,
+      "name": "컴퓨터구조",
+      "credits": 3,
+      "hours": 3,
+      "key": "컴퓨터구조",
+      "aliases": [
+        "컴퓨터구조"
+      ],
+      "tracks": [],
+      "source": "main_table",
+      "general": {
+        "category": "전공필수",
+        "history": [],
+        "current_as_of": "2026-11 교과과정표"
+      },
+      "abeek": {
+        "category": "공학주제",
+        "required": true,
+        "chart_marked_required": true,
+        "design": false,
+        "design_credits": 0,
+        "design_credits_history": [],
+        "design_credits_source": "2026 공학교육인증 안내서 p.77-80 (컴퓨터공학전문 교과과정표·선수과목)"
+      }
+    },
+    {
+      "category": "전공필수",
+      "year": 2,
+      "semester": 2,
+      "name": "프로그래밍언어론",
+      "credits": 3,
+      "hours": 3,
+      "key": "프로그래밍언어론",
+      "aliases": [
+        "프로그래밍언어론"
+      ],
+      "tracks": [],
+      "source": "main_table",
+      "general": {
+        "category": "전공필수",
+        "history": [],
+        "current_as_of": "2026-11 교과과정표"
+      },
+      "abeek": {
+        "category": "공학주제",
+        "required": true,
+        "chart_marked_required": true,
+        "design": true,
+        "design_credits": 1,
+        "design_credits_source": "2026 공학교육인증 안내서 p.77-80 (컴퓨터공학전문 교과과정표·선수과목)",
+        "design_credits_history": [
+          {
+            "as_of": "2020 안내서",
+            "design_credits": 1
+          }
+        ]
+      }
+    },
+    {
+      "category": "전공필수",
+      "year": 3,
+      "semester": 1,
+      "name": "알고리즘",
+      "credits": 3,
+      "hours": 3,
+      "key": "알고리즘",
+      "aliases": [
+        "알고리즘"
+      ],
+      "tracks": [],
+      "source": "main_table",
+      "general": {
+        "category": "전공필수",
+        "history": [],
+        "current_as_of": "2026-11 교과과정표"
+      },
+      "abeek": {
+        "category": "공학주제",
+        "required": true,
+        "chart_marked_required": true,
+        "design": false,
+        "design_credits": 0,
+        "design_credits_history": [],
+        "design_credits_source": "2026 공학교육인증 안내서 p.77-80 (컴퓨터공학전문 교과과정표·선수과목)"
+      },
+      "prerequisites_any": [
+        [
+          "자료구조",
+          "수치해석",
+          "확률및통계"
+        ]
+      ],
+      "prerequisites_source": "2026 공학교육인증 안내서 p.77-80 (컴퓨터공학전문 교과과정표·선수과목)"
+    },
+    {
+      "category": "전공필수",
+      "year": 3,
+      "semester": 1,
+      "name": "소프트웨어공학",
+      "credits": 3,
+      "hours": 3,
+      "key": "소프트웨어공학",
+      "aliases": [
+        "소프트웨어공학"
+      ],
+      "tracks": [],
+      "source": "main_table",
+      "general": {
+        "category": "전공필수",
+        "history": [],
+        "current_as_of": "2026-11 교과과정표"
+      },
+      "abeek": {
+        "category": "공학주제",
+        "required": true,
+        "chart_marked_required": true,
+        "design": true,
+        "design_credits": 1,
+        "design_credits_source": "2026 공학교육인증 안내서 p.77-80 (컴퓨터공학전문 교과과정표·선수과목)",
+        "design_credits_history": [
+          {
+            "as_of": "2020 안내서",
+            "design_credits": 1
+          }
+        ]
+      }
+    },
+    {
+      "category": "전공필수",
+      "year": 3,
+      "semester": 1,
+      "name": "운영체제",
+      "credits": 3,
+      "hours": 3,
+      "key": "운영체제",
+      "aliases": [
+        "운영체제"
+      ],
+      "tracks": [],
+      "source": "main_table",
+      "general": {
+        "category": "전공필수",
+        "history": [],
+        "current_as_of": "2026-11 교과과정표"
+      },
+      "abeek": {
+        "category": "공학주제",
+        "required": true,
+        "chart_marked_required": true,
+        "design": false,
+        "design_credits": 0,
+        "design_credits_history": [],
+        "design_credits_source": "2026 공학교육인증 안내서 p.77-80 (컴퓨터공학전문 교과과정표·선수과목)"
+      }
+    },
+    {
+      "category": "전공필수",
+      "year": 3,
+      "semester": 1,
+      "name": "인공지능",
+      "credits": 3,
+      "hours": 3,
+      "key": "인공지능",
+      "aliases": [
+        "인공지능"
+      ],
+      "tracks": [
+        "인공지능",
+        "스마트IoT",
+        "빅데이터",
+        "클라우드",
+        "콘텐츠 엔지니어링",
+        "증강 아트"
+      ],
+      "source": "main_table",
+      "general": {
+        "category": "전공필수",
+        "history": [
+          {
+            "as_of": "2020 교과과정표",
+            "category": "전공",
+            "source": "guide_2020 p.73-74"
+          }
+        ],
+        "current_as_of": "2026-11 교과과정표"
+      },
+      "abeek": {
+        "category": "공학주제",
+        "required": false,
+        "chart_marked_required": true,
+        "design": true,
+        "design_credits": 1,
+        "design_credits_source": "2026 공학교육인증 안내서 p.77-80 (컴퓨터공학전문 교과과정표·선수과목)",
+        "design_credits_history": [
+          {
+            "as_of": "2020 안내서",
+            "design_credits": 1
+          }
+        ]
+      },
+      "prerequisites_history": [
+        {
+          "as_of": "2020 안내서",
+          "prerequisites_any": [
+            [
+              "알고리즘"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "category": "전공",
+      "year": 1,
+      "semester": 1,
+      "name": "창의적설계",
+      "credits": 3,
+      "hours": 3,
+      "key": "창의적설계",
+      "aliases": [
+        "창의적설계"
+      ],
+      "tracks": [],
+      "source": "main_table",
+      "general": {
+        "category": "전공",
+        "history": [],
+        "current_as_of": "2026-11 교과과정표"
+      },
+      "abeek": {
+        "category": "공학주제",
+        "required": false,
+        "chart_marked_required": false,
+        "design": "required",
+        "design_credits": 3,
+        "design_credits_source": "2026 공학교육인증 안내서 p.77-80 (컴퓨터공학전문 교과과정표·선수과목)",
+        "design_credits_history": [
+          {
+            "as_of": "2020 안내서",
+            "design_credits": 3
+          }
+        ]
+      }
+    },
+    {
+      "category": "전공",
+      "year": 1,
+      "semester": 1,
+      "name": "오픈소스SW와파이썬프로그래밍",
+      "credits": 3,
+      "hours": 3,
+      "key": "오픈소스SW와파이썬프로그래밍",
+      "aliases": [
+        "오픈소스SW와파이썬프로그래밍"
+      ],
+      "tracks": [],
+      "source": "main_table",
+      "general": {
+        "category": "전공",
+        "history": [],
+        "current_as_of": "2026-11 교과과정표"
+      },
+      "abeek": {
+        "category": "공학주제",
+        "required": false,
+        "chart_marked_required": false,
+        "design": false,
+        "design_credits": 0,
+        "design_credits_history": [],
+        "design_credits_source": "2026 공학교육인증 안내서 p.77-80 (컴퓨터공학전문 교과과정표·선수과목)"
+      }
+    },
+    {
+      "category": "전공",
+      "year": 1,
+      "semester": 1,
+      "name": "기초컴퓨터프로그래밍",
+      "credits": 3,
+      "hours": 3,
+      "key": "기초컴퓨터프로그래밍",
+      "aliases": [
+        "기초컴퓨터프로그래밍"
+      ],
+      "tracks": [],
+      "source": "main_table",
+      "general": {
+        "category": "전공",
+        "history": [
+          {
+            "as_of": "2020 교과과정표",
+            "category": "전공기초",
+            "source": "guide_2020 p.73-74"
+          }
+        ],
+        "current_as_of": "2026-11 교과과정표"
+      },
+      "abeek": {
+        "category": "공학주제",
+        "required": false,
+        "chart_marked_required": false,
+        "design": false,
+        "design_credits": 0,
+        "design_credits_history": [],
+        "design_credits_source": "2026 공학교육인증 안내서 p.77-80 (컴퓨터공학전문 교과과정표·선수과목)"
+      }
+    },
+    {
+      "category": "전공",
+      "year": 1,
+      "semester": 1,
+      "name": "AI·SW개론",
+      "credits": 3,
+      "hours": 3,
+      "key": "AI·SW개론",
+      "aliases": [
+        "AI·SW 개론",
+        "AI·SW개론"
+      ],
+      "tracks": [
+        "인공지능",
+        "스마트IoT",
+        "빅데이터",
+        "클라우드",
+        "시스템 및 보안",
+        "증강 아트"
+      ],
+      "source": "main_table",
+      "general": {
+        "category": "전공",
+        "history": [],
+        "current_as_of": "2026-11 교과과정표"
+      },
+      "abeek": {
+        "category": "공학주제",
+        "required": false,
+        "chart_marked_required": false,
+        "design": false,
+        "design_credits": 0,
+        "design_credits_history": [],
+        "design_credits_source": "2026 공학교육인증 안내서 p.77-80 (컴퓨터공학전문 교과과정표·선수과목)"
+      }
+    },
+    {
+      "category": "전공",
+      "year": 1,
+      "semester": 2,
+      "name": "논리회로",
+      "credits": 3,
+      "hours": 3,
+      "key": "논리회로",
+      "aliases": [
+        "논리회로"
+      ],
+      "tracks": [],
+      "source": "main_table",
+      "general": {
+        "category": "전공",
+        "history": [
+          {
+            "as_of": "2020 교과과정표",
+            "category": "전공기초",
+            "source": "guide_2020 p.73-74"
+          }
+        ],
+        "current_as_of": "2026-11 교과과정표"
+      },
+      "abeek": {
+        "category": "공학주제",
+        "required": false,
+        "chart_marked_required": false,
+        "design": true,
+        "design_credits": 1,
+        "design_credits_source": "2026 공학교육인증 안내서 p.77-80 (컴퓨터공학전문 교과과정표·선수과목)",
+        "design_credits_history": [
+          {
+            "as_of": "2020 안내서",
+            "design_credits": 1
+          }
+        ]
+      }
+    },
+    {
+      "category": "전공",
+      "year": 1,
+      "semester": 2,
+      "name": "프로그래밍",
+      "credits": 3,
+      "hours": 4,
+      "key": "프로그래밍",
+      "aliases": [
+        "프로그래밍"
+      ],
+      "tracks": [],
+      "source": "main_table",
+      "general": {
+        "category": "전공",
+        "history": [
+          {
+            "as_of": "2020 교과과정표",
+            "category": "전공기초",
+            "source": "guide_2020 p.73-74"
+          }
+        ],
+        "current_as_of": "2026-11 교과과정표"
+      },
+      "abeek": {
+        "category": "공학주제",
+        "required": false,
+        "chart_marked_required": false,
+        "design": true,
+        "design_credits": 1,
+        "design_credits_source": "2026 공학교육인증 안내서 p.77-80 (컴퓨터공학전문 교과과정표·선수과목)",
+        "design_credits_history": [
+          {
+            "as_of": "2020 안내서",
+            "design_credits": 1
+          }
+        ]
+      }
+    },
+    {
+      "category": "전공",
+      "year": 2,
+      "semester": 1,
+      "name": "소프트웨어프로젝트",
+      "credits": 3,
+      "hours": 3,
+      "key": "소프트웨어프로젝트",
+      "aliases": [
+        "소프트웨어프로젝트"
+      ],
+      "tracks": [],
+      "source": "main_table",
+      "general": {
+        "category": "전공",
+        "history": [],
+        "current_as_of": "2026-11 교과과정표"
+      },
+      "abeek": {
+        "category": "공학주제",
+        "required": false,
+        "chart_marked_required": false,
+        "design": true,
+        "design_credits": 1,
+        "design_credits_source": "2026 공학교육인증 안내서 p.77-80 (컴퓨터공학전문 교과과정표·선수과목)",
+        "design_credits_history": [
+          {
+            "as_of": "2020 안내서",
+            "design_credits": 1
+          }
+        ]
+      }
+    },
+    {
+      "category": "전공",
+      "year": 2,
+      "semester": 1,
+      "name": "컴퓨터시스템및어셈블리언어",
+      "credits": 3,
+      "hours": 3,
+      "key": "컴퓨터시스템및어셈블리언어",
+      "aliases": [
+        "컴퓨터시스템및어셈블리언어"
+      ],
+      "tracks": [],
+      "source": "main_table",
+      "general": {
+        "category": "전공",
+        "history": [],
+        "current_as_of": "2026-11 교과과정표"
+      },
+      "abeek": {
+        "category": "공학주제",
+        "required": false,
+        "chart_marked_required": false,
+        "design": false,
+        "design_credits": 0,
+        "design_credits_history": [],
+        "design_credits_source": "2026 공학교육인증 안내서 p.77-80 (컴퓨터공학전문 교과과정표·선수과목)"
+      }
+    },
+    {
+      "category": "전공",
+      "year": 2,
+      "semester": 2,
+      "name": "객체지향프로그래밍",
+      "credits": 3,
+      "hours": 3,
+      "key": "객체지향프로그래밍",
+      "aliases": [
+        "객체지향프로그래밍"
+      ],
+      "tracks": [],
+      "source": "main_table",
+      "general": {
+        "category": "전공",
+        "history": [],
+        "current_as_of": "2026-11 교과과정표"
+      },
+      "abeek": {
+        "category": "공학주제",
+        "required": false,
+        "chart_marked_required": false,
+        "design": true,
+        "design_credits": 2,
+        "design_credits_source": "2026 공학교육인증 안내서 p.77-80 (컴퓨터공학전문 교과과정표·선수과목)",
+        "design_credits_history": [
+          {
+            "as_of": "2020 안내서",
+            "design_credits": 2
+          }
+        ]
+      }
+    },
+    {
+      "category": "전공",
+      "year": 2,
+      "semester": 2,
+      "name": "데이터베이스",
+      "credits": 3,
+      "hours": 3,
+      "key": "데이터베이스",
+      "aliases": [
+        "데이터베이스",
+        "데이타베이스설계"
+      ],
+      "tracks": [],
+      "source": "main_table",
+      "general": {
+        "category": "전공",
+        "history": [],
+        "current_as_of": "2026-11 교과과정표"
+      },
+      "abeek": {
+        "category": "공학주제",
+        "required": false,
+        "chart_marked_required": false,
+        "design": true,
+        "design_credits": 1,
+        "design_credits_source": "2026 공학교육인증 안내서 p.77-80 (컴퓨터공학전문 교과과정표·선수과목)",
+        "design_credits_history": [
+          {
+            "as_of": "2020 안내서",
+            "design_credits": 1
+          }
+        ]
+      }
+    },
+    {
+      "category": "전공",
+      "year": 3,
+      "semester": 1,
+      "name": "오픈소스SW프로젝트",
+      "credits": 3,
+      "hours": 3,
+      "key": "오픈소스SW프로젝트",
+      "aliases": [
+        "오픈소스SW프로젝트"
+      ],
+      "tracks": [],
+      "source": "main_table",
+      "general": {
+        "category": "전공",
+        "history": [],
+        "current_as_of": "2026-11 교과과정표"
+      },
+      "abeek": {
+        "category": "공학주제",
+        "required": false,
+        "chart_marked_required": false,
+        "design": false,
+        "design_credits": 0,
+        "design_credits_history": [],
+        "design_credits_source": "2026 공학교육인증 안내서 p.77-80 (컴퓨터공학전문 교과과정표·선수과목)"
+      }
+    },
+    {
+      "category": "전공",
+      "year": 3,
+      "semester": 1,
+      "name": "컴파일러",
+      "credits": 3,
+      "hours": 3,
+      "key": "컴파일러",
+      "aliases": [
+        "컴파일러"
+      ],
+      "tracks": [],
+      "source": "main_table",
+      "general": {
+        "category": "전공",
+        "history": [],
+        "current_as_of": "2026-11 교과과정표"
+      },
+      "abeek": {
+        "category": "공학주제",
+        "required": false,
+        "chart_marked_required": false,
+        "design": false,
+        "design_credits": 0,
+        "design_credits_history": [],
+        "design_credits_source": "2026 공학교육인증 안내서 p.77-80 (컴퓨터공학전문 교과과정표·선수과목)"
+      }
+    },
+    {
+      "category": "전공",
+      "year": 3,
+      "semester": 1,
+      "name": "무선이동통신",
+      "credits": 3,
+      "hours": 3,
+      "key": "무선이동통신",
+      "aliases": [
+        "무선이동통신"
+      ],
+      "tracks": [
+        "스마트IoT"
+      ],
+      "source": "main_table",
+      "general": {
+        "category": "전공",
+        "history": [],
+        "current_as_of": "2026-11 교과과정표"
+      },
+      "abeek": {
+        "category": "공학주제",
+        "required": false,
+        "chart_marked_required": false,
+        "design": false,
+        "design_credits": 0,
+        "design_credits_history": [],
+        "design_credits_source": "2026 공학교육인증 안내서 p.77-80 (컴퓨터공학전문 교과과정표·선수과목)"
+      }
+    },
+    {
+      "category": "전공",
+      "year": 3,
+      "semester": 1,
+      "name": "신호및시스템",
+      "credits": 3,
+      "hours": 3,
+      "key": "신호및시스템",
+      "aliases": [
+        "신호및시스템"
+      ],
+      "tracks": [
+        "스마트IoT",
+        "시스템 및 보안"
+      ],
+      "source": "main_table",
+      "general": {
+        "category": "전공",
+        "history": [],
+        "current_as_of": "2026-11 교과과정표"
+      },
+      "abeek": {
+        "category": "공학주제",
+        "required": false,
+        "chart_marked_required": false,
+        "design": false,
+        "design_credits": 0,
+        "design_credits_history": [],
+        "design_credits_source": "2026 공학교육인증 안내서 p.77-80 (컴퓨터공학전문 교과과정표·선수과목)"
+      }
+    },
+    {
+      "category": "전공",
+      "year": 3,
+      "semester": 1,
+      "name": "생성AI개론",
+      "credits": 3,
+      "hours": 3,
+      "key": "생성AI개론",
+      "aliases": [
+        "생성AI개론"
+      ],
+      "tracks": [
+        "인공지능",
+        "클라우드",
+        "콘텐츠 엔지니어링",
+        "증강 아트"
+      ],
+      "source": "main_table",
+      "general": {
+        "category": "전공",
+        "history": [],
+        "current_as_of": "2026-11 교과과정표"
+      },
+      "abeek": {
+        "category": "공학주제",
+        "required": false,
+        "chart_marked_required": false,
+        "design": false,
+        "design_credits": 0,
+        "design_credits_history": [],
+        "design_credits_source": "2026 공학교육인증 안내서 p.77-80 (컴퓨터공학전문 교과과정표·선수과목)"
+      },
+      "prerequisites_any": [
+        [
+          "자료구조"
+        ]
+      ],
+      "prerequisites_source": "2026 공학교육인증 안내서 p.77-80 (컴퓨터공학전문 교과과정표·선수과목)"
+    },
+    {
+      "category": "전공",
+      "year": 3,
+      "semester": 2,
+      "name": "리눅스시스템응용설계",
+      "credits": 3,
+      "hours": 3,
+      "key": "리눅스시스템응용설계",
+      "aliases": [
+        "리눅스시스템 응용설계",
+        "리눅스시스템응용설계"
+      ],
+      "tracks": [
+        "시스템 및 보안"
+      ],
+      "source": "main_table",
+      "general": {
+        "category": "전공",
+        "history": [],
+        "current_as_of": "2026-11 교과과정표"
+      },
+      "abeek": {
+        "category": "공학주제",
+        "required": false,
+        "chart_marked_required": false,
+        "design": false,
+        "design_credits": 0,
+        "design_credits_history": [],
+        "design_credits_source": "2026 공학교육인증 안내서 p.77-80 (컴퓨터공학전문 교과과정표·선수과목)"
+      }
+    },
+    {
+      "category": "전공",
+      "year": 3,
+      "semester": 2,
+      "name": "모바일앱개발",
+      "credits": 3,
+      "hours": 3,
+      "key": "모바일앱개발",
+      "aliases": [
+        "모바일앱개발"
+      ],
+      "tracks": [
+        "스마트IoT"
+      ],
+      "source": "main_table",
+      "general": {
+        "category": "전공",
+        "history": [],
+        "current_as_of": "2026-11 교과과정표"
+      },
+      "abeek": {
+        "category": "공학주제",
+        "required": false,
+        "chart_marked_required": false,
+        "design": false,
+        "design_credits": 0,
+        "design_credits_history": [],
+        "design_credits_source": "2026 공학교육인증 안내서 p.77-80 (컴퓨터공학전문 교과과정표·선수과목)"
+      }
+    },
+    {
+      "category": "전공",
+      "year": 3,
+      "semester": 2,
+      "name": "비즈니스 인텔리전스",
+      "credits": 3,
+      "hours": 3,
+      "key": "비즈니스인텔리전스",
+      "aliases": [
+        "비즈니스 인텔리전스",
+        "비즈니스인텔리전스"
+      ],
+      "tracks": [
+        "인공지능",
+        "빅데이터",
+        "시스템 및 보안"
+      ],
+      "source": "main_table",
+      "general": {
+        "category": "전공",
+        "history": [],
+        "current_as_of": "2026-11 교과과정표"
+      },
+      "abeek": {
+        "category": "공학주제",
+        "required": false,
+        "chart_marked_required": false,
+        "design": false,
+        "design_credits": 0,
+        "design_credits_history": [],
+        "design_credits_source": "2026 공학교육인증 안내서 p.77-80 (컴퓨터공학전문 교과과정표·선수과목)"
+      }
+    },
+    {
+      "category": "전공",
+      "year": 3,
+      "semester": 2,
+      "name": "산업체핸즈온프로젝트",
+      "credits": 3,
+      "hours": 3,
+      "key": "산업체핸즈온프로젝트",
+      "aliases": [
+        "산업체핸즈온프로젝트"
+      ],
+      "tracks": [
+        "스마트IoT",
+        "클라우드",
+        "시스템 및 보안",
+        "콘텐츠 엔지니어링",
+        "증강 아트"
+      ],
+      "source": "main_table",
+      "general": {
+        "category": "전공",
+        "history": [],
+        "current_as_of": "2026-11 교과과정표"
+      },
+      "abeek": {
+        "category": "공학주제",
+        "required": false,
+        "chart_marked_required": false,
+        "design": false,
+        "design_credits": 0,
+        "design_credits_history": [],
+        "design_credits_source": "2026 공학교육인증 안내서 p.77-80 (컴퓨터공학전문 교과과정표·선수과목)"
+      }
+    },
+    {
+      "category": "전공",
+      "year": 3,
+      "semester": 2,
+      "name": "캡스톤디자인(1)",
+      "credits": 3,
+      "hours": 6,
+      "key": "캡스톤디자인(1)",
+      "aliases": [
+        "캡스톤디자인(1)",
+        "캡스톤프로젝트(1)"
+      ],
+      "tracks": [],
+      "source": "main_table",
+      "general": {
+        "category": "전공",
+        "history": [],
+        "current_as_of": "2026-11 교과과정표"
+      },
+      "abeek": {
+        "category": "공학주제",
+        "required": false,
+        "chart_marked_required": false,
+        "design": "required",
+        "design_credits": 3,
+        "design_credits_source": "2026 공학교육인증 안내서 p.77-80 (컴퓨터공학전문 교과과정표·선수과목)",
+        "design_credits_history": [
+          {
+            "as_of": "2020 안내서",
+            "design_credits": 2
+          }
+        ],
+        "design_credits_rule": "수강 당시 학점과 같음 (2학점 개설 시 설계2, 3학점 개설 시 설계3)"
+      },
+      "prerequisites_any": [
+        [
+          "창의적설계"
+        ]
+      ],
+      "prerequisites_source": "2026 공학교육인증 안내서 p.77-80 (컴퓨터공학전문 교과과정표·선수과목)"
+    },
+    {
+      "category": "전공",
+      "year": 3,
+      "semester": 2,
+      "name": "컴퓨터통신",
+      "credits": 3,
+      "hours": 3,
+      "key": "컴퓨터통신",
+      "aliases": [
+        "컴퓨터통신"
+      ],
+      "tracks": [
+        "스마트IoT",
+        "빅데이터"
+      ],
+      "source": "main_table",
+      "general": {
+        "category": "전공",
+        "history": [],
+        "current_as_of": "2026-11 교과과정표"
+      },
+      "abeek": {
+        "category": "공학주제",
+        "required": false,
+        "chart_marked_required": false,
+        "design": false,
+        "design_credits": 0,
+        "design_credits_history": [],
+        "design_credits_source": "2026 공학교육인증 안내서 p.77-80 (컴퓨터공학전문 교과과정표·선수과목)"
+      }
+    },
+    {
+      "category": "전공",
+      "year": 3,
+      "semester": 2,
+      "name": "휴먼인터페이스미디어",
+      "credits": 3,
+      "hours": 3,
+      "key": "휴먼인터페이스미디어",
+      "aliases": [
+        "휴먼인터페이스미디어"
+      ],
+      "tracks": [
+        "인공지능"
+      ],
+      "source": "main_table",
+      "general": {
+        "category": "전공",
+        "history": [],
+        "current_as_of": "2026-11 교과과정표"
+      },
+      "abeek": {
+        "category": "공학주제",
+        "required": false,
+        "chart_marked_required": false,
+        "design": false,
+        "design_credits": 0,
+        "design_credits_history": [],
+        "design_credits_source": "2026 공학교육인증 안내서 p.77-80 (컴퓨터공학전문 교과과정표·선수과목)"
+      }
+    },
+    {
+      "category": "전공",
+      "year": 3,
+      "semester": 2,
+      "name": "IoT프로젝트",
+      "credits": 3,
+      "hours": 3,
+      "key": "IoT프로젝트",
+      "aliases": [
+        "IoT프로젝트",
+        "고급IoT프로젝트"
+      ],
+      "tracks": [
+        "스마트IoT"
+      ],
+      "source": "main_table",
+      "general": {
+        "category": "전공",
+        "history": [],
+        "current_as_of": "2026-11 교과과정표"
+      },
+      "abeek": {
+        "category": "공학주제",
+        "required": false,
+        "chart_marked_required": false,
+        "design": true,
+        "design_credits": 1,
+        "design_credits_source": "2026 공학교육인증 안내서 p.77-80 (컴퓨터공학전문 교과과정표·선수과목)",
+        "design_credits_history": [
+          {
+            "as_of": "2020 안내서",
+            "design_credits": 1
+          }
+        ]
+      }
+    },
+    {
+      "category": "전공",
+      "year": 3,
+      "semester": 2,
+      "name": "코딩부트캠프",
+      "credits": 3,
+      "hours": 3,
+      "key": "코딩부트캠프",
+      "aliases": [
+        "코딩부트캠프"
+      ],
+      "tracks": [],
+      "source": "main_table",
+      "general": {
+        "category": "전공",
+        "history": [],
+        "current_as_of": "2026-11 교과과정표"
+      },
+      "abeek": {
+        "category": "공학주제",
+        "required": false,
+        "chart_marked_required": false,
+        "design": false,
+        "design_credits": 0,
+        "design_credits_history": [],
+        "design_credits_source": "2026 공학교육인증 안내서 p.77-80 (컴퓨터공학전문 교과과정표·선수과목)"
+      }
+    },
+    {
+      "category": "전공",
+      "year": 3,
+      "semester": 2,
+      "name": "영상처리",
+      "credits": 3,
+      "hours": 3,
+      "key": "영상처리",
+      "aliases": [
+        "영상처리"
+      ],
+      "tracks": [
+        "콘텐츠 엔지니어링",
+        "증강 아트"
+      ],
+      "source": "main_table",
+      "general": {
+        "category": "전공",
+        "history": [],
+        "current_as_of": "2026-11 교과과정표"
+      },
+      "abeek": {
+        "category": "공학주제",
+        "required": false,
+        "chart_marked_required": false,
+        "design": false,
+        "design_credits": 0,
+        "design_credits_history": [],
+        "design_credits_source": "2026 공학교육인증 안내서 p.77-80 (컴퓨터공학전문 교과과정표·선수과목)"
+      }
+    },
+    {
+      "category": "전공",
+      "year": 3,
+      "semester": 2,
+      "name": "컴퓨터그래픽스",
+      "credits": 3,
+      "hours": 3,
+      "key": "컴퓨터그래픽스",
+      "aliases": [
+        "컴퓨터그래픽스"
+      ],
+      "tracks": [
+        "콘텐츠 엔지니어링",
+        "증강 아트"
+      ],
+      "source": "main_table",
+      "general": {
+        "category": "전공",
+        "history": [],
+        "current_as_of": "2026-11 교과과정표"
+      },
+      "abeek": {
+        "category": "공학주제",
+        "required": false,
+        "chart_marked_required": false,
+        "design": false,
+        "design_credits": 0,
+        "design_credits_history": [],
+        "design_credits_source": "2026 공학교육인증 안내서 p.77-80 (컴퓨터공학전문 교과과정표·선수과목)"
+      }
+    },
+    {
+      "category": "전공",
+      "year": 4,
+      "semester": 1,
+      "name": "내장형시스템설계",
+      "credits": 3,
+      "hours": 3,
+      "key": "내장형시스템설계",
+      "aliases": [
+        "내장형시스템설계",
+        "임베디드시스템설계"
+      ],
+      "tracks": [
+        "스마트IoT"
+      ],
+      "source": "main_table",
+      "general": {
+        "category": "전공",
+        "history": [],
+        "current_as_of": "2026-11 교과과정표"
+      },
+      "abeek": {
+        "category": "공학주제",
+        "required": false,
+        "chart_marked_required": false,
+        "design": true,
+        "design_credits": 1,
+        "design_credits_history": [
+          {
+            "as_of": "2020 안내서",
+            "name": "내장형시스템설계",
+            "design_credits": 0
+          }
+        ],
+        "design_credits_source": "2026 공학교육인증 안내서 p.77-80 (컴퓨터공학전문 교과과정표·선수과목)",
+        "design_credits_rule": "수강 당시 과목명 '임베디드시스템설계'면 설계1, '내장형시스템설계'(2020)면 0"
+      },
+      "prerequisites_any": [
+        [
+          "운영체제",
+          "컴퓨터구조"
+        ]
+      ],
+      "prerequisites_source": "2026 공학교육인증 안내서 p.77-80 (컴퓨터공학전문 교과과정표·선수과목)"
+    },
+    {
+      "category": "전공",
+      "year": 4,
+      "semester": 1,
+      "name": "데이터베이스시스템",
+      "credits": 3,
+      "hours": 3,
+      "key": "데이터베이스시스템",
+      "aliases": [
+        "데이터베이스 시스템",
+        "데이터베이스시스템",
+        "데이타베이스시스템"
+      ],
+      "tracks": [
+        "빅데이터",
+        "클라우드",
+        "시스템 및 보안"
+      ],
+      "source": "main_table",
+      "general": {
+        "category": "전공",
+        "history": [],
+        "current_as_of": "2026-11 교과과정표"
+      },
+      "abeek": {
+        "category": "공학주제",
+        "required": false,
+        "chart_marked_required": false,
+        "design": true,
+        "design_credits": 1,
+        "design_credits_source": "2026 공학교육인증 안내서 p.77-80 (컴퓨터공학전문 교과과정표·선수과목)",
+        "design_credits_history": [
+          {
+            "as_of": "2020 안내서",
+            "design_credits": 1
+          }
+        ]
+      },
+      "prerequisites_any": [
+        [
+          "데이터베이스",
+          "알고리즘"
+        ]
+      ],
+      "prerequisites_source": "2026 공학교육인증 안내서 p.77-80 (컴퓨터공학전문 교과과정표·선수과목)"
+    },
+    {
+      "category": "전공",
+      "year": 4,
+      "semester": 1,
+      "name": "네트워크응용설계",
+      "credits": 3,
+      "hours": 3,
+      "key": "네트워크응용설계",
+      "aliases": [
+        "네트워크응용설계"
+      ],
+      "tracks": [
+        "스마트IoT",
+        "클라우드"
+      ],
+      "source": "main_table",
+      "general": {
+        "category": "전공",
+        "history": [],
+        "current_as_of": "2026-11 교과과정표"
+      },
+      "abeek": {
+        "category": "공학주제",
+        "required": false,
+        "chart_marked_required": false,
+        "design": true,
+        "design_credits": 1,
+        "design_credits_source": "2026 공학교육인증 안내서 p.77-80 (컴퓨터공학전문 교과과정표·선수과목)",
+        "design_credits_history": [
+          {
+            "as_of": "2020 안내서",
+            "design_credits": 1
+          }
+        ]
+      },
+      "prerequisites_any": [
+        [
+          "운영체제",
+          "컴퓨터통신"
+        ]
+      ],
+      "prerequisites_source": "2026 공학교육인증 안내서 p.77-80 (컴퓨터공학전문 교과과정표·선수과목)"
+    },
+    {
+      "category": "전공",
+      "year": 4,
+      "semester": 1,
+      "name": "정보와지식",
+      "credits": 3,
+      "hours": 3,
+      "key": "정보와지식",
+      "aliases": [
+        "정보와지식"
+      ],
+      "tracks": [
+        "시스템 및 보안"
+      ],
+      "source": "main_table",
+      "general": {
+        "category": "전공",
+        "history": [],
+        "current_as_of": "2026-11 교과과정표"
+      },
+      "abeek": {
+        "category": "공학주제",
+        "required": false,
+        "chart_marked_required": false,
+        "design": false,
+        "design_credits": 0,
+        "design_credits_history": [],
+        "design_credits_source": "2026 공학교육인증 안내서 p.77-80 (컴퓨터공학전문 교과과정표·선수과목)"
+      }
+    },
+    {
+      "category": "전공",
+      "year": 4,
+      "semester": 1,
+      "name": "자연어처리 및 정보검색",
+      "credits": 3,
+      "hours": 3,
+      "key": "자연어처리및정보검색",
+      "aliases": [
+        "자연어처리 및 정보검색",
+        "자연어처리및정보검색"
+      ],
+      "tracks": [
+        "인공지능",
+        "빅데이터",
+        "시스템 및 보안"
+      ],
+      "source": "main_table",
+      "general": {
+        "category": "전공",
+        "history": [],
+        "current_as_of": "2026-11 교과과정표"
+      },
+      "abeek": {
+        "category": "공학주제",
+        "required": false,
+        "chart_marked_required": false,
+        "design": false,
+        "design_credits": 0,
+        "design_credits_history": [],
+        "design_credits_source": "2026 공학교육인증 안내서 p.77-80 (컴퓨터공학전문 교과과정표·선수과목)"
+      }
+    },
+    {
+      "category": "전공",
+      "year": 4,
+      "semester": 1,
+      "name": "정보보호이론",
+      "credits": 3,
+      "hours": 3,
+      "key": "정보보호이론",
+      "aliases": [
+        "정보보호이론"
+      ],
+      "tracks": [
+        "스마트IoT",
+        "클라우드"
+      ],
+      "source": "main_table",
+      "general": {
+        "category": "전공",
+        "history": [],
+        "current_as_of": "2026-11 교과과정표"
+      },
+      "abeek": {
+        "category": "공학주제",
+        "required": false,
+        "chart_marked_required": false,
+        "design": false,
+        "design_credits": 0,
+        "design_credits_history": [],
+        "design_credits_source": "2026 공학교육인증 안내서 p.77-80 (컴퓨터공학전문 교과과정표·선수과목)"
+      }
+    },
+    {
+      "category": "전공",
+      "year": 4,
+      "semester": 1,
+      "name": "캡스톤디자인(2)",
+      "credits": 3,
+      "hours": 6,
+      "key": "캡스톤디자인(2)",
+      "aliases": [
+        "캡스톤디자인(2)"
+      ],
+      "tracks": [],
+      "source": "main_table",
+      "general": {
+        "category": "전공",
+        "history": [],
+        "current_as_of": "2026-11 교과과정표"
+      },
+      "abeek": {
+        "category": "공학주제",
+        "required": false,
+        "chart_marked_required": false,
+        "design": "required",
+        "design_credits": 3,
+        "design_credits_source": "2026 공학교육인증 안내서 p.77-80 (컴퓨터공학전문 교과과정표·선수과목)",
+        "design_credits_history": [
+          {
+            "as_of": "2020 안내서",
+            "design_credits": 2
+          }
+        ],
+        "design_credits_rule": "수강 당시 학점과 같음 (2학점 개설 시 설계2, 3학점 개설 시 설계3)"
+      },
+      "prerequisites_any": [
+        [
+          "창의적설계"
+        ]
+      ],
+      "prerequisites_source": "2026 공학교육인증 안내서 p.77-80 (컴퓨터공학전문 교과과정표·선수과목)"
+    },
+    {
+      "category": "전공",
+      "year": 4,
+      "semester": 1,
+      "name": "멀티코어컴퓨팅",
+      "credits": 3,
+      "hours": 3,
+      "key": "멀티코어컴퓨팅",
+      "aliases": [
+        "멀티코어컴퓨팅"
+      ],
+      "tracks": [
+        "콘텐츠 엔지니어링"
+      ],
+      "source": "main_table",
+      "general": {
+        "category": "전공",
+        "history": [],
+        "current_as_of": "2026-11 교과과정표"
+      },
+      "abeek": {
+        "category": "공학주제",
+        "required": false,
+        "chart_marked_required": false,
+        "design": false,
+        "design_credits": 0,
+        "design_credits_history": [],
+        "design_credits_source": "2026 공학교육인증 안내서 p.77-80 (컴퓨터공학전문 교과과정표·선수과목)"
+      }
+    },
+    {
+      "category": "전공",
+      "year": 4,
+      "semester": 1,
+      "name": "머신러닝",
+      "credits": 3,
+      "hours": 3,
+      "key": "머신러닝",
+      "aliases": [
+        "머신러닝"
+      ],
+      "tracks": [
+        "인공지능",
+        "빅데이터"
+      ],
+      "source": "main_table",
+      "general": {
+        "category": "전공",
+        "history": [],
+        "current_as_of": "2026-11 교과과정표"
+      },
+      "abeek": {
+        "category": "공학주제",
+        "required": false,
+        "chart_marked_required": false,
+        "design": false,
+        "design_credits": 0,
+        "design_credits_history": [],
+        "design_credits_source": "2026 공학교육인증 안내서 p.77-80 (컴퓨터공학전문 교과과정표·선수과목)"
+      }
+    },
+    {
+      "category": "전공",
+      "year": 4,
+      "semester": 1,
+      "name": "웹서비스",
+      "credits": 3,
+      "hours": 3,
+      "key": "웹서비스",
+      "aliases": [
+        "웹서비스"
+      ],
+      "tracks": [
+        "클라우드",
+        "시스템 및 보안"
+      ],
+      "source": "main_table",
+      "general": {
+        "category": "전공",
+        "history": [],
+        "current_as_of": "2026-11 교과과정표"
+      },
+      "abeek": {
+        "category": "공학주제",
+        "required": false,
+        "chart_marked_required": false,
+        "design": false,
+        "design_credits": 0,
+        "design_credits_history": [],
+        "design_credits_source": "2026 공학교육인증 안내서 p.77-80 (컴퓨터공학전문 교과과정표·선수과목)"
+      }
+    },
+    {
+      "category": "전공",
+      "year": 4,
+      "semester": 1,
+      "name": "영상 및 그래픽스 응용",
+      "credits": 3,
+      "hours": 3,
+      "key": "영상및그래픽스응용",
+      "aliases": [
+        "영상 및 그래픽스 응용",
+        "영상 및 그래픽스응용",
+        "영상및그래픽스응용"
+      ],
+      "tracks": [
+        "콘텐츠 엔지니어링",
+        "증강 아트"
+      ],
+      "source": "main_table",
+      "general": {
+        "category": "전공",
+        "history": [],
+        "current_as_of": "2026-11 교과과정표"
+      },
+      "abeek": {
+        "category": "공학주제",
+        "required": false,
+        "chart_marked_required": false,
+        "design": false,
+        "design_credits": 0,
+        "design_credits_history": [],
+        "design_credits_source": "2026 공학교육인증 안내서 p.77-80 (컴퓨터공학전문 교과과정표·선수과목)"
+      }
+    },
+    {
+      "category": "전공",
+      "year": 4,
+      "semester": 1,
+      "name": "컴퓨터비전",
+      "credits": 3,
+      "hours": 3,
+      "key": "컴퓨터비전",
+      "aliases": [
+        "컴퓨터비전"
+      ],
+      "tracks": [
+        "콘텐츠 엔지니어링",
+        "증강 아트"
+      ],
+      "source": "main_table",
+      "general": {
+        "category": "전공",
+        "history": [],
+        "current_as_of": "2026-11 교과과정표"
+      },
+      "abeek": {
+        "category": "공학주제",
+        "required": false,
+        "chart_marked_required": false,
+        "design": false,
+        "design_credits": 0,
+        "design_credits_history": [],
+        "design_credits_source": "2026 공학교육인증 안내서 p.77-80 (컴퓨터공학전문 교과과정표·선수과목)"
+      }
+    },
+    {
+      "category": "전공",
+      "year": 4,
+      "semester": 1,
+      "name": "인간과컴퓨터상호작용",
+      "credits": 3,
+      "hours": 3,
+      "key": "인간과컴퓨터상호작용",
+      "aliases": [
+        "인간과컴퓨터상호작용"
+      ],
+      "tracks": [
+        "콘텐츠 엔지니어링",
+        "증강 아트"
+      ],
+      "source": "main_table",
+      "general": {
+        "category": "전공",
+        "history": [],
+        "current_as_of": "2026-11 교과과정표"
+      },
+      "abeek": {
+        "category": "공학주제",
+        "required": false,
+        "chart_marked_required": false,
+        "design": false,
+        "design_credits": 0,
+        "design_credits_history": [],
+        "design_credits_source": "2026 공학교육인증 안내서 p.77-80 (컴퓨터공학전문 교과과정표·선수과목)"
+      }
+    },
+    {
+      "category": "전공",
+      "year": 4,
+      "semester": 1,
+      "name": "데이터사이언스",
+      "credits": 3,
+      "hours": 3,
+      "key": "데이터사이언스",
+      "aliases": [
+        "데이터사이언스"
+      ],
+      "tracks": [
+        "인공지능",
+        "빅데이터",
+        "시스템 및 보안"
+      ],
+      "source": "main_table",
+      "general": {
+        "category": "전공",
+        "history": [],
+        "current_as_of": "2026-11 교과과정표"
+      },
+      "abeek": {
+        "category": "공학주제",
+        "required": false,
+        "chart_marked_required": false,
+        "design": false,
+        "design_credits": 0,
+        "design_credits_history": [],
+        "design_credits_source": "2026 공학교육인증 안내서 p.77-80 (컴퓨터공학전문 교과과정표·선수과목)"
+      }
+    },
+    {
+      "category": "전공",
+      "year": 4,
+      "semester": 1,
+      "name": "거대언어모델",
+      "credits": 3,
+      "hours": 3,
+      "key": "거대언어모델",
+      "aliases": [
+        "거대언어모델"
+      ],
+      "tracks": [
+        "인공지능",
+        "클라우드"
+      ],
+      "source": "main_table",
+      "general": {
+        "category": "전공",
+        "history": [],
+        "current_as_of": "2026-11 교과과정표"
+      },
+      "abeek": {
+        "category": "공학주제",
+        "required": false,
+        "chart_marked_required": false,
+        "design": false,
+        "design_credits": 0,
+        "design_credits_history": [],
+        "design_credits_source": "2026 공학교육인증 안내서 p.77-80 (컴퓨터공학전문 교과과정표·선수과목)"
+      },
+      "prerequisites_any": [
+        [
+          "알고리즘",
+          "인공지능"
+        ]
+      ],
+      "prerequisites_source": "2026 공학교육인증 안내서 p.77-80 (컴퓨터공학전문 교과과정표·선수과목)"
+    },
+    {
+      "category": "전공",
+      "year": 4,
+      "semester": 2,
+      "name": "머신러닝프로젝트",
+      "credits": 3,
+      "hours": 3,
+      "key": "머신러닝프로젝트",
+      "aliases": [
+        "머신러닝 프로젝트",
+        "머신러닝프로젝트"
+      ],
+      "tracks": [
+        "인공지능",
+        "빅데이터"
+      ],
+      "source": "main_table",
+      "general": {
+        "category": "전공",
+        "history": [],
+        "current_as_of": "2026-11 교과과정표"
+      },
+      "abeek": {
+        "category": "공학주제",
+        "required": false,
+        "chart_marked_required": false,
+        "design": false,
+        "design_credits": 0,
+        "design_credits_history": [],
+        "design_credits_source": "2026 공학교육인증 안내서 p.77-80 (컴퓨터공학전문 교과과정표·선수과목)"
+      }
+    },
+    {
+      "category": "전공",
+      "year": 4,
+      "semester": 2,
+      "name": "빅데이터",
+      "credits": 3,
+      "hours": 3,
+      "key": "빅데이터",
+      "aliases": [
+        "빅데이터"
+      ],
+      "tracks": [
+        "인공지능",
+        "빅데이터",
+        "시스템 및 보안"
+      ],
+      "source": "main_table",
+      "general": {
+        "category": "전공",
+        "history": [],
+        "current_as_of": "2026-11 교과과정표"
+      },
+      "abeek": {
+        "category": "공학주제",
+        "required": false,
+        "chart_marked_required": false,
+        "design": false,
+        "design_credits": 0,
+        "design_credits_history": [],
+        "design_credits_source": "2026 공학교육인증 안내서 p.77-80 (컴퓨터공학전문 교과과정표·선수과목)"
+      }
+    },
+    {
+      "category": "전공",
+      "year": 4,
+      "semester": 2,
+      "name": "설계패턴",
+      "credits": 3,
+      "hours": 3,
+      "key": "설계패턴",
+      "aliases": [
+        "설계패턴"
+      ],
+      "tracks": [
+        "클라우드",
+        "시스템 및 보안"
+      ],
+      "source": "main_table",
+      "general": {
+        "category": "전공",
+        "history": [],
+        "current_as_of": "2026-11 교과과정표"
+      },
+      "abeek": {
+        "category": "공학주제",
+        "required": false,
+        "chart_marked_required": false,
+        "design": false,
+        "design_credits": 0,
+        "design_credits_history": [],
+        "design_credits_source": "2026 공학교육인증 안내서 p.77-80 (컴퓨터공학전문 교과과정표·선수과목)"
+      },
+      "prerequisites_any": [
+        [
+          "소프트웨어공학",
+          "객체지향프로그래밍"
+        ]
+      ],
+      "prerequisites_source": "2026 공학교육인증 안내서 p.77-80 (컴퓨터공학전문 교과과정표·선수과목)"
+    },
+    {
+      "category": "전공",
+      "year": 4,
+      "semester": 2,
+      "name": "컴퓨터게임설계",
+      "credits": 3,
+      "hours": 3,
+      "key": "컴퓨터게임설계",
+      "aliases": [
+        "컴퓨터게임설계"
+      ],
+      "tracks": [
+        "클라우드",
+        "콘텐츠 엔지니어링",
+        "증강 아트"
+      ],
+      "source": "main_table",
+      "general": {
+        "category": "전공",
+        "history": [],
+        "current_as_of": "2026-11 교과과정표"
+      },
+      "abeek": {
+        "category": "공학주제",
+        "required": false,
+        "chart_marked_required": false,
+        "design": false,
+        "design_credits": 0,
+        "design_credits_history": [],
+        "design_credits_source": "2026 공학교육인증 안내서 p.77-80 (컴퓨터공학전문 교과과정표·선수과목)"
+      }
+    },
+    {
+      "category": "전공",
+      "year": 4,
+      "semester": 2,
+      "name": "가상증강혼합현실",
+      "credits": 3,
+      "hours": 3,
+      "key": "가상증강혼합현실",
+      "aliases": [
+        "가상증강혼합현실"
+      ],
+      "tracks": [
+        "콘텐츠 엔지니어링",
+        "증강 아트"
+      ],
+      "source": "main_table",
+      "general": {
+        "category": "전공",
+        "history": [],
+        "current_as_of": "2026-11 교과과정표"
+      },
+      "abeek": {
+        "category": "공학주제",
+        "required": false,
+        "chart_marked_required": false,
+        "design": false,
+        "design_credits": 0,
+        "design_credits_history": [],
+        "design_credits_source": "2026 공학교육인증 안내서 p.77-80 (컴퓨터공학전문 교과과정표·선수과목)"
+      }
+    },
+    {
+      "category": "전공",
+      "year": 4,
+      "semester": 2,
+      "name": "융합IoT프로젝트설계",
+      "credits": 3,
+      "hours": 3,
+      "key": "융합IoT프로젝트설계",
+      "aliases": [
+        "융합IoT프로젝트설계"
+      ],
+      "tracks": [
+        "스마트IoT"
+      ],
+      "source": "main_table",
+      "general": {
+        "category": "전공",
+        "history": [],
+        "current_as_of": "2026-11 교과과정표"
+      },
+      "abeek": {
+        "category": "공학주제",
+        "required": false,
+        "chart_marked_required": false,
+        "design": false,
+        "design_credits": 0,
+        "design_credits_history": [],
+        "design_credits_source": "2026 공학교육인증 안내서 p.77-80 (컴퓨터공학전문 교과과정표·선수과목)"
+      }
+    },
+    {
+      "category": "전공",
+      "year": 4,
+      "semester": 2,
+      "name": "컴퓨터비전프로젝트",
+      "credits": 3,
+      "hours": 3,
+      "key": "컴퓨터비전프로젝트",
+      "aliases": [
+        "컴퓨터비전프로젝트"
+      ],
+      "tracks": [
+        "콘텐츠 엔지니어링",
+        "증강 아트"
+      ],
+      "source": "main_table",
+      "general": {
+        "category": "전공",
+        "history": [],
+        "current_as_of": "2026-11 교과과정표"
+      },
+      "abeek": {
+        "category": "공학주제",
+        "required": false,
+        "chart_marked_required": false,
+        "design": false,
+        "design_credits": 0,
+        "design_credits_history": [],
+        "design_credits_source": "2026 공학교육인증 안내서 p.77-80 (컴퓨터공학전문 교과과정표·선수과목)"
+      }
+    },
+    {
+      "category": "전공",
+      "year": 4,
+      "semester": 2,
+      "name": "보안프로젝트설계",
+      "credits": 3,
+      "hours": 3,
+      "key": "보안프로젝트설계",
+      "aliases": [
+        "보안프로젝트설계"
+      ],
+      "tracks": [],
+      "source": "main_table",
+      "general": {
+        "category": "전공",
+        "history": [],
+        "current_as_of": "2026-11 교과과정표"
+      },
+      "abeek": {
+        "category": "공학주제",
+        "required": false,
+        "chart_marked_required": false,
+        "design": false,
+        "design_credits": 0,
+        "design_credits_history": [],
+        "design_credits_source": "2026 공학교육인증 안내서 p.77-80 (컴퓨터공학전문 교과과정표·선수과목)"
+      }
+    },
+    {
+      "category": "전공",
+      "year": 4,
+      "semester": 2,
+      "name": "인공지능보안",
+      "credits": 3,
+      "hours": 3,
+      "key": "인공지능보안",
+      "aliases": [
+        "인공지능보안"
+      ],
+      "tracks": [
+        "인공지능"
+      ],
+      "source": "main_table",
+      "general": {
+        "category": "전공",
+        "history": [],
+        "current_as_of": "2026-11 교과과정표"
+      },
+      "abeek": {
+        "category": "공학주제",
+        "required": false,
+        "chart_marked_required": false,
+        "design": false,
+        "design_credits": 0,
+        "design_credits_history": [],
+        "design_credits_source": "2026 공학교육인증 안내서 p.77-80 (컴퓨터공학전문 교과과정표·선수과목)"
+      }
+    },
+    {
+      "category": "전공",
+      "year": 4,
+      "semester": 2,
+      "name": "텍스트마이닝과 언어모델",
+      "credits": 3,
+      "hours": 3,
+      "key": "텍스트마이닝과언어모델",
+      "aliases": [
+        "텍스트마이닝과 언어모델",
+        "텍스트마이닝과언어모델"
+      ],
+      "tracks": [
+        "인공지능",
+        "빅데이터"
+      ],
+      "source": "main_table",
+      "general": {
+        "category": "전공",
+        "history": [],
+        "current_as_of": "2026-11 교과과정표"
+      },
+      "abeek": {
+        "category": "공학주제",
+        "required": false,
+        "chart_marked_required": false,
+        "design": false,
+        "design_credits": 0,
+        "design_credits_history": [],
+        "design_credits_source": "2026 공학교육인증 안내서 p.77-80 (컴퓨터공학전문 교과과정표·선수과목)"
+      }
+    },
+    {
+      "category": "전공",
+      "year": 4,
+      "semester": 2,
+      "name": "3차원기계지능",
+      "credits": 3,
+      "hours": 3,
+      "key": "3차원기계지능",
+      "aliases": [
+        "3차원기계지능"
+      ],
+      "tracks": [
+        "콘텐츠 엔지니어링",
+        "증강 아트"
+      ],
+      "source": "main_table",
+      "general": {
+        "category": "전공",
+        "history": [],
+        "current_as_of": "2026-11 교과과정표"
+      },
+      "abeek": {
+        "category": "공학주제",
+        "required": false,
+        "chart_marked_required": false,
+        "design": false,
+        "design_credits": 0,
+        "design_credits_history": [],
+        "design_credits_source": "2026 공학교육인증 안내서 p.77-80 (컴퓨터공학전문 교과과정표·선수과목)"
+      }
+    },
+    {
+      "key": "기계학습개론",
+      "name": "기계학습개론",
+      "category": null,
+      "credits": null,
+      "year": 3,
+      "semester": 1,
+      "aliases": [
+        "기계학습개론"
+      ],
+      "tracks": [
+        "인공지능",
+        "빅데이터",
+        "시스템 및 보안"
+      ],
+      "source": "track_only",
+      "general": {
+        "category": null,
+        "history": [],
+        "current_as_of": "2026-11 교과과정표"
+      },
+      "abeek": {
+        "category": null,
+        "required": false,
+        "chart_marked_required": false,
+        "design": false,
+        "design_credits": 0,
+        "design_credits_history": [],
+        "design_credits_source": "2026 공학교육인증 안내서 p.77-80 (컴퓨터공학전문 교과과정표·선수과목)"
+      }
+    },
+    {
+      "key": "패턴인식",
+      "name": "패턴인식",
+      "category": null,
+      "credits": null,
+      "year": 4,
+      "semester": 1,
+      "aliases": [
+        "패턴인식"
+      ],
+      "tracks": [
+        "인공지능",
+        "스마트IoT",
+        "빅데이터",
+        "시스템 및 보안",
+        "콘텐츠 엔지니어링",
+        "증강 아트"
+      ],
+      "source": "track_only",
+      "general": {
+        "category": null,
+        "history": [],
+        "current_as_of": "2026-11 교과과정표"
+      },
+      "abeek": {
+        "category": null,
+        "required": false,
+        "chart_marked_required": false,
+        "design": false,
+        "design_credits": 0,
+        "design_credits_history": [],
+        "design_credits_source": "2026 공학교육인증 안내서 p.77-80 (컴퓨터공학전문 교과과정표·선수과목)"
+      }
+    },
+    {
+      "key": "생성형인공지능",
+      "name": "생성형인공지능",
+      "category": null,
+      "credits": null,
+      "year": 4,
+      "semester": 2,
+      "aliases": [
+        "생성형인공지능"
+      ],
+      "tracks": [
+        "인공지능",
+        "클라우드",
+        "콘텐츠 엔지니어링",
+        "증강 아트"
+      ],
+      "source": "track_only",
+      "general": {
+        "category": null,
+        "history": [],
+        "current_as_of": "2026-11 교과과정표"
+      },
+      "abeek": {
+        "category": null,
+        "required": false,
+        "chart_marked_required": false,
+        "design": false,
+        "design_credits": 0,
+        "design_credits_history": [],
+        "design_credits_source": "2026 공학교육인증 안내서 p.77-80 (컴퓨터공학전문 교과과정표·선수과목)"
+      }
+    },
+    {
+      "key": "의료융합형멀티모달프로젝트",
+      "name": "의료융합형멀티모달프로젝트",
+      "category": null,
+      "credits": null,
+      "year": 4,
+      "semester": 2,
+      "aliases": [
+        "의료융합형멀티모달프로젝트"
+      ],
+      "tracks": [
+        "인공지능",
+        "빅데이터"
+      ],
+      "source": "track_only",
+      "general": {
+        "category": null,
+        "history": [],
+        "current_as_of": "2026-11 교과과정표"
+      },
+      "abeek": {
+        "category": null,
+        "required": false,
+        "chart_marked_required": false,
+        "design": false,
+        "design_credits": 0,
+        "design_credits_history": [],
+        "design_credits_source": "2026 공학교육인증 안내서 p.77-80 (컴퓨터공학전문 교과과정표·선수과목)"
+      }
+    },
+    {
+      "key": "인공지능과인간상호작용",
+      "name": "인공지능과인간상호작용",
+      "category": null,
+      "credits": null,
+      "year": 4,
+      "semester": 1,
+      "aliases": [
+        "인공지능과인간상호작용"
+      ],
+      "tracks": [
+        "스마트IoT",
+        "콘텐츠 엔지니어링",
+        "증강 아트"
+      ],
+      "source": "track_only",
+      "general": {
+        "category": null,
+        "history": [],
+        "current_as_of": "2026-11 교과과정표"
+      },
+      "abeek": {
+        "category": null,
+        "required": false,
+        "chart_marked_required": false,
+        "design": false,
+        "design_credits": 0,
+        "design_credits_history": [],
+        "design_credits_source": "2026 공학교육인증 안내서 p.77-80 (컴퓨터공학전문 교과과정표·선수과목)"
+      }
+    },
+    {
+      "key": "인터랙티브지능형시스템설계",
+      "name": "인터랙티브지능형시스템설계",
+      "category": null,
+      "credits": null,
+      "year": 4,
+      "semester": 2,
+      "aliases": [
+        "인터랙티브지능형시스템설계"
+      ],
+      "tracks": [
+        "스마트IoT",
+        "콘텐츠 엔지니어링",
+        "증강 아트"
+      ],
+      "source": "track_only",
+      "general": {
+        "category": null,
+        "history": [],
+        "current_as_of": "2026-11 교과과정표"
+      },
+      "abeek": {
+        "category": null,
+        "required": false,
+        "chart_marked_required": false,
+        "design": false,
+        "design_credits": 0,
+        "design_credits_history": [],
+        "design_credits_source": "2026 공학교육인증 안내서 p.77-80 (컴퓨터공학전문 교과과정표·선수과목)"
+      }
+    },
+    {
+      "key": "인문사회와AI",
+      "name": "인문사회와AI",
+      "category": null,
+      "credits": null,
+      "year": 3,
+      "semester": 2,
+      "aliases": [
+        "인문사회와AI"
+      ],
+      "tracks": [
+        "빅데이터"
+      ],
+      "source": "track_only",
+      "general": {
+        "category": null,
+        "history": [],
+        "current_as_of": "2026-11 교과과정표"
+      },
+      "abeek": {
+        "category": null,
+        "required": false,
+        "chart_marked_required": false,
+        "design": false,
+        "design_credits": 0,
+        "design_credits_history": [],
+        "design_credits_source": "2026 공학교육인증 안내서 p.77-80 (컴퓨터공학전문 교과과정표·선수과목)"
+      }
+    },
+    {
+      "key": "자연공학과AI",
+      "name": "자연공학과AI",
+      "category": null,
+      "credits": null,
+      "year": 4,
+      "semester": 1,
+      "aliases": [
+        "자연공학과AI"
+      ],
+      "tracks": [
+        "빅데이터"
+      ],
+      "source": "track_only",
+      "general": {
+        "category": null,
+        "history": [],
+        "current_as_of": "2026-11 교과과정표"
+      },
+      "abeek": {
+        "category": null,
+        "required": false,
+        "chart_marked_required": false,
+        "design": false,
+        "design_credits": 0,
+        "design_credits_history": [],
+        "design_credits_source": "2026 공학교육인증 안내서 p.77-80 (컴퓨터공학전문 교과과정표·선수과목)"
+      }
+    },
+    {
+      "key": "AI스토리텔링",
+      "name": "AI스토리텔링",
+      "category": null,
+      "credits": null,
+      "year": 3,
+      "semester": 2,
+      "aliases": [
+        "AI스토리텔링"
+      ],
+      "tracks": [
+        "증강 아트"
+      ],
+      "source": "track_only",
+      "general": {
+        "category": null,
+        "history": [],
+        "current_as_of": "2026-11 교과과정표"
+      },
+      "abeek": {
+        "category": null,
+        "required": false,
+        "chart_marked_required": false,
+        "design": false,
+        "design_credits": 0,
+        "design_credits_history": [],
+        "design_credits_source": "2026 공학교육인증 안내서 p.77-80 (컴퓨터공학전문 교과과정표·선수과목)"
+      }
+    }
+  ],
+  "dual_listing": [
+    "데이터마이닝",
+    "빅데이터강화학습",
+    "고급인공지능"
+  ],
+  "notes": [
+    "SW졸업인증제: 학사 졸업논문을 대신하여 SW졸업인증제 시행. 통과해야 졸업논문 통과로 인정. 최신 양식·기준은 학부 공지사항 참조"
+  ],
+  "abeek_bsm_lab": [
+    "일반물리실험(1)"
+  ],
+  "abeek_professional_liberal": [
+    {
+      "name": "글쓰기",
+      "credits": 2
+    },
+    {
+      "name": "AI시대문제해결을위한디자인사고",
+      "credits": 2
+    },
+    {
+      "name": "앙트레프레너십시대의회계",
+      "credits": 2
+    },
+    {
+      "name": "한국사",
+      "credits": 2
+    }
+  ],
+  "classification_sources": {
+    "general": "cse.cau.ac.kr/sub02/sub0202.php 학부교과과정표",
+    "abeek": "컴퓨터공학전문 공학교육인증 규정(2024.02.16) + 2026-1학년도 교과목 이수 체계도",
+    "design_credits": "2026 공학교육인증 안내서 p.77-80 (컴퓨터공학전문 교과과정표·선수과목) (이전 값은 design_credits_history)"
+  }
+}

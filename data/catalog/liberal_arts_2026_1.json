@@ -1,0 +1,2507 @@
+{
+ "source": "2026학년도 제1학기 수강 및 학사 안내 — 10. 교양교육과정 교과목 일람 (p.32-39)",
+ "common": [
+  {
+   "code": "49950",
+   "name": "ACT",
+   "credits": 2,
+   "by_entry_year": {
+    "2019~": "공통",
+    "2016~2018": "공통",
+    "2012~2015": "공통",
+    "2011": "공통",
+    "2003~2010": "2009 ~2010: 공통교양"
+   },
+   "aliases": [
+    "ACT(2학년 대상)"
+   ]
+  },
+  {
+   "code": "50023",
+   "name": "COMMUNICATION IN ENGLISH",
+   "credits": 2,
+   "by_entry_year": {
+    "2019~": "공통",
+    "2016~2018": "공통",
+    "2012~2015": "공통",
+    "2011": "공통",
+    "2003~2010": "공통"
+   },
+   "aliases": [
+    "COMMUNICATION INENGLISH",
+    "Communication in English"
+   ]
+  },
+  {
+   "code": "42183",
+   "name": "글쓰기",
+   "credits": 2,
+   "by_entry_year": {
+    "2019~": "공통",
+    "2016~2018": "공통",
+    "2012~2015": "공통",
+    "2011": "공통",
+    "2003~2010": "공통"
+   },
+   "aliases": []
+  },
+  {
+   "code": "52533",
+   "name": "앙트레프레너십시대의회계",
+   "credits": 2,
+   "by_entry_year": {
+    "2019~": "공통",
+    "2016~2018": "공통",
+    "2012~2015": "공통",
+    "2011": "공통",
+    "2003~2010": "2009~20 10: 공통교양"
+   },
+   "aliases": []
+  },
+  {
+   "code": "49949",
+   "name": "창의와소통",
+   "credits": 2,
+   "by_entry_year": {
+    "2019~": "공통",
+    "2016~2018": "공통",
+    "2012~2015": "공통",
+    "2011": "공통",
+    "2003~2010": "수강불가"
+   },
+   "aliases": []
+  },
+  {
+   "code": "56423",
+   "name": "컴퓨팅사고와인공지능리터러시",
+   "credits": 2,
+   "by_entry_year": {
+    "2019~": "공통",
+    "2016~2018": "공통",
+    "2012~2015": "선택-융\n합",
+    "2011": "선택-융\n합",
+    "2003~2010": "선택-융 합"
+   },
+   "aliases": []
+  },
+  {
+   "code": "56424",
+   "name": "AI시대문제해결을위한디자인사고",
+   "credits": 2,
+   "by_entry_year": {
+    "2019~": "공통",
+    "2016~2018": "수강불가",
+    "2012~2015": null,
+    "2011": null,
+    "2003~2010": ""
+   },
+   "aliases": []
+  },
+  {
+   "code": "42301",
+   "name": "한국사",
+   "credits": 2,
+   "by_entry_year": {
+    "2019~": "공통",
+    "2016~2018": "공통",
+    "2012~2015": "공통",
+    "2011": "핵심-신\n뢰",
+    "2003~2010": "핵심-신 뢰"
+   },
+   "aliases": [
+    "한국사(2학년 대상)"
+   ]
+  }
+ ],
+ "courses": [
+  {
+   "code": "40738",
+   "name": "건강한삶",
+   "credits": 3,
+   "area": "핵심-도전",
+   "seoul": [
+    true,
+    true
+   ]
+  },
+  {
+   "code": "28703",
+   "name": "경제와사회",
+   "credits": 3,
+   "area": "핵심-도전",
+   "seoul": [
+    true,
+    true
+   ]
+  },
+  {
+   "code": "53169",
+   "name": "내몸의구조와기능",
+   "credits": 3,
+   "area": "핵심-도전",
+   "seoul": [
+    true,
+    true
+   ]
+  },
+  {
+   "code": "58552",
+   "name": "디지털융복합시대의ESG기업경영",
+   "credits": 3,
+   "area": "핵심-도전",
+   "seoul": [
+    true,
+    true
+   ]
+  },
+  {
+   "code": "52432",
+   "name": "미래사회와소프트웨어",
+   "credits": 3,
+   "area": "핵심-도전",
+   "seoul": [
+    true,
+    true
+   ]
+  },
+  {
+   "code": "48664",
+   "name": "성의과학",
+   "credits": 3,
+   "area": "핵심-도전",
+   "seoul": [
+    true,
+    true
+   ]
+  },
+  {
+   "code": "52431",
+   "name": "소프트웨어코딩과적용",
+   "credits": 3,
+   "area": "핵심-도전",
+   "seoul": [
+    true,
+    true
+   ]
+  },
+  {
+   "code": "28706",
+   "name": "우주의이해",
+   "credits": 3,
+   "area": "핵심-도전",
+   "seoul": [
+    true,
+    true
+   ]
+  },
+  {
+   "code": "53178",
+   "name": "창업계획",
+   "credits": 3,
+   "area": "핵심-도전",
+   "seoul": [
+    true,
+    true
+   ]
+  },
+  {
+   "code": "54432",
+   "name": "트렌드를읽는데이터경영",
+   "credits": 3,
+   "area": "핵심-도전",
+   "seoul": [
+    true,
+    true
+   ]
+  },
+  {
+   "code": "57786",
+   "name": "환경리터러시와지속가능한지구",
+   "credits": 3,
+   "area": "핵심-도전",
+   "seoul": [
+    true,
+    true
+   ]
+  },
+  {
+   "code": "48662",
+   "name": "글로벌시대의다문화콘텐츠",
+   "credits": 3,
+   "area": "핵심-창의",
+   "seoul": [
+    true,
+    true
+   ]
+  },
+  {
+   "code": "53179",
+   "name": "다빈치명저읽기",
+   "credits": 3,
+   "area": "핵심-창의",
+   "seoul": [
+    true,
+    true
+   ]
+  },
+  {
+   "code": "51383",
+   "name": "다빈치스포츠",
+   "credits": 3,
+   "area": "핵심-창의",
+   "seoul": [
+    true,
+    true
+   ]
+  },
+  {
+   "code": "51379",
+   "name": "다빈치예술여행",
+   "credits": 3,
+   "area": "핵심-창의",
+   "seoul": [
+    true,
+    true
+   ]
+  },
+  {
+   "code": "54434",
+   "name": "디지털시대의공감",
+   "credits": 3,
+   "area": "핵심-창의",
+   "seoul": [
+    true,
+    true
+   ]
+  },
+  {
+   "code": "40527",
+   "name": "문학과예술의사회사",
+   "credits": 3,
+   "area": "핵심-창의",
+   "seoul": [
+    true,
+    true
+   ]
+  },
+  {
+   "code": "53806",
+   "name": "문학의세계",
+   "credits": 3,
+   "area": "핵심-창의",
+   "seoul": [
+    true,
+    true
+   ]
+  },
+  {
+   "code": "57789",
+   "name": "문화콘텐츠인사이트",
+   "credits": 3,
+   "area": "핵심-창의",
+   "seoul": [
+    true,
+    true
+   ]
+  },
+  {
+   "code": "40736",
+   "name": "생물의기원과진화",
+   "credits": 3,
+   "area": "핵심-창의",
+   "seoul": [
+    true,
+    true
+   ]
+  },
+  {
+   "code": "59361",
+   "name": "외국인을위한대학한국어(읽기와쓰기)",
+   "credits": 3,
+   "area": "핵심-창의",
+   "seoul": [
+    true,
+    true
+   ]
+  },
+  {
+   "code": "53810",
+   "name": "음악의세계와감상",
+   "credits": 3,
+   "area": "핵심-창의",
+   "seoul": [
+    true,
+    true
+   ]
+  },
+  {
+   "code": "53173",
+   "name": "현대미술비평",
+   "credits": 3,
+   "area": "핵심-창의",
+   "seoul": [
+    true,
+    true
+   ]
+  },
+  {
+   "code": "40647",
+   "name": "과학기술과현대사회",
+   "credits": 3,
+   "area": "핵심-융합",
+   "seoul": [
+    true,
+    true
+   ]
+  },
+  {
+   "code": "54433",
+   "name": "디지털게임과문화",
+   "credits": 3,
+   "area": "핵심-융합",
+   "seoul": [
+    true,
+    true
+   ]
+  },
+  {
+   "code": "49097",
+   "name": "미래사회와미디어",
+   "credits": 3,
+   "area": "핵심-융합",
+   "seoul": [
+    true,
+    true
+   ]
+  },
+  {
+   "code": "53167",
+   "name": "생활속의생명과학",
+   "credits": 3,
+   "area": "핵심-융합",
+   "seoul": [
+    true,
+    true
+   ]
+  },
+  {
+   "code": "53180",
+   "name": "시적인간의세계읽기",
+   "credits": 3,
+   "area": "핵심-융합",
+   "seoul": [
+    true,
+    true
+   ]
+  },
+  {
+   "code": "40553",
+   "name": "식물과문명",
+   "credits": 3,
+   "area": "핵심-융합",
+   "seoul": [
+    true,
+    true
+   ]
+  },
+  {
+   "code": "51384",
+   "name": "식품과건강",
+   "credits": 3,
+   "area": "핵심-융합",
+   "seoul": [
+    true,
+    true
+   ]
+  },
+  {
+   "code": "53168",
+   "name": "연극과뮤지컬",
+   "credits": 3,
+   "area": "핵심-융합",
+   "seoul": [
+    true,
+    true
+   ]
+  },
+  {
+   "code": "40554",
+   "name": "의약의역사",
+   "credits": 3,
+   "area": "핵심-융합",
+   "seoul": [
+    true,
+    true
+   ]
+  },
+  {
+   "code": "40740",
+   "name": "인간과미생물",
+   "credits": 3,
+   "area": "핵심-융합",
+   "seoul": [
+    true,
+    true
+   ]
+  },
+  {
+   "code": "59129",
+   "name": "커뮤니티스포츠케어",
+   "credits": 3,
+   "area": "핵심-융합",
+   "seoul": [
+    true,
+    true
+   ]
+  },
+  {
+   "code": "38046",
+   "name": "통계와사회",
+   "credits": 3,
+   "area": "핵심-융합",
+   "seoul": [
+    true,
+    true
+   ]
+  },
+  {
+   "code": "53521",
+   "name": "동양철학의세계",
+   "credits": 3,
+   "area": "핵심-신뢰",
+   "seoul": [
+    true,
+    true
+   ]
+  },
+  {
+   "code": "54958",
+   "name": "발견,발명,그위대한상상",
+   "credits": 3,
+   "area": "핵심-신뢰",
+   "seoul": [
+    true,
+    true
+   ]
+  },
+  {
+   "code": "39575",
+   "name": "언어와의사소통",
+   "credits": 3,
+   "area": "핵심-신뢰",
+   "seoul": [
+    true,
+    true
+   ]
+  },
+  {
+   "code": "40733",
+   "name": "역사란무엇인가",
+   "credits": 3,
+   "area": "핵심-신뢰",
+   "seoul": [
+    true,
+    true
+   ]
+  },
+  {
+   "code": "51382",
+   "name": "인간행동과심리",
+   "credits": 3,
+   "area": "핵심-신뢰",
+   "seoul": [
+    true,
+    true
+   ]
+  },
+  {
+   "code": "53522",
+   "name": "철학의세계",
+   "credits": 3,
+   "area": "핵심-신뢰",
+   "seoul": [
+    true,
+    true
+   ]
+  },
+  {
+   "code": "53181",
+   "name": "프로젝트글쓰기",
+   "credits": 3,
+   "area": "핵심-신뢰",
+   "seoul": [
+    true,
+    true
+   ]
+  },
+  {
+   "code": "53172",
+   "name": "한국의전통문화유산",
+   "credits": 3,
+   "area": "핵심-신뢰",
+   "seoul": [
+    true,
+    true
+   ]
+  },
+  {
+   "code": "28701",
+   "name": "현대사회와법",
+   "credits": 3,
+   "area": "핵심-신뢰",
+   "seoul": [
+    true,
+    true
+   ]
+  },
+  {
+   "code": "47295",
+   "name": "현대사회와언어",
+   "credits": 3,
+   "area": "핵심-신뢰",
+   "seoul": [
+    true,
+    true
+   ]
+  },
+  {
+   "code": "40541",
+   "name": "현대사회의쟁점",
+   "credits": 3,
+   "area": "핵심-신뢰",
+   "seoul": [
+    true,
+    true
+   ]
+  },
+  {
+   "code": "53801",
+   "name": "English for Professional Track(Arts, Sports)",
+   "credits": 3,
+   "area": "핵심-소통",
+   "seoul": [
+    true,
+    true
+   ]
+  },
+  {
+   "code": "53800",
+   "name": "English for Professional Track(Business, Economics)",
+   "credits": 3,
+   "area": "핵심-소통",
+   "seoul": [
+    true,
+    true
+   ]
+  },
+  {
+   "code": "53803",
+   "name": "English for Professional Track(Sciences, Engineering)",
+   "credits": 3,
+   "area": "핵심-소통",
+   "seoul": [
+    true,
+    true
+   ]
+  },
+  {
+   "code": "53802",
+   "name": "English for Professional Track(Social, Humanities)",
+   "credits": 3,
+   "area": "핵심-소통",
+   "seoul": [
+    true,
+    true
+   ]
+  },
+  {
+   "code": "53183",
+   "name": "공감프레젠테이션",
+   "credits": 3,
+   "area": "핵심-소통",
+   "seoul": [
+    true,
+    true
+   ]
+  },
+  {
+   "code": "49968",
+   "name": "글로벌한자",
+   "credits": 3,
+   "area": "핵심-소통",
+   "seoul": [
+    true,
+    true
+   ]
+  },
+  {
+   "code": "51372",
+   "name": "대학한문",
+   "credits": 3,
+   "area": "핵심-소통",
+   "seoul": [
+    true,
+    true
+   ]
+  },
+  {
+   "code": "28815",
+   "name": "독일어(초급)",
+   "credits": 3,
+   "area": "핵심-소통",
+   "seoul": [
+    true,
+    true
+   ]
+  },
+  {
+   "code": "54963",
+   "name": "디지털커뮤니케이션과콘텐츠",
+   "credits": 3,
+   "area": "핵심-소통",
+   "seoul": [
+    true,
+    true
+   ]
+  },
+  {
+   "code": "28817",
+   "name": "러시아어(초급)",
+   "credits": 3,
+   "area": "핵심-소통",
+   "seoul": [
+    true,
+    true
+   ]
+  },
+  {
+   "code": "28814",
+   "name": "불어(초급)",
+   "credits": 3,
+   "area": "핵심-소통",
+   "seoul": [
+    true,
+    true
+   ]
+  },
+  {
+   "code": "40599",
+   "name": "스페인어(초급)",
+   "credits": 3,
+   "area": "핵심-소통",
+   "seoul": [
+    true,
+    true
+   ]
+  },
+  {
+   "code": "59360",
+   "name": "외국인을위한대학한국어(말하기와듣기)",
+   "credits": 3,
+   "area": "핵심-소통",
+   "seoul": [
+    true,
+    true
+   ]
+  },
+  {
+   "code": "54435",
+   "name": "위험사회의웰빙사이언스",
+   "credits": 3,
+   "area": "핵심-소통",
+   "seoul": [
+    true,
+    true
+   ]
+  },
+  {
+   "code": "28812",
+   "name": "일본어(초급)",
+   "credits": 3,
+   "area": "핵심-소통",
+   "seoul": [
+    true,
+    true
+   ]
+  },
+  {
+   "code": "28816",
+   "name": "중국어(초급)",
+   "credits": 3,
+   "area": "핵심-소통",
+   "seoul": [
+    true,
+    true
+   ]
+  },
+  {
+   "code": "53182",
+   "name": "중앙인과한국사회",
+   "credits": 3,
+   "area": "핵심-소통",
+   "seoul": [
+    true,
+    true
+   ]
+  },
+  {
+   "code": "54437",
+   "name": "4차산업혁명과인재개발",
+   "credits": 3,
+   "area": "선택-도전",
+   "seoul": [
+    true,
+    true
+   ]
+  },
+  {
+   "code": "57669",
+   "name": "CAU도전스타트업",
+   "credits": 2,
+   "area": "선택-도전",
+   "seoul": [
+    false,
+    true
+   ]
+  },
+  {
+   "code": "52793",
+   "name": "CTO기술경영특강",
+   "credits": 2,
+   "area": "선택-도전",
+   "seoul": [
+    false,
+    true
+   ]
+  },
+  {
+   "code": "58548",
+   "name": "ESG의이해",
+   "credits": 2,
+   "area": "선택-도전",
+   "seoul": [
+    true,
+    false
+   ]
+  },
+  {
+   "code": "58549",
+   "name": "ESG의적용과평가",
+   "credits": 2,
+   "area": "선택-도전",
+   "seoul": [
+    false,
+    true
+   ]
+  },
+  {
+   "code": "56420",
+   "name": "POWER OF ART: THE HISTORY OF WESTERN ART",
+   "credits": 3,
+   "area": "선택-도전",
+   "seoul": [
+    true,
+    true
+   ]
+  },
+  {
+   "code": "57104",
+   "name": "공공기관NCS분석",
+   "credits": 2,
+   "area": "선택-도전",
+   "seoul": [
+    true,
+    true
+   ]
+  },
+  {
+   "code": "53155",
+   "name": "국제사회와테러리즘",
+   "credits": 2,
+   "area": "선택-도전",
+   "seoul": [
+    true,
+    false
+   ]
+  },
+  {
+   "code": "53162",
+   "name": "글로벌물류활동",
+   "credits": 2,
+   "area": "선택-도전",
+   "seoul": [
+    true,
+    true
+   ]
+  },
+  {
+   "code": "52800",
+   "name": "글로벌비즈니스와법(Global Business and Law)",
+   "credits": 3,
+   "area": "선택-도전",
+   "seoul": [
+    true,
+    true
+   ]
+  },
+  {
+   "code": "51369",
+   "name": "글로벌시대의국제질서",
+   "credits": 3,
+   "area": "선택-도전",
+   "seoul": [
+    true,
+    true
+   ]
+  },
+  {
+   "code": "57105",
+   "name": "기업경영과진로탐색",
+   "credits": 2,
+   "area": "선택-도전",
+   "seoul": [
+    true,
+    true
+   ]
+  },
+  {
+   "code": "57106",
+   "name": "기업직무적성검사분석",
+   "credits": 2,
+   "area": "선택-도전",
+   "seoul": [
+    true,
+    true
+   ]
+  },
+  {
+   "code": "42485",
+   "name": "대중문화와패션",
+   "credits": 2,
+   "area": "선택-도전",
+   "seoul": [
+    true,
+    true
+   ]
+  },
+  {
+   "code": "55780",
+   "name": "디지털기업경영",
+   "credits": 2,
+   "area": "선택-도전",
+   "seoul": [
+    true,
+    true
+   ]
+  },
+  {
+   "code": "57801",
+   "name": "디지털스타트업(캡스톤디자인)",
+   "credits": 2,
+   "area": "선택-도전",
+   "seoul": [
+    true,
+    false
+   ]
+  },
+  {
+   "code": "56331",
+   "name": "반도체제대로이해하기",
+   "credits": 2,
+   "area": "선택-도전",
+   "seoul": [
+    false,
+    true
+   ]
+  },
+  {
+   "code": "53174",
+   "name": "부동산과현대사회",
+   "credits": 2,
+   "area": "선택-도전",
+   "seoul": [
+    true,
+    true
+   ]
+  },
+  {
+   "code": "55776",
+   "name": "비즈니스크리에이티비티",
+   "credits": 3,
+   "area": "선택-도전",
+   "seoul": [
+    true,
+    true
+   ]
+  },
+  {
+   "code": "52434",
+   "name": "사회봉사의이론과실천",
+   "credits": 2,
+   "area": "선택-도전",
+   "seoul": [
+    true,
+    true
+   ]
+  },
+  {
+   "code": "42355",
+   "name": "생활속의물리여행",
+   "credits": 2,
+   "area": "선택-도전",
+   "seoul": [
+    true,
+    true
+   ]
+  },
+  {
+   "code": "57792",
+   "name": "생활속의세금",
+   "credits": 3,
+   "area": "선택-도전",
+   "seoul": [
+    true,
+    false
+   ]
+  },
+  {
+   "code": "48654",
+   "name": "소비자와시장",
+   "credits": 3,
+   "area": "선택-도전",
+   "seoul": [
+    true,
+    true
+   ]
+  },
+  {
+   "code": "57802",
+   "name": "스타트업아이디어다이제스트",
+   "credits": 2,
+   "area": "선택-도전",
+   "seoul": [
+    true,
+    false
+   ]
+  },
+  {
+   "code": "57794",
+   "name": "스타트업을위한크라우드펀딩(캡스톤디자인)",
+   "credits": 3,
+   "area": "선택-도전",
+   "seoul": [
+    true,
+    false
+   ]
+  },
+  {
+   "code": "42522",
+   "name": "스트레스관리와심신수련",
+   "credits": 2,
+   "area": "선택-도전",
+   "seoul": [
+    false,
+    false
+   ]
+  },
+  {
+   "code": "53518",
+   "name": "스포츠안전과컨디셔닝",
+   "credits": 2,
+   "area": "선택-도전",
+   "seoul": [
+    false,
+    false
+   ]
+  },
+  {
+   "code": "59383",
+   "name": "슬기로운학문생활(입학전)",
+   "credits": 2,
+   "area": "선택-도전",
+   "seoul": [
+    false,
+    false
+   ]
+  },
+  {
+   "code": "56332",
+   "name": "시스템반도체입문",
+   "credits": 3,
+   "area": "선택-도전",
+   "seoul": [
+    false,
+    true
+   ]
+  },
+  {
+   "code": "51375",
+   "name": "아이디어와엔터테인먼트콘텐츠",
+   "credits": 3,
+   "area": "선택-도전",
+   "seoul": [
+    true,
+    false
+   ]
+  },
+  {
+   "code": "51867",
+   "name": "약과건강",
+   "credits": 2,
+   "area": "선택-도전",
+   "seoul": [
+    true,
+    false
+   ]
+  },
+  {
+   "code": "48655",
+   "name": "여성건강과영양관리",
+   "credits": 2,
+   "area": "선택-도전",
+   "seoul": [
+    true,
+    true
+   ]
+  },
+  {
+   "code": "53785",
+   "name": "유라시아인문지리",
+   "credits": 2,
+   "area": "선택-도전",
+   "seoul": [
+    false,
+    false
+   ]
+  },
+  {
+   "code": "57790",
+   "name": "지역문제해결형청년창업",
+   "credits": 3,
+   "area": "선택-도전",
+   "seoul": [
+    true,
+    true
+   ]
+  },
+  {
+   "code": "57108",
+   "name": "진로탐색과자기개발",
+   "credits": 2,
+   "area": "선택-도전",
+   "seoul": [
+    true,
+    true
+   ]
+  },
+  {
+   "code": "57797",
+   "name": "청년창업가를위한실전법률알고리즘",
+   "credits": 2,
+   "area": "선택-도전",
+   "seoul": [
+    true,
+    false
+   ]
+  },
+  {
+   "code": "50653",
+   "name": "청년프론티어십",
+   "credits": 3,
+   "area": "선택-도전",
+   "seoul": [
+    true,
+    true
+   ]
+  },
+  {
+   "code": "57107",
+   "name": "취업역량개발",
+   "credits": 2,
+   "area": "선택-도전",
+   "seoul": [
+    true,
+    true
+   ]
+  },
+  {
+   "code": "55781",
+   "name": "플랫폼과뉴비즈니스",
+   "credits": 2,
+   "area": "선택-도전",
+   "seoul": [
+    true,
+    true
+   ]
+  },
+  {
+   "code": "57134",
+   "name": "해외동포사회이해",
+   "credits": 3,
+   "area": "선택-도전",
+   "seoul": [
+    false,
+    true
+   ]
+  },
+  {
+   "code": "57796",
+   "name": "혁신경영과기업가정신",
+   "credits": 2,
+   "area": "선택-도전",
+   "seoul": [
+    true,
+    false
+   ]
+  },
+  {
+   "code": "57114",
+   "name": "BRAND COMPETITION AND WINNING STRATEGIES",
+   "credits": 2,
+   "area": "선택-창의",
+   "seoul": [
+    true,
+    true
+   ]
+  },
+  {
+   "code": "57119",
+   "name": "K-콘텐츠로보는한국어와한류",
+   "credits": 2,
+   "area": "선택-창의",
+   "seoul": [
+    false,
+    true
+   ]
+  },
+  {
+   "code": "49665",
+   "name": "공간디자인과삶의질",
+   "credits": 3,
+   "area": "선택-창의",
+   "seoul": [
+    false,
+    true
+   ]
+  },
+  {
+   "code": "53161",
+   "name": "그리스비극과신화",
+   "credits": 3,
+   "area": "선택-창의",
+   "seoul": [
+    true,
+    true
+   ]
+  },
+  {
+   "code": "49664",
+   "name": "독일문화와예술",
+   "credits": 3,
+   "area": "선택-창의",
+   "seoul": [
+    false,
+    false
+   ]
+  },
+  {
+   "code": "58553",
+   "name": "드라마로만나는현대문화",
+   "credits": 2,
+   "area": "선택-창의",
+   "seoul": [
+    false,
+    true
+   ]
+  },
+  {
+   "code": "42490",
+   "name": "디자인문화와생활",
+   "credits": 2,
+   "area": "선택-창의",
+   "seoul": [
+    true,
+    true
+   ]
+  },
+  {
+   "code": "49098",
+   "name": "러시아문화기행",
+   "credits": 3,
+   "area": "선택-창의",
+   "seoul": [
+    false,
+    true
+   ]
+  },
+  {
+   "code": "53165",
+   "name": "몸과문화의인류학",
+   "credits": 3,
+   "area": "선택-창의",
+   "seoul": [
+    true,
+    false
+   ]
+  },
+  {
+   "code": "52805",
+   "name": "문화콘텐츠와기호학",
+   "credits": 3,
+   "area": "선택-창의",
+   "seoul": [
+    true,
+    true
+   ]
+  },
+  {
+   "code": "59382",
+   "name": "사과와고양이그리고양자컴퓨터",
+   "credits": 2,
+   "area": "선택-창의",
+   "seoul": [
+    true,
+    false
+   ]
+  },
+  {
+   "code": "53184",
+   "name": "사진과창조적표현",
+   "credits": 3,
+   "area": "선택-창의",
+   "seoul": [
+    true,
+    true
+   ]
+  },
+  {
+   "code": "57805",
+   "name": "생활속의반도체",
+   "credits": 3,
+   "area": "선택-창의",
+   "seoul": [
+    true,
+    false
+   ]
+  },
+  {
+   "code": "53185",
+   "name": "세계문화지리아카데미",
+   "credits": 2,
+   "area": "선택-창의",
+   "seoul": [
+    true,
+    true
+   ]
+  },
+  {
+   "code": "38912",
+   "name": "섹슈얼리티와문화",
+   "credits": 2,
+   "area": "선택-창의",
+   "seoul": [
+    true,
+    true
+   ]
+  },
+  {
+   "code": "53511",
+   "name": "소프트웨어와메이커",
+   "credits": 2,
+   "area": "선택-창의",
+   "seoul": [
+    false,
+    true
+   ]
+  },
+  {
+   "code": "51883",
+   "name": "스타트업을위한동영상제작",
+   "credits": 3,
+   "area": "선택-창의",
+   "seoul": [
+    false,
+    true
+   ]
+  },
+  {
+   "code": "48663",
+   "name": "스페인문화와예술",
+   "credits": 3,
+   "area": "선택-창의",
+   "seoul": [
+    false,
+    false
+   ]
+  },
+  {
+   "code": "56422",
+   "name": "신화적상상력과판타지",
+   "credits": 3,
+   "area": "선택-창의",
+   "seoul": [
+    true,
+    true
+   ]
+  },
+  {
+   "code": "54968",
+   "name": "아시아문화탐구",
+   "credits": 3,
+   "area": "선택-창의",
+   "seoul": [
+    true,
+    true
+   ]
+  },
+  {
+   "code": "49952",
+   "name": "영화미학과감상",
+   "credits": 3,
+   "area": "선택-창의",
+   "seoul": [
+    true,
+    true
+   ]
+  },
+  {
+   "code": "42351",
+   "name": "예술경영개론",
+   "credits": 3,
+   "area": "선택-창의",
+   "seoul": [
+    true,
+    true
+   ]
+  },
+  {
+   "code": "53809",
+   "name": "예술철학의세계",
+   "credits": 3,
+   "area": "선택-창의",
+   "seoul": [
+    true,
+    true
+   ]
+  },
+  {
+   "code": "55779",
+   "name": "웹툰창작론",
+   "credits": 2,
+   "area": "선택-창의",
+   "seoul": [
+    false,
+    true
+   ]
+  },
+  {
+   "code": "53786",
+   "name": "유네스코세계유산과문명",
+   "credits": 2,
+   "area": "선택-창의",
+   "seoul": [
+    true,
+    false
+   ]
+  },
+  {
+   "code": "42476",
+   "name": "유럽문화기행",
+   "credits": 2,
+   "area": "선택-창의",
+   "seoul": [
+    true,
+    true
+   ]
+  },
+  {
+   "code": "53515",
+   "name": "인공지능과인간의미래",
+   "credits": 2,
+   "area": "선택-창의",
+   "seoul": [
+    true,
+    false
+   ]
+  },
+  {
+   "code": "55775",
+   "name": "인공지능의세계",
+   "credits": 2,
+   "area": "선택-창의",
+   "seoul": [
+    false,
+    true
+   ]
+  },
+  {
+   "code": "40569",
+   "name": "중국문학과예술",
+   "credits": 3,
+   "area": "선택-창의",
+   "seoul": [
+    true,
+    false
+   ]
+  },
+  {
+   "code": "50393",
+   "name": "창의적 디자인사고와 비즈니스모델",
+   "credits": 2,
+   "area": "선택-창의",
+   "seoul": [
+    true,
+    true
+   ]
+  },
+  {
+   "code": "40567",
+   "name": "프랑스문학과예술",
+   "credits": 3,
+   "area": "선택-창의",
+   "seoul": [
+    true,
+    true
+   ]
+  },
+  {
+   "code": "49666",
+   "name": "현대일본의문화콘텐츠",
+   "credits": 3,
+   "area": "선택-창의",
+   "seoul": [
+    true,
+    false
+   ]
+  },
+  {
+   "code": "58547",
+   "name": "AI시대데이터로세상읽기",
+   "credits": 2,
+   "area": "선택-융합",
+   "seoul": [
+    true,
+    false
+   ]
+  },
+  {
+   "code": "55774",
+   "name": "AI와법",
+   "credits": 3,
+   "area": "선택-융합",
+   "seoul": [
+    true,
+    false
+   ]
+  },
+  {
+   "code": "57795",
+   "name": "CAU크리에이티브랩(캡스톤디자인)",
+   "credits": 3,
+   "area": "선택-융합",
+   "seoul": [
+    true,
+    false
+   ]
+  },
+  {
+   "code": "57788",
+   "name": "ESG와사회적혁신",
+   "credits": 2,
+   "area": "선택-융합",
+   "seoul": [
+    false,
+    true
+   ]
+  },
+  {
+   "code": "52437",
+   "name": "GLOBAL CITIZENSHIP AND HUMANITARIANISM",
+   "credits": 2,
+   "area": "선택-융합",
+   "seoul": [
+    true,
+    false
+   ]
+  },
+  {
+   "code": "56421",
+   "name": "UNDERSTANDING FILM&SOCIAL CULTURE",
+   "credits": 3,
+   "area": "선택-융합",
+   "seoul": [
+    true,
+    true
+   ]
+  },
+  {
+   "code": "51711",
+   "name": "YouTube 멀티미디어 창작과 비즈니스",
+   "credits": 3,
+   "area": "선택-융합",
+   "seoul": [
+    true,
+    false
+   ]
+  },
+  {
+   "code": "51370",
+   "name": "건강한Diet와운동",
+   "credits": 3,
+   "area": "선택-융합",
+   "seoul": [
+    true,
+    true
+   ]
+  },
+  {
+   "code": "50002",
+   "name": "건강한여성",
+   "credits": 2,
+   "area": "선택-융합",
+   "seoul": [
+    true,
+    false
+   ]
+  },
+  {
+   "code": "55773",
+   "name": "게임인문학",
+   "credits": 3,
+   "area": "선택-융합",
+   "seoul": [
+    true,
+    true
+   ]
+  },
+  {
+   "code": "54341",
+   "name": "구기스포츠",
+   "credits": 2,
+   "area": "선택-융합",
+   "seoul": [
+    true,
+    true
+   ]
+  },
+  {
+   "code": "57118",
+   "name": "기술혁명을만난스포츠",
+   "credits": 2,
+   "area": "선택-융합",
+   "seoul": [
+    true,
+    false
+   ]
+  },
+  {
+   "code": "41545",
+   "name": "기후변화와동물의세계",
+   "credits": 2,
+   "area": "선택-융합",
+   "seoul": [
+    false,
+    false
+   ]
+  },
+  {
+   "code": "53781",
+   "name": "나노융합과미래",
+   "credits": 2,
+   "area": "선택-융합",
+   "seoul": [
+    true,
+    true
+   ]
+  },
+  {
+   "code": "59381",
+   "name": "내마음을위한음악사용법",
+   "credits": 2,
+   "area": "선택-융합",
+   "seoul": [
+    false,
+    true
+   ]
+  },
+  {
+   "code": "52795",
+   "name": "내안의우주: 인체구조와기능",
+   "credits": 3,
+   "area": "선택-융합",
+   "seoul": [
+    true,
+    true
+   ]
+  },
+  {
+   "code": "59130",
+   "name": "뇌과학 내생각의비밀",
+   "credits": 3,
+   "area": "선택-융합",
+   "seoul": [
+    true,
+    true
+   ]
+  },
+  {
+   "code": "57115",
+   "name": "디지털자산(지식재산)의이해와문제해결",
+   "credits": 2,
+   "area": "선택-융합",
+   "seoul": [
+    true,
+    false
+   ]
+  },
+  {
+   "code": "54342",
+   "name": "레저스포츠",
+   "credits": 2,
+   "area": "선택-융합",
+   "seoul": [
+    true,
+    true
+   ]
+  },
+  {
+   "code": "53812",
+   "name": "명작내러티브의구조",
+   "credits": 3,
+   "area": "선택-융합",
+   "seoul": [
+    false,
+    true
+   ]
+  },
+  {
+   "code": "54864",
+   "name": "사회문제와인공지능프로젝트",
+   "credits": 2,
+   "area": "선택-융합",
+   "seoul": [
+    true,
+    false
+   ]
+  },
+  {
+   "code": "57798",
+   "name": "생명과긍정마인드",
+   "credits": 2,
+   "area": "선택-융합",
+   "seoul": [
+    false,
+    false
+   ]
+  },
+  {
+   "code": "59380",
+   "name": "세계문화교류",
+   "credits": 2,
+   "area": "선택-융합",
+   "seoul": [
+    false,
+    true
+   ]
+  },
+  {
+   "code": "52449",
+   "name": "스포츠와법",
+   "credits": 3,
+   "area": "선택-융합",
+   "seoul": [
+    false,
+    true
+   ]
+  },
+  {
+   "code": "38923",
+   "name": "스포츠와인간행동",
+   "credits": 2,
+   "area": "선택-융합",
+   "seoul": [
+    false,
+    false
+   ]
+  },
+  {
+   "code": "51865",
+   "name": "영웅신화와대중문화",
+   "credits": 2,
+   "area": "선택-융합",
+   "seoul": [
+    false,
+    false
+   ]
+  },
+  {
+   "code": "59379",
+   "name": "움직이는일본,애니메이션속문화읽기",
+   "credits": 2,
+   "area": "선택-융합",
+   "seoul": [
+    false,
+    true
+   ]
+  },
+  {
+   "code": "53520",
+   "name": "음식과생명윤리",
+   "credits": 2,
+   "area": "선택-융합",
+   "seoul": [
+    true,
+    true
+   ]
+  },
+  {
+   "code": "47292",
+   "name": "의생명노벨상이야기",
+   "credits": 2,
+   "area": "선택-융합",
+   "seoul": [
+    true,
+    true
+   ]
+  },
+  {
+   "code": "53170",
+   "name": "인간과생활소재",
+   "credits": 2,
+   "area": "선택-융합",
+   "seoul": [
+    false,
+    false
+   ]
+  },
+  {
+   "code": "56419",
+   "name": "인문학산책: 문학을통한과학문화읽기",
+   "credits": 3,
+   "area": "선택-융합",
+   "seoul": [
+    true,
+    false
+   ]
+  },
+  {
+   "code": "57803",
+   "name": "일과건강",
+   "credits": 2,
+   "area": "선택-융합",
+   "seoul": [
+    false,
+    true
+   ]
+  },
+  {
+   "code": "51878",
+   "name": "책읽기와상상력",
+   "credits": 3,
+   "area": "선택-융합",
+   "seoul": [
+    true,
+    true
+   ]
+  },
+  {
+   "code": "58550",
+   "name": "청년기자가건강관리와디지털헬스",
+   "credits": 2,
+   "area": "선택-융합",
+   "seoul": [
+    true,
+    false
+   ]
+  },
+  {
+   "code": "58558",
+   "name": "한국문학의장소와풍경",
+   "credits": 2,
+   "area": "선택-융합",
+   "seoul": [
+    true,
+    false
+   ]
+  },
+  {
+   "code": "53797",
+   "name": "현대사회아동",
+   "credits": 2,
+   "area": "선택-융합",
+   "seoul": [
+    false,
+    false
+   ]
+  },
+  {
+   "code": "38916",
+   "name": "현대사회와스포츠",
+   "credits": 2,
+   "area": "선택-융합",
+   "seoul": [
+    true,
+    true
+   ]
+  },
+  {
+   "code": "57113",
+   "name": "현대전쟁과사회",
+   "credits": 2,
+   "area": "선택-융합",
+   "seoul": [
+    true,
+    false
+   ]
+  },
+  {
+   "code": "57806",
+   "name": "ESG와사회문제해결디자인",
+   "credits": 2,
+   "area": "선택-신뢰",
+   "seoul": [
+    true,
+    false
+   ]
+  },
+  {
+   "code": "01191",
+   "name": "결혼과가족",
+   "credits": 2,
+   "area": "선택-신뢰",
+   "seoul": [
+    true,
+    true
+   ]
+  },
+  {
+   "code": "49092",
+   "name": "계약과법",
+   "credits": 3,
+   "area": "선택-신뢰",
+   "seoul": [
+    true,
+    false
+   ]
+  },
+  {
+   "code": "53176",
+   "name": "교육과인간의심리",
+   "credits": 3,
+   "area": "선택-신뢰",
+   "seoul": [
+    true,
+    true
+   ]
+  },
+  {
+   "code": "39554",
+   "name": "논증과추론",
+   "credits": 2,
+   "area": "선택-신뢰",
+   "seoul": [
+    true,
+    true
+   ]
+  },
+  {
+   "code": "42349",
+   "name": "독일정치와사회",
+   "credits": 3,
+   "area": "선택-신뢰",
+   "seoul": [
+    true,
+    true
+   ]
+  },
+  {
+   "code": "53514",
+   "name": "문화콘텐츠산업에서의분쟁과대응",
+   "credits": 2,
+   "area": "선택-신뢰",
+   "seoul": [
+    true,
+    false
+   ]
+  },
+  {
+   "code": "49094",
+   "name": "범죄와형벌",
+   "credits": 3,
+   "area": "선택-신뢰",
+   "seoul": [
+    false,
+    true
+   ]
+  },
+  {
+   "code": "52455",
+   "name": "부모되기이론과실제",
+   "credits": 2,
+   "area": "선택-신뢰",
+   "seoul": [
+    false,
+    false
+   ]
+  },
+  {
+   "code": "54895",
+   "name": "사회봉사첫걸음",
+   "credits": 2,
+   "area": "선택-신뢰",
+   "seoul": [
+    false,
+    true
+   ]
+  },
+  {
+   "code": "57109",
+   "name": "사회정의와윤리",
+   "credits": 3,
+   "area": "선택-신뢰",
+   "seoul": [
+    true,
+    true
+   ]
+  },
+  {
+   "code": "59389",
+   "name": "서울의역사와문화탐방",
+   "credits": 3,
+   "area": "선택-신뢰",
+   "seoul": [
+    true,
+    true
+   ]
+  },
+  {
+   "code": "49951",
+   "name": "설득의심리학",
+   "credits": 3,
+   "area": "선택-신뢰",
+   "seoul": [
+    true,
+    true
+   ]
+  },
+  {
+   "code": "56418",
+   "name": "소비생활과법",
+   "credits": 3,
+   "area": "선택-신뢰",
+   "seoul": [
+    false,
+    true
+   ]
+  },
+  {
+   "code": "53789",
+   "name": "소비의역사와문화",
+   "credits": 2,
+   "area": "선택-신뢰",
+   "seoul": [
+    true,
+    true
+   ]
+  },
+  {
+   "code": "49095",
+   "name": "소유권과법",
+   "credits": 3,
+   "area": "선택-신뢰",
+   "seoul": [
+    false,
+    true
+   ]
+  },
+  {
+   "code": "51876",
+   "name": "술의세계와주도",
+   "credits": 2,
+   "area": "선택-신뢰",
+   "seoul": [
+    true,
+    true
+   ]
+  },
+  {
+   "code": "53882",
+   "name": "시장경제와법",
+   "credits": 3,
+   "area": "선택-신뢰",
+   "seoul": [
+    true,
+    false
+   ]
+  },
+  {
+   "code": "53782",
+   "name": "영화속의역사바로읽기",
+   "credits": 2,
+   "area": "선택-신뢰",
+   "seoul": [
+    true,
+    true
+   ]
+  },
+  {
+   "code": "55784",
+   "name": "음식의문화인류학",
+   "credits": 3,
+   "area": "선택-신뢰",
+   "seoul": [
+    false,
+    true
+   ]
+  },
+  {
+   "code": "52797",
+   "name": "이미지로본중국사",
+   "credits": 2,
+   "area": "선택-신뢰",
+   "seoul": [
+    false,
+    true
+   ]
+  },
+  {
+   "code": "51380",
+   "name": "인간관계심리학",
+   "credits": 3,
+   "area": "선택-신뢰",
+   "seoul": [
+    true,
+    true
+   ]
+  },
+  {
+   "code": "59684",
+   "name": "장애와포용사회",
+   "credits": 2,
+   "area": "선택-신뢰",
+   "seoul": [
+    true,
+    false
+   ]
+  },
+  {
+   "code": "57807",
+   "name": "직장생활과법",
+   "credits": 2,
+   "area": "선택-신뢰",
+   "seoul": [
+    true,
+    false
+   ]
+  },
+  {
+   "code": "57133",
+   "name": "한국사회의다문화현상이해",
+   "credits": 3,
+   "area": "선택-신뢰",
+   "seoul": [
+    true,
+    false
+   ]
+  },
+  {
+   "code": "40586",
+   "name": "행복의철학",
+   "credits": 2,
+   "area": "선택-신뢰",
+   "seoul": [
+    true,
+    true
+   ]
+  },
+  {
+   "code": "53513",
+   "name": "현대범죄와대응",
+   "credits": 2,
+   "area": "선택-신뢰",
+   "seoul": [
+    false,
+    true
+   ]
+  },
+  {
+   "code": "47947",
+   "name": "현대사회와인권",
+   "credits": 2,
+   "area": "선택-신뢰",
+   "seoul": [
+    true,
+    true
+   ]
+  },
+  {
+   "code": "48657",
+   "name": "현대사회의노동과권리",
+   "credits": 3,
+   "area": "선택-신뢰",
+   "seoul": [
+    true,
+    true
+   ]
+  },
+  {
+   "code": "54960",
+   "name": "현대인과중독심리",
+   "credits": 3,
+   "area": "선택-신뢰",
+   "seoul": [
+    true,
+    true
+   ]
+  },
+  {
+   "code": "53154",
+   "name": "20세기한국의형성사",
+   "credits": 2,
+   "area": "선택-소통",
+   "seoul": [
+    true,
+    true
+   ]
+  },
+  {
+   "code": "50122",
+   "name": "ACADEMIC READING",
+   "credits": 2,
+   "area": "선택-소통",
+   "seoul": [
+    true,
+    true
+   ]
+  },
+  {
+   "code": "59386",
+   "name": "BASIC KOREAN(Level1)",
+   "credits": 3,
+   "area": "선택-소통",
+   "seoul": [
+    true,
+    true
+   ]
+  },
+  {
+   "code": "59387",
+   "name": "BASIC KOREAN(Level2)",
+   "credits": 3,
+   "area": "선택-소통",
+   "seoul": [
+    true,
+    true
+   ]
+  },
+  {
+   "code": "59388",
+   "name": "BASIC KOREAN(Level3)",
+   "credits": 3,
+   "area": "선택-소통",
+   "seoul": [
+    true,
+    true
+   ]
+  },
+  {
+   "code": "52796",
+   "name": "CONTEMPORARY KOREAN POPULAR CULTURE",
+   "credits": 3,
+   "area": "선택-소통",
+   "seoul": [
+    true,
+    true
+   ]
+  },
+  {
+   "code": "48158",
+   "name": "CONTEMPORARY KOREAN SOCIETY",
+   "credits": 3,
+   "area": "선택-소통",
+   "seoul": [
+    true,
+    true
+   ]
+  },
+  {
+   "code": "57116",
+   "name": "ENGLISH THROUGH PODCASTING",
+   "credits": 2,
+   "area": "선택-소통",
+   "seoul": [
+    true,
+    false
+   ]
+  },
+  {
+   "code": "39967",
+   "name": "ENGLISH WRITING(1)",
+   "credits": 2,
+   "area": "선택-소통",
+   "seoul": [
+    true,
+    true
+   ]
+  },
+  {
+   "code": "39968",
+   "name": "ENGLISH WRITING(2)",
+   "credits": 2,
+   "area": "선택-소통",
+   "seoul": [
+    true,
+    true
+   ]
+  },
+  {
+   "code": "56425",
+   "name": "HISTORY AND CULTURE OF JOSEON DYNASTY",
+   "credits": 3,
+   "area": "선택-소통",
+   "seoul": [
+    true,
+    true
+   ]
+  },
+  {
+   "code": "58557",
+   "name": "INTERMEDIATE KOREAN",
+   "credits": 3,
+   "area": "선택-소통",
+   "seoul": [
+    true,
+    true
+   ]
+  },
+  {
+   "code": "48155",
+   "name": "INTRODUCTION TO KOREAN STUDIES",
+   "credits": 3,
+   "area": "선택-소통",
+   "seoul": [
+    false,
+    true
+   ]
+  },
+  {
+   "code": "56333",
+   "name": "INTRODUCTION TO MODERN KOREAN FILM&POPULAR MUSIC",
+   "credits": 3,
+   "area": "선택-소통",
+   "seoul": [
+    true,
+    true
+   ]
+  },
+  {
+   "code": "48156",
+   "name": "KOREAN CULTURE AND ART",
+   "credits": 3,
+   "area": "선택-소통",
+   "seoul": [
+    true,
+    true
+   ]
+  },
+  {
+   "code": "48157",
+   "name": "KOREAN HISTORY AND CULTURE",
+   "credits": 3,
+   "area": "선택-소통",
+   "seoul": [
+    false,
+    true
+   ]
+  },
+  {
+   "code": "41492",
+   "name": "SPEECH IN ENGLISH(1)",
+   "credits": 2,
+   "area": "선택-소통",
+   "seoul": [
+    true,
+    true
+   ]
+  },
+  {
+   "code": "41493",
+   "name": "SPEECH IN ENGLISH(2)",
+   "credits": 2,
+   "area": "선택-소통",
+   "seoul": [
+    true,
+    true
+   ]
+  },
+  {
+   "code": "39969",
+   "name": "TOPICAL ENGLISH",
+   "credits": 2,
+   "area": "선택-소통",
+   "seoul": [
+    true,
+    true
+   ]
+  },
+  {
+   "code": "48152",
+   "name": "VARIABLE TOPICS IN KOREAN CULTURE",
+   "credits": 3,
+   "area": "선택-소통",
+   "seoul": [
+    true,
+    false
+   ]
+  },
+  {
+   "code": "55782",
+   "name": "공감의스토리텔링",
+   "credits": 2,
+   "area": "선택-소통",
+   "seoul": [
+    true,
+    true
+   ]
+  },
+  {
+   "code": "58551",
+   "name": "공감하고설득하는칼럼쓰기",
+   "credits": 2,
+   "area": "선택-소통",
+   "seoul": [
+    true,
+    false
+   ]
+  },
+  {
+   "code": "57112",
+   "name": "기술네트워크와아시아공동체",
+   "credits": 2,
+   "area": "선택-소통",
+   "seoul": [
+    true,
+    false
+   ]
+  },
+  {
+   "code": "54869",
+   "name": "리더십과소통",
+   "credits": 2,
+   "area": "선택-소통",
+   "seoul": [
+    true,
+    true
+   ]
+  },
+  {
+   "code": "58559",
+   "name": "문해력을위한한자(입학전)",
+   "credits": 2,
+   "area": "선택-소통",
+   "seoul": [
+    false,
+    false
+   ]
+  },
+  {
+   "code": "59385",
+   "name": "문해력을위한한자어",
+   "credits": 3,
+   "area": "선택-소통",
+   "seoul": [
+    true,
+    true
+   ]
+  },
+  {
+   "code": "57793",
+   "name": "브랜드커뮤니케이션과크리에이티브",
+   "credits": 3,
+   "area": "선택-소통",
+   "seoul": [
+    true,
+    true
+   ]
+  },
+  {
+   "code": "57791",
+   "name": "사례로보는국가들간의무역전쟁",
+   "credits": 3,
+   "area": "선택-소통",
+   "seoul": [
+    false,
+    true
+   ]
+  },
+  {
+   "code": "47294",
+   "name": "실용한자",
+   "credits": 2,
+   "area": "선택-소통",
+   "seoul": [
+    true,
+    true
+   ]
+  },
+  {
+   "code": "56416",
+   "name": "언어사용설명서",
+   "credits": 2,
+   "area": "선택-소통",
+   "seoul": [
+    true,
+    true
+   ]
+  },
+  {
+   "code": "59390",
+   "name": "외국인을위한한국의전통과고전",
+   "credits": 3,
+   "area": "선택-소통",
+   "seoul": [
+    true,
+    true
+   ]
+  },
+  {
+   "code": "57117",
+   "name": "키워드로읽는중국문화",
+   "credits": 2,
+   "area": "선택-소통",
+   "seoul": [
+    true,
+    false
+   ]
+  },
+  {
+   "code": "51877",
+   "name": "한국어바로알기(A BASIC COURSE IN KOREAN ORTHOGRAPHY)",
+   "credits": 3,
+   "area": "선택-소통",
+   "seoul": [
+    true,
+    true
+   ]
+  },
+  {
+   "code": "53512",
+   "name": "현대음악과대중문화",
+   "credits": 2,
+   "area": "선택-소통",
+   "seoul": [
+    true,
+    false
+   ]
+  }
+ ],
+ "other": [
+  {
+   "code": "53483",
+   "name": "CAU세미나",
+   "credits": 1,
+   "general_category": "자유선택",
+   "note": "1학년 1학기, P/F. 졸업 필수 (사용자 확인)"
+  }
+ ]
+}
